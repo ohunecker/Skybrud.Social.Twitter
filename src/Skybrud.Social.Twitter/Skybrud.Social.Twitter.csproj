@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33209AB7-7F6C-472F-B92A-E71B64708BFA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Skybrud.Social.Twitter</RootNamespace>
+    <AssemblyName>Skybrud.Social.Twitter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Skybrud.Social">
+      <HintPath>..\..\..\Skybrud.Social\src\Skybrud.Social\bin\Release\Skybrud.Social.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Endpoints\Raw\TwitterAccountRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterFavoritesRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterFollowersRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterFriendsRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterGeoRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterListsRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterSearchRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterStatusesRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterUsersRawEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterAccountEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterFavoritesEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterFollowersEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterFriendsEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterGeoEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterListsEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterSearchEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterStatusesEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterUsersEndpoint.cs" />
+    <Compile Include="Entities\Formatting\ITwitterEntityFormatter.cs" />
+    <Compile Include="Entities\Formatting\TwitterDefaultEntitiesFormatter.cs" />
+    <Compile Include="Entities\Formatting\TwitterExtendedEntityFormatter.cs" />
+    <Compile Include="Entities\ITwitterEntities.cs" />
+    <Compile Include="Entities\TwitterBaseEntity.cs" />
+    <Compile Include="Entities\TwitterHashTagEntity.cs" />
+    <Compile Include="Entities\TwitterMediaEntity.cs" />
+    <Compile Include="Entities\TwitterMentionEntity.cs" />
+    <Compile Include="Entities\TwitterStatusMessageEntities.cs" />
+    <Compile Include="Entities\TwitterUrlEntity.cs" />
+    <Compile Include="Entities\TwitterUserDescriptionEntities.cs" />
+    <Compile Include="Entities\TwitterUserEntities.cs" />
+    <Compile Include="Entities\TwitterUserUrlEntities.cs" />
+    <Compile Include="Enums\TwitterGranularity.cs" />
+    <Compile Include="Enums\TwitterListMode.cs" />
+    <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
+    <Compile Include="Exceptions\TwitterException.cs" />
+    <Compile Include="OAuth\TwitterOAuthClient.cs" />
+    <Compile Include="Objects\Common\TwitterRateLimiting.cs" />
+    <Compile Include="Objects\Geocode\TwitterReverseGeocodeParameters.cs" />
+    <Compile Include="Objects\Geocode\TwitterReverseGeocodeQuery.cs" />
+    <Compile Include="Objects\Geocode\TwitterReverseGeocodeResult.cs" />
+    <Compile Include="Objects\Geocode\TwitterReverseGeocodeResults.cs" />
+    <Compile Include="Objects\Lists\TwitterList.cs" />
+    <Compile Include="Objects\Media\TwitterMediaFormat.cs" />
+    <Compile Include="Objects\Media\TwitterMediaFormats.cs" />
+    <Compile Include="Objects\Media\TwitterVideoFormat.cs" />
+    <Compile Include="Objects\Media\TwitterVideoInfo.cs" />
+    <Compile Include="Objects\Search\TwitterSearchTweetsMetaData.cs" />
+    <Compile Include="Objects\Search\TwitterSearchTweetsResults.cs" />
+    <Compile Include="Objects\Statuses\TwitterExtendedEntities.cs" />
+    <Compile Include="Objects\TwitterBoundingBox.cs" />
+    <Compile Include="Objects\TwitterContributor.cs" />
+    <Compile Include="Objects\TwitterCoordinates.cs" />
+    <Compile Include="Objects\TwitterIdsCollection.cs" />
+    <Compile Include="Objects\TwitterPlace.cs" />
+    <Compile Include="Objects\TwitterReplyTo.cs" />
+    <Compile Include="Objects\TwitterStatusMessage.cs" />
+    <Compile Include="Objects\TwitterUser.cs" />
+    <Compile Include="Objects\TwitterUserCollection.cs" />
+    <Compile Include="Options\Favorites\TwitterGetFavoritesOptions.cs" />
+    <Compile Include="Options\Lists\TwitterGetListOptions.cs" />
+    <Compile Include="Options\Lists\TwitterGetListsOptions.cs" />
+    <Compile Include="Options\Lists\TwitterGetMembershipsOptions.cs" />
+    <Compile Include="Options\Lists\TwitterGetMembersOptions.cs" />
+    <Compile Include="Options\Lists\TwitterGetOwnershipsOptions.cs" />
+    <Compile Include="Options\TwitterFollowersIdsOptions.cs" />
+    <Compile Include="Options\TwitterFollowersListOptions.cs" />
+    <Compile Include="Options\TwitterFriendsIdsOptions.cs" />
+    <Compile Include="Options\TwitterFriendsListOptions.cs" />
+    <Compile Include="Options\TwitterPostStatusMessageOptions.cs" />
+    <Compile Include="Options\TwitterReverseGeocodeOptions.cs" />
+    <Compile Include="Options\TwitterSearchTweetOptions.cs" />
+    <Compile Include="Options\TwitterStatusMessageOptions.cs" />
+    <Compile Include="Options\TwitterTimelineOptions.cs" />
+    <Compile Include="Options\TwitterUsersSearchOptions.cs" />
+    <Compile Include="Options\TwitterUserTimelineOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoGenerated.cs" />
+    <Compile Include="Responses\Lists\TwitterListResponse.cs" />
+    <Compile Include="Responses\Lists\TwitterListsResponse.cs" />
+    <Compile Include="Responses\TwitterIdsResponse.cs" />
+    <Compile Include="Responses\TwitterPlaceResponse.cs" />
+    <Compile Include="Responses\TwitterResponse.cs" />
+    <Compile Include="Responses\TwitterReverseGeocodeResponse.cs" />
+    <Compile Include="Responses\TwitterSearchTweetsResponse.cs" />
+    <Compile Include="Responses\TwitterStatusMessageResponse.cs" />
+    <Compile Include="Responses\TwitterTimelineResponse.cs" />
+    <Compile Include="Responses\TwitterUserListResponse.cs" />
+    <Compile Include="Responses\TwitterUserResponse.cs" />
+    <Compile Include="Responses\TwitterUsersSearchResponse.cs" />
+    <Compile Include="TwitterService.cs" />
+    <Compile Include="TwitterUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
