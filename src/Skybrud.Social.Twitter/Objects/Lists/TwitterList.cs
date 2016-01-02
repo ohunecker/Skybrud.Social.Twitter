@@ -1,5 +1,4 @@
 ﻿using System;
-using Skybrud.Social.Facebook.Objects.Users;
 using Skybrud.Social.Json;
 using Skybrud.Social.Twitter.Enums;
 
@@ -65,7 +64,7 @@ namespace Skybrud.Social.Twitter.Objects.Lists {
         /// <summary>
         /// Gets a referecne to the user owning the list.
         /// </summary>
-        public FacebookUser User { get; private set; }
+        //public FacebookUser User { get; private set; }
 
         /// <summary>
         /// Gets whether the authenticated user is following the list.
