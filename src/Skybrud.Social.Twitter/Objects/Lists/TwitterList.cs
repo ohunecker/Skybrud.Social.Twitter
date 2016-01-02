@@ -1,5 +1,6 @@
 ﻿using System;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Objects.Lists {
@@ -7,7 +8,7 @@ namespace Skybrud.Social.Twitter.Objects.Lists {
     /// <summary>
     /// Class representing a Twitter list.
     /// </summary>
-    public class TwitterList : SocialJsonObject {
+    public class TwitterList : TwitterObject {
 
         #region Properties
 
@@ -64,7 +65,7 @@ namespace Skybrud.Social.Twitter.Objects.Lists {
         /// <summary>
         /// Gets a referecne to the user owning the list.
         /// </summary>
-        //public FacebookUser User { get; private set; }
+        public TwitterUser User { get; private set; }
 
         /// <summary>
         /// Gets whether the authenticated user is following the list.
@@ -75,32 +76,31 @@ namespace Skybrud.Social.Twitter.Objects.Lists {
 
         #region Constructors
 
-        private TwitterList(JsonObject obj) : base(obj) { }
+        private TwitterList(JObject obj) : base(obj) {
+            Id = obj.GetInt64("id");
+            Slug = obj.GetString("slug");
+            Name = obj.GetString("name");
+            CreatedAt = obj.GetString("created_at", TwitterUtils.ParseDateTime);
+            Uri = obj.GetString("uri");
+            SubscriberCount = obj.GetInt32("subscriber_count");
+            MemberCount = obj.GetInt32("member_count");
+            Mode = obj.GetEnum<TwitterListMode>("mode");
+            FullName = obj.GetString("full_name");
+            Description = obj.GetString("description");
+            User = obj.GetObject("user", TwitterUser.Parse);
+            IsFollowing = obj.GetBoolean("following");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterList</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterList</code> from the specified <code>JObject</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterList Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterList(obj) {
-                Id = obj.GetInt64("id"),
-                Slug = obj.GetString("slug"),
-                Name = obj.GetString("name"),
-                CreatedAt = obj.GetString("created_at", TwitterUtils.ParseDateTime),
-                Uri = obj.GetString("uri"),
-                SubscriberCount = obj.GetInt32("subscriber_count"),
-                MemberCount = obj.GetInt32("member_count"),
-                Mode = obj.GetEnum<TwitterListMode>("mode"),
-                FullName = obj.GetString("full_name"),
-                Description = obj.GetString("description"),
-                User = obj.GetObject("user", FacebookUser.Parse),
-                IsFollowing = obj.GetBoolean("following")
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterList Parse(JObject obj) {
+            return obj == null ? null : new TwitterList(obj);
         }
 
         #endregion

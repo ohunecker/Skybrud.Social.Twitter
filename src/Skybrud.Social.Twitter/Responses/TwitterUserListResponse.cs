@@ -25,7 +25,7 @@ namespace Skybrud.Social.Twitter.Responses {
 
             // Initialize the response object
             return new TwitterUserListResponse(response) {
-                Body = JsonObject.ParseJson(response.Body, TwitterUserCollection.Parse)
+                Body = ParseJsonObject(response.Body, TwitterUserCollection.Parse)
             };
 
         }

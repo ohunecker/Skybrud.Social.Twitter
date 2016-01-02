@@ -1,12 +1,13 @@
 ﻿using System;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects.Media {
     
     /// <summary>
     /// Class representing a resized format of a given media.
     /// </summary>
-    public class TwitterVideoInfo : SocialJsonObject {
+    public class TwitterVideoInfo : TwitterObject {
 
         #region Properties
 
@@ -36,23 +37,22 @@ namespace Skybrud.Social.Twitter.Objects.Media {
 
         #region Constructors
 
-        private TwitterVideoInfo(JsonObject obj) : base(obj) { }
+        private TwitterVideoInfo(JObject obj) : base(obj) {
+            AspectRatio = obj.GetInt32Array("aspect_ratio");
+            Duration = obj.GetDouble("duration_millis", TimeSpan.FromMilliseconds);
+            Variants = obj.GetArray("variants", TwitterVideoFormat.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterVideoInfo</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterVideoInfo</code> from the specified <code>JObject</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterVideoInfo Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterVideoInfo(obj) {
-                AspectRatio = obj.GetArray("aspect_ratio").Cast<int>(),
-                Duration = obj.GetDouble("duration_millis", TimeSpan.FromMilliseconds),
-                Variants = obj.GetArray("variants", TwitterVideoFormat.Parse)
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterVideoInfo Parse(JObject obj) {
+            return obj == null ? null : new TwitterVideoInfo(obj);
         }
 
         #endregion

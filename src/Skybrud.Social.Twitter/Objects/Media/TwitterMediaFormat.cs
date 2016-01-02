@@ -1,11 +1,12 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects.Media {
     
     /// <summary>
     /// Class representing a resized format of a given media.
     /// </summary>
-    public class TwitterMediaFormat : SocialJsonObject {
+    public class TwitterMediaFormat : TwitterObject {
 
         #region Properties
 
@@ -33,25 +34,24 @@ namespace Skybrud.Social.Twitter.Objects.Media {
 
         #region Constructors
 
-        private TwitterMediaFormat(JsonObject obj) : base(obj) { }
+        private TwitterMediaFormat(string alias, JObject obj) : base(obj) {
+            Alias = alias;
+            Width = obj.GetInt32("w");
+            Height = obj.GetInt32("h");
+            Resize = obj.GetString("resize");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterMediaFormat</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterMediaFormat</code> from the specified <code>JObject</code>.
         /// </summary>
         /// <param name="alias">The alias of the format.</param>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterMediaFormat Parse(string alias, JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterMediaFormat(obj) {
-                Alias = alias,
-                Width = obj.GetInt32("w"),
-                Height = obj.GetInt32("h"),
-                Resize = obj.GetString("resize")
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterMediaFormat Parse(string alias, JObject obj) {
+            return obj == null ? null : new TwitterMediaFormat(alias, obj);
         }
 
         #endregion

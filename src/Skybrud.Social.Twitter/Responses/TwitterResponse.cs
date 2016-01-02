@@ -1,6 +1,7 @@
 ﻿using System.Net;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
+using Skybrud.Social.Json.Extensions.JObject;
 using Skybrud.Social.Twitter.Exceptions;
 using Skybrud.Social.Twitter.Objects.Common;
 
@@ -39,7 +40,7 @@ namespace Skybrud.Social.Twitter.Responses {
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
 
-            JsonObject obj = response.GetBodyAsJsonObject();
+            JObject obj = ParseJsonObject(response.Body);
 
             // For some types of errors, Twitter will only respond with an error message
             if (obj.HasValue("error")) {
@@ -47,10 +48,10 @@ namespace Skybrud.Social.Twitter.Responses {
             }
 
             // However in most cases, Twitter responds with an array of errors
-            JsonArray errors = obj.GetArray("errors");
+            JArray errors = obj.GetArray("errors");
 
             // Get the first error (don't remember ever seeing multiple errors in the same response)
-            JsonObject error = errors.GetObject(0);
+            JObject error = errors.GetObject(0);
 
             // Throw the exception
             throw new TwitterException(response, error.GetString("message"), error.GetInt32("code"));

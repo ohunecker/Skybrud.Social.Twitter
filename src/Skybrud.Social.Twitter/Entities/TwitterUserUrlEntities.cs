@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Entities {
 
@@ -48,10 +49,10 @@ namespace Skybrud.Social.Twitter.Entities {
         #region Static methods
 
         /// <summary>
-        /// Parses a given instance of <code>JsonObject</code>.
+        /// Parses a given instance of <code>JObject</code>.
         /// </summary>
-        /// <param name="entities">The <code>JsonObject</code> to be parsed.</param>
-        public static TwitterUserUrlEntities Parse(JsonObject entities) {
+        /// <param name="entities">The <code>JObject</code> to be parsed.</param>
+        public static TwitterUserUrlEntities Parse(JObject entities) {
             if (entities == null) return null;
             return new TwitterUserUrlEntities {
                 Urls = entities.GetArray("urls", TwitterUrlEntity.Parse)

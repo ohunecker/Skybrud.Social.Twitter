@@ -1,8 +1,9 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects {
 
-    public class TwitterUserCollection : SocialJsonObject {
+    public class TwitterUserCollection : TwitterObject {
 
         #region Properties
 
@@ -25,23 +26,22 @@ namespace Skybrud.Social.Twitter.Objects {
 
         #region Constructors
 
-        private TwitterUserCollection(JsonObject obj) : base(obj) { }
+        private TwitterUserCollection(JObject obj) : base(obj) {
+            Users = obj.GetArray("users", TwitterUser.Parse);
+            NextCursor = obj.GetInt64("next_cursor");
+            PreviousCursor = obj.GetInt64("previous_cursor");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterUserCollection</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterUserCollection</code> from the specified <code>JObject</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterUserCollection Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterUserCollection(obj) {
-                Users = obj.GetArray("users", TwitterUser.Parse),
-                NextCursor = obj.GetInt64("next_cursor"),
-                PreviousCursor = obj.GetInt64("previous_cursor")
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterUserCollection Parse(JObject obj) {
+            return obj == null ? null : new TwitterUserCollection(obj);
         }
 
         #endregion

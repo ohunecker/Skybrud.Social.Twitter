@@ -1,8 +1,9 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects.Search {
 
-    public class TwitterSearchTweetsMetaData : SocialJsonObject {
+    public class TwitterSearchTweetsMetaData : TwitterObject {
 
         #region Properties
 
@@ -22,21 +23,21 @@ namespace Skybrud.Social.Twitter.Objects.Search {
 
         #region Constructors
 
-        public TwitterSearchTweetsMetaData(JsonObject obj) : base(obj) { }
+        public TwitterSearchTweetsMetaData(JObject obj) : base(obj) {
+            CompletedIn = obj.GetFloat("completed_in");
+            MaxId = obj.GetInt64("max_id");
+            Query = obj.GetString("query");
+            RefreshUrl = obj.GetString("refresh_url");
+            Count = obj.GetInt32("count");
+            SinceId = obj.GetInt64("since_id");
+        }
 
         #endregion
 
         #region Static methods
 
-        public static TwitterSearchTweetsMetaData Parse(JsonObject obj) {
-            return new TwitterSearchTweetsMetaData(obj) {
-                CompletedIn = obj.GetFloat("completed_in"),
-                MaxId = obj.GetInt64("max_id"),
-                Query = obj.GetString("query"),
-                RefreshUrl = obj.GetString("refresh_url"),
-                Count = obj.GetInt32("count"),
-                SinceId = obj.GetInt64("since_id")
-            };
+        public static TwitterSearchTweetsMetaData Parse(JObject obj) {
+            return obj == null ? null : new TwitterSearchTweetsMetaData(obj);
         }
 
         #endregion

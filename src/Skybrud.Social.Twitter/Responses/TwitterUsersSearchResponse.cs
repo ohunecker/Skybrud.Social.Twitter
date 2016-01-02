@@ -1,6 +1,5 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Twitter.Objects;
 
 namespace Skybrud.Social.Twitter.Responses {
@@ -9,7 +8,15 @@ namespace Skybrud.Social.Twitter.Responses {
 
         #region Constructors
 
-        private TwitterUsersSearchResponse(SocialHttpResponse response) : base(response) { }
+        private TwitterUsersSearchResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonArray(response.Body, TwitterUser.Parse);
+
+        }
 
         #endregion
 
@@ -20,13 +27,8 @@ namespace Skybrud.Social.Twitter.Responses {
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
-            // Validate the response
-            ValidateResponse(response);
-
             // Initialize the response object
-            return new TwitterUsersSearchResponse(response) {
-                Body = JsonArray.ParseJson(response.Body).ParseMultiple(TwitterUser.Parse)
-            };
+            return new TwitterUsersSearchResponse(response);
 
         }
 

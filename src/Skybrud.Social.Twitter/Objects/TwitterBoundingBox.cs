@@ -1,8 +1,9 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects {
     
-    public class TwitterBoundingBox : SocialJsonObject {
+    public class TwitterBoundingBox : TwitterObject {
 
         #region Properties
 
@@ -20,34 +21,28 @@ namespace Skybrud.Social.Twitter.Objects {
 
         #region Constructors
 
-        private TwitterBoundingBox(JsonObject obj) : base(obj) { }
+        private TwitterBoundingBox(JObject obj) : base(obj) {
+
+            // Get the array
+            JArray coordinates = obj.GetArray("coordinates");
+
+            // Initialize properties
+            Type = obj.GetString("type");
+            Coordinates = new TwitterCoordinates[coordinates.Count][];
+
+            // Parse the coordinates
+            for (int i = 0; i < coordinates.Count; i++) {
+                Coordinates[i] = TwitterCoordinates.ParseMultiple(coordinates.GetArray(i));
+            }
+
+        }
 
         #endregion
 
         #region Static methods
 
-        public static TwitterBoundingBox Parse(JsonObject obj) {
-
-            // Check whether "obj" is NULL
-            if (obj == null) return null;
-
-            // Get the array
-            JsonArray coordinates = obj.GetArray("coordinates");
-
-            // Initialize the bounding box
-            TwitterBoundingBox boundingBox = new TwitterBoundingBox(obj) {
-                Type = obj.GetString("type"),
-                Coordinates = new TwitterCoordinates[coordinates.Length][]
-            };
-
-            // Parse the coordinates
-            for (int i = 0; i < coordinates.Length; i++) {
-                boundingBox.Coordinates[i] = TwitterCoordinates.ParseMultiple(coordinates.GetArray(i));
-            }
-
-            // Return the building box
-            return boundingBox;
-
+        public static TwitterBoundingBox Parse(JObject obj) {
+            return obj == null ? null : new TwitterBoundingBox(obj);
         }
 
         #endregion

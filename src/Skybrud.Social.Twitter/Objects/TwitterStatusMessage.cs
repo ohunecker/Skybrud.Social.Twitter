@@ -1,12 +1,13 @@
 using System;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Interfaces;
-using Skybrud.Social.Json;
+using Skybrud.Social.Json.Extensions.JObject;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Objects.Statuses;
 
 namespace Skybrud.Social.Twitter.Objects {
 
-    public class TwitterStatusMessage : SocialJsonObject, ISocialTimelineEntry {
+    public class TwitterStatusMessage : TwitterObject, ISocialTimelineEntry {
 
         #region Properties
 
@@ -85,31 +86,20 @@ namespace Skybrud.Social.Twitter.Objects {
 
         #region Constructors
 
-        private TwitterStatusMessage(JsonObject obj) : base(obj) { }
+        private TwitterStatusMessage(JObject obj) : base(obj) {
 
-        #endregion
-
-        #region Static methods
-
-        /// <summary>
-        /// Gets an instance of <code>TwitterStatusMessage</code> from the specified <code>JsonObject</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterStatusMessage Parse(JsonObject obj) {
-
-            TwitterStatusMessage msg = new TwitterStatusMessage(obj) {
-                Id = obj.GetInt64("id"),
-                Text = obj.GetString("text"),
-                Source = obj.GetString("source"),
-                IsTruncated = obj.GetBoolean("truncated")
-            };
+            // Parse basic properties
+            Id = obj.GetInt64("id");
+            Text = obj.GetString("text");
+            Source = obj.GetString("source");
+            IsTruncated = obj.GetBoolean("truncated");
 
             // Twitter has some strange date formats
-            msg.CreatedAt = TwitterUtils.ParseDateTimeUtc(obj.GetString("created_at"));
+            CreatedAt = obj.GetString("created_at", TwitterUtils.ParseDateTimeUtc);
 
             // Parse the reply information
             if (obj.HasValue("in_reply_to_status_id")) {
-                msg.InReplyTo = new TwitterReplyTo {
+                InReplyTo = new TwitterReplyTo {
                     StatusId = obj.GetInt64("in_reply_to_status_id"),
                     StatusIdStr = obj.GetString("in_reply_to_status_id_str"),
                     UserId = obj.GetInt64("in_reply_to_user_id"),
@@ -118,21 +108,21 @@ namespace Skybrud.Social.Twitter.Objects {
                 };
             }
 
-            msg.RetweetCount = obj.GetInt32("retweet_count");
-            msg.FavoriteCount = obj.GetInt32("favorite_count");
+            RetweetCount = obj.GetInt32("retweet_count");
+            FavoriteCount = obj.GetInt32("favorite_count");
 
             // Related to the authenticating user
-            msg.HasFavorited = obj.GetBoolean("favorited");
-            msg.HasRetweeted = obj.GetBoolean("retweeted");
+            HasFavorited = obj.GetBoolean("favorited");
+            HasRetweeted = obj.GetBoolean("retweeted");
 
             // Parse the entities (if any)
-            msg.Entities = obj.GetObject("entities", TwitterStatusMessageEntities.Parse);
+            Entities = obj.GetObject("entities", TwitterStatusMessageEntities.Parse);
 
-            msg.ExtendedEntities = obj.GetObject("extended_entities", TwitterExtendedEntities.Parse);
+            ExtendedEntities = obj.GetObject("extended_entities", TwitterExtendedEntities.Parse);
 
             // For some weird reason Twitter flips the coordinates by writing longitude before latitude
             // See: https://dev.twitter.com/docs/platform-objects/tweets#obj-coordinates)
-            msg.Coordinates = obj.GetObject("coordinates", TwitterCoordinates.Parse);
+            Coordinates = obj.GetObject("coordinates", TwitterCoordinates.Parse);
 
             // See: https://dev.twitter.com/docs/platform-objects/tweets#obj-contributors
             /*if (tweet.contributors != null) {
@@ -146,14 +136,24 @@ namespace Skybrud.Social.Twitter.Objects {
                 msg.Contributors = contributors.ToArray();
             }*/
 
-            msg.User = obj.GetObject("user", TwitterUser.Parse);
-            msg.Place = obj.GetObject("place", TwitterPlace.Parse);
+            User = obj.GetObject("user", TwitterUser.Parse);
+            Place = obj.GetObject("place", TwitterPlace.Parse);
 
-            msg.IsPossiblyOffensive = obj.GetBoolean("possibly_sensitive");
-            msg.Language = obj.GetString("lang");
+            IsPossiblyOffensive = obj.GetBoolean("possibly_sensitive");
+            Language = obj.GetString("lang");
 
-            return msg;
+        }
 
+        #endregion
+
+        #region Static methods
+
+        /// <summary>
+        /// Gets an instance of <code>TwitterStatusMessage</code> from the specified <code>JObject</code>.
+        /// </summary>
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterStatusMessage Parse(JObject obj) {
+            return obj == null ? null : new TwitterStatusMessage(obj);
         }
 
         #endregion

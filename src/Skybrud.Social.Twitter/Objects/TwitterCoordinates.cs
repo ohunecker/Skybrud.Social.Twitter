@@ -1,8 +1,9 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects {
 
-    public class TwitterCoordinates : SocialJsonObject {
+    public class TwitterCoordinates : TwitterObject {
 
         #region Properties
 
@@ -14,21 +15,20 @@ namespace Skybrud.Social.Twitter.Objects {
         
         #region Constructors
 
-        private TwitterCoordinates(JsonObject obj) : base(obj) { }
+        private TwitterCoordinates(JObject obj) : base(obj) {
+            Latitude = obj.GetArray("coordinates").GetDouble(1);
+            Longitude = obj.GetArray("coordinates").GetDouble(0);
+        }
 
         #endregion
 
         #region Static methods
 
-        public static TwitterCoordinates Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterCoordinates(obj) {
-                Latitude = obj.GetArray("coordinates").GetDouble(1),
-                Longitude = obj.GetArray("coordinates").GetDouble(0)
-            };
+        public static TwitterCoordinates Parse(JObject obj) {
+            return obj == null ? null : new TwitterCoordinates(obj);
         }
 
-        public static TwitterCoordinates Parse(JsonArray array) {
+        public static TwitterCoordinates Parse(JArray array) {
             if (array == null) return null;
             return new TwitterCoordinates(null) {
                 Latitude = array.GetDouble(1),
@@ -36,10 +36,10 @@ namespace Skybrud.Social.Twitter.Objects {
             };
         }
 
-        public static TwitterCoordinates[] ParseMultiple(JsonArray array) {
+        public static TwitterCoordinates[] ParseMultiple(JArray array) {
             if (array == null) return new TwitterCoordinates[0];
-            TwitterCoordinates[] temp = new TwitterCoordinates[array.Length];
-            for (int i = 0; i < array.Length; i++) {
+            TwitterCoordinates[] temp = new TwitterCoordinates[array.Count];
+            for (int i = 0; i < array.Count; i++) {
                 temp[i] = Parse(array.GetArray(i));
             }
             return temp;

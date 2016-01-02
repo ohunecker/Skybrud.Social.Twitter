@@ -32,7 +32,7 @@ namespace Skybrud.Social.Twitter.Responses.Lists {
 
             // Initialize the response object
             return new TwitterListsResponse(response) {
-                Body = JsonArray.ParseJson(response.Body).ParseMultiple(TwitterList.Parse)
+                Body = ParseJsonArray(response.Body, TwitterList.Parse)
             };
 
         }

@@ -1,11 +1,12 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects.Media {
     
     /// <summary>
     /// Class representing a collection of formats of a given media.
     /// </summary>
-    public class TwitterMediaFormats : SocialJsonObject {
+    public class TwitterMediaFormats : TwitterObject {
 
         #region Properties
 
@@ -33,27 +34,26 @@ namespace Skybrud.Social.Twitter.Objects.Media {
 
         #region Constructors
 
-        private TwitterMediaFormats(JsonObject obj) : base(obj) { }
+        private TwitterMediaFormats(JObject obj) : base(obj) {
+            Small = GetMediaFormatByAlias(obj, "small");
+            Thumb = GetMediaFormatByAlias(obj, "thumb");
+            Medium = GetMediaFormatByAlias(obj, "medium");
+            Large = GetMediaFormatByAlias(obj, "large");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterMediaFormats</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterMediaFormats</code> from the specified <code>JObject</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterMediaFormats Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterMediaFormats(obj) {
-                Small = GetMediaFormatByAlias(obj, "small"),
-                Thumb = GetMediaFormatByAlias(obj, "thumb"),
-                Medium = GetMediaFormatByAlias(obj, "medium"),
-                Large = GetMediaFormatByAlias(obj, "large")
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterMediaFormats Parse(JObject obj) {
+            return obj == null ? null : new TwitterMediaFormats(obj);
         }
 
-        private static TwitterMediaFormat GetMediaFormatByAlias(JsonObject parent, string alias) {
+        private static TwitterMediaFormat GetMediaFormatByAlias(JObject parent, string alias) {
             return parent.GetObject(alias, x => TwitterMediaFormat.Parse(alias, x));
         }
 

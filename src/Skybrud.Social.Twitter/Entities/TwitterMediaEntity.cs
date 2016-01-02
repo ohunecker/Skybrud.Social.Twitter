@@ -1,4 +1,5 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 using Skybrud.Social.Twitter.Objects.Media;
 
 namespace Skybrud.Social.Twitter.Entities {
@@ -50,7 +51,7 @@ namespace Skybrud.Social.Twitter.Entities {
 
         #region Static methods
 
-        public static TwitterMediaEntity Parse(JsonObject entity) {
+        public static TwitterMediaEntity Parse(JObject entity) {
             return new TwitterMediaEntity {
                 Id = entity.GetInt64("id"),
                 IdStr = entity.GetString("id_str"),

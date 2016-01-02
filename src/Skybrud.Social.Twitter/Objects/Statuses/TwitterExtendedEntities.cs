@@ -1,12 +1,13 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
 using Skybrud.Social.Twitter.Entities;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects.Statuses {
     
     /// <summary>
     /// Class representing the extended entities property of a status message.
     /// </summary>
-    public class TwitterExtendedEntities : SocialJsonObject {
+    public class TwitterExtendedEntities : TwitterObject {
 
         #region Properties
 
@@ -19,21 +20,20 @@ namespace Skybrud.Social.Twitter.Objects.Statuses {
 
         #region Constructors
 
-        private TwitterExtendedEntities(JsonObject obj) : base(obj) { }
+        private TwitterExtendedEntities(JObject obj) : base(obj) {
+            Media = obj.GetArray("media", TwitterMediaEntity.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterExtendedEntities</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterExtendedEntities</code> from the specified <code>JObject</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterExtendedEntities Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterExtendedEntities(obj) {
-                Media = obj.GetArray("media", TwitterMediaEntity.Parse)
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterExtendedEntities Parse(JObject obj) {
+            return obj == null ? null : new TwitterExtendedEntities(obj);
         }
 
         #endregion

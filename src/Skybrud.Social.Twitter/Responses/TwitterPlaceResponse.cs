@@ -25,7 +25,7 @@ namespace Skybrud.Social.Twitter.Responses {
 
             // Initialize the response object
             return new TwitterPlaceResponse(response) {
-                Body = JsonObject.ParseJson(response.Body, TwitterPlace.Parse)
+                Body = ParseJsonObject(response.Body, TwitterPlace.Parse)
             };
 
         }

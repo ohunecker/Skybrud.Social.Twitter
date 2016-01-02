@@ -1,5 +1,5 @@
-using System.Collections.Generic;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Entities {
 
@@ -25,7 +25,7 @@ namespace Skybrud.Social.Twitter.Entities {
 
         #region Static methods
 
-        public static TwitterMentionEntity Parse(JsonObject mention) {
+        public static TwitterMentionEntity Parse(JObject mention) {
             return new TwitterMentionEntity {
                 UserId = mention.GetInt64("id"),
                 UserIdStr = mention.GetString("id_str"),

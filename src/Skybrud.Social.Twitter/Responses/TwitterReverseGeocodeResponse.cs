@@ -25,7 +25,7 @@ namespace Skybrud.Social.Twitter.Responses {
 
             // Initialize the response object
             return new TwitterReverseGeocodeResponse(response) {
-                Body = JsonObject.ParseJson(response.Body, TwitterReverseGeocodeResults.Parse)
+                Body = ParseJsonObject(response.Body, TwitterReverseGeocodeResults.Parse)
             };
 
         }

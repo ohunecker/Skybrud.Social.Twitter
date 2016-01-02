@@ -1,9 +1,10 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Objects.Geocode {
     
-    public class TwitterReverseGeocodeParameters : SocialJsonObject {
+    public class TwitterReverseGeocodeParameters : TwitterObject {
 
         #region Properties
 
@@ -19,19 +20,19 @@ namespace Skybrud.Social.Twitter.Objects.Geocode {
 
         #region Constructors
 
-        private TwitterReverseGeocodeParameters(JsonObject obj) : base(obj) { }
+        private TwitterReverseGeocodeParameters(TwitterReverseGeocodeQuery query, JObject obj) : base(obj) {
+            Query = query;
+            Accuracy = obj.GetInt32("accuracy");
+            Granularity = obj.GetString("granularity", TwitterUtils.ParseGranularity);
+            Coordinates = obj.GetObject("coordinates", TwitterCoordinates.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
-        public static TwitterReverseGeocodeParameters Parse(TwitterReverseGeocodeQuery query, JsonObject obj) {
-            return new TwitterReverseGeocodeParameters(obj) {
-                Query = query,
-                Accuracy = obj.GetInt32("accuracy"),
-                Granularity = TwitterUtils.ParseGranularity(obj.GetString("granularity")),
-                Coordinates = obj.GetObject("coordinates", TwitterCoordinates.Parse),
-            };
+        public static TwitterReverseGeocodeParameters Parse(TwitterReverseGeocodeQuery query, JObject obj) {
+            return obj == null ? null : new TwitterReverseGeocodeParameters(query, obj);
         }
 
         #endregion

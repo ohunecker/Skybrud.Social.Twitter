@@ -99,6 +99,7 @@
     <Compile Include="Objects\TwitterContributor.cs" />
     <Compile Include="Objects\TwitterCoordinates.cs" />
     <Compile Include="Objects\TwitterIdsCollection.cs" />
+    <Compile Include="Objects\TwitterObject.cs" />
     <Compile Include="Objects\TwitterPlace.cs" />
     <Compile Include="Objects\TwitterReplyTo.cs" />
     <Compile Include="Objects\TwitterStatusMessage.cs" />

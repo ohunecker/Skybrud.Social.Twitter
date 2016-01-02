@@ -1,8 +1,9 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Twitter.Objects {
 
-    public class TwitterPlace : SocialJsonObject {
+    public class TwitterPlace : TwitterObject {
 
         #region Properties
 
@@ -50,28 +51,27 @@ namespace Skybrud.Social.Twitter.Objects {
 
         #region Constructors
 
-        private TwitterPlace(JsonObject obj) : base(obj) { }
+        private TwitterPlace(JObject obj) : base(obj) {
+            Id = obj.GetString("id");
+            Url = obj.GetString("url");
+            Type = obj.GetString("place_type");
+            Name = obj.GetString("name");
+            FullName = obj.GetString("full_name");
+            CountryCode = obj.GetString("country_code");
+            Country = obj.GetString("country");
+            BoundingBox = obj.GetObject("bounding_box", TwitterBoundingBox.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterPlace</code> from the specified <code>JsonObject</code>.
+        /// Gets an instance of <code>TwitterPlace</code> from the specified <code>JObject</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static TwitterPlace Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new TwitterPlace(obj) {
-                Id = obj.GetString("id"),
-                Url = obj.GetString("url"),
-                Type = obj.GetString("place_type"),
-                Name = obj.GetString("name"),
-                FullName = obj.GetString("full_name"),
-                CountryCode = obj.GetString("country_code"),
-                Country = obj.GetString("country"),
-                BoundingBox = obj.GetObject("bounding_box", TwitterBoundingBox.Parse)
-            };
+        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        public static TwitterPlace Parse(JObject obj) {
+            return obj == null ? null : new TwitterPlace(obj);
         }
 
         #endregion
