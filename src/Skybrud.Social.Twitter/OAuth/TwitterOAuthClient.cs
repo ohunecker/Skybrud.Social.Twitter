@@ -1,4 +1,9 @@
+using System.Net.Mail;
+using Skybrud.Social.Exceptions;
+using Skybrud.Social.Http;
 using Skybrud.Social.OAuth;
+using Skybrud.Social.OAuth.Objects;
+using Skybrud.Social.OAuth.Responses;
 using Skybrud.Social.Twitter.Endpoints.Raw;
 
 namespace Skybrud.Social.Twitter.OAuth {
@@ -141,6 +146,31 @@ namespace Skybrud.Social.Twitter.OAuth {
 
         #endregion
 
-    }
+        public override OAuthRequestTokenResponse GetRequestToken() {
 
+            // Make the call to the API/provider
+            SocialHttpResponse response = GetRequestTokenResponse();
+
+            // Parse the response body
+            OAuthRequestToken body = TwitterOAuthRequestToken.Parse(this, response.Body);
+
+            // Parse the response
+            return OAuthRequestTokenResponse.ParseResponse(response, body);
+
+        }
+
+        public override OAuthAccessTokenResponse GetAccessToken(string verifier) {
+
+            // Make the call to the API/provider
+            SocialHttpResponse response = GetAccessTokenResponse(verifier);
+
+            // Parse the response body
+            OAuthAccessToken body = TwitterOAuthAccessToken.Parse(this, response.Body);
+
+            // Parse the response
+            return OAuthAccessTokenResponse.ParseResponse(response, body);
+
+        }
+    
+    }
 }

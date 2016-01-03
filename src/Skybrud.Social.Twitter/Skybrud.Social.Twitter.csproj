@@ -81,7 +81,9 @@
     <Compile Include="Enums\TwitterListMode.cs" />
     <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
     <Compile Include="Exceptions\TwitterException.cs" />
+    <Compile Include="OAuth\TwitterOAuthAccessToken.cs" />
     <Compile Include="OAuth\TwitterOAuthClient.cs" />
+    <Compile Include="OAuth\TwitterOAuthRequestToken.cs" />
     <Compile Include="Objects\Common\TwitterRateLimiting.cs" />
     <Compile Include="Objects\Geocode\TwitterReverseGeocodeParameters.cs" />
     <Compile Include="Objects\Geocode\TwitterReverseGeocodeQuery.cs" />
