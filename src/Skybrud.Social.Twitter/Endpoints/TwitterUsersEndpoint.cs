@@ -1,6 +1,7 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Options;
 using Skybrud.Social.Twitter.Responses;
+using Skybrud.Social.Twitter.Responses.Users;
 
 namespace Skybrud.Social.Twitter.Endpoints {
 
@@ -32,48 +33,48 @@ namespace Skybrud.Social.Twitter.Endpoints {
 
         #region Member methods
 
-        public TwitterUserResponse Show(long userId) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(userId, false));
+        public TwitterGetUserResponse Show(long userId) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(userId, false));
         }
 
-        public TwitterUserResponse Show(long userId, bool includeEntities) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(userId, includeEntities));
+        public TwitterGetUserResponse Show(long userId, bool includeEntities) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(userId, includeEntities));
         }
 
-        public TwitterUserResponse Show(string screenName) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(screenName, false));
+        public TwitterGetUserResponse Show(string screenName) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(screenName, false));
         }
 
-        public TwitterUserResponse Show(string screenName, bool includeEntities) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(screenName, includeEntities));
-        }
-
-        /// <summary>
-        /// Alias of <code>Show</code>.
-        /// </summary>
-        public TwitterUserResponse GetUser(long userId) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(userId, false));
+        public TwitterGetUserResponse Show(string screenName, bool includeEntities) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(screenName, includeEntities));
         }
 
         /// <summary>
         /// Alias of <code>Show</code>.
         /// </summary>
-        public TwitterUserResponse GetUser(long userId, bool includeEntities) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(userId, includeEntities));
+        public TwitterGetUserResponse GetUser(long userId) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(userId, false));
         }
 
         /// <summary>
         /// Alias of <code>Show</code>.
         /// </summary>
-        public TwitterUserResponse GetUser(string screenName) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(screenName, false));
+        public TwitterGetUserResponse GetUser(long userId, bool includeEntities) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(userId, includeEntities));
         }
 
         /// <summary>
         /// Alias of <code>Show</code>.
         /// </summary>
-        public TwitterUserResponse GetUser(string screenName, bool includeEntities) {
-            return TwitterUserResponse.ParseResponse(Raw.GetUser(screenName, includeEntities));
+        public TwitterGetUserResponse GetUser(string screenName) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(screenName, false));
+        }
+
+        /// <summary>
+        /// Alias of <code>Show</code>.
+        /// </summary>
+        public TwitterGetUserResponse GetUser(string screenName, bool includeEntities) {
+            return TwitterGetUserResponse.ParseResponse(Raw.GetUser(screenName, includeEntities));
         }
         
         /// <summary>
