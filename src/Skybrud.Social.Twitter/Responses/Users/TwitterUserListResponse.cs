@@ -1,9 +1,8 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Twitter.Objects;
 
-namespace Skybrud.Social.Twitter.Responses {
+namespace Skybrud.Social.Twitter.Responses.Users {
 
     public class TwitterUserListResponse : TwitterResponse<TwitterUserCollection> {
 

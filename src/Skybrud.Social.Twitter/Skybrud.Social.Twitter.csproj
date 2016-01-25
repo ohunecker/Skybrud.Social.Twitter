@@ -136,7 +136,7 @@
     <Compile Include="Responses\TwitterSearchTweetsResponse.cs" />
     <Compile Include="Responses\TwitterStatusMessageResponse.cs" />
     <Compile Include="Responses\TwitterTimelineResponse.cs" />
-    <Compile Include="Responses\TwitterUserListResponse.cs" />
+    <Compile Include="Responses\Users\TwitterUserListResponse.cs" />
     <Compile Include="Responses\Users\TwitterGetUserResponse.cs" />
     <Compile Include="Responses\TwitterUsersSearchResponse.cs" />
     <Compile Include="TwitterService.cs" />

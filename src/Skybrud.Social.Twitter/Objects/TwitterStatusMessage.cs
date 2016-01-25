@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Interfaces;
 using Skybrud.Social.Json.Extensions.JObject;
@@ -87,6 +88,8 @@ namespace Skybrud.Social.Twitter.Objects {
         #region Constructors
 
         private TwitterStatusMessage(JObject obj) : base(obj) {
+            
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "1");
 
             // Parse basic properties
             Id = obj.GetInt64("id");
@@ -94,31 +97,43 @@ namespace Skybrud.Social.Twitter.Objects {
             Source = obj.GetString("source");
             IsTruncated = obj.GetBoolean("truncated");
 
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "2");
+
             // Twitter has some strange date formats
             CreatedAt = obj.GetString("created_at", TwitterUtils.ParseDateTimeUtc);
 
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "3");
+
             // Parse the reply information
             if (obj.HasValue("in_reply_to_status_id")) {
-                InReplyTo = new TwitterReplyTo {
-                    StatusId = obj.GetInt64("in_reply_to_status_id"),
-                    StatusIdStr = obj.GetString("in_reply_to_status_id_str"),
-                    UserId = obj.GetInt64("in_reply_to_user_id"),
-                    UserIdStr = obj.GetString("in_reply_to_user_id_str"),
-                    ScreenName = obj.GetString("in_reply_to_screen_name")
-                };
+                //InReplyTo = new TwitterReplyTo {
+                //    StatusId = obj.GetInt64("in_reply_to_status_id"),
+                //    StatusIdStr = obj.GetString("in_reply_to_status_id_str"),
+                //    UserId = obj.GetInt64("in_reply_to_user_id"),
+                //    UserIdStr = obj.GetString("in_reply_to_user_id_str"),
+                //    ScreenName = obj.GetString("in_reply_to_screen_name")
+                //};
             }
+
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "4");
 
             RetweetCount = obj.GetInt32("retweet_count");
             FavoriteCount = obj.GetInt32("favorite_count");
+
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "5");
 
             // Related to the authenticating user
             HasFavorited = obj.GetBoolean("favorited");
             HasRetweeted = obj.GetBoolean("retweeted");
 
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "6");
+
             // Parse the entities (if any)
             Entities = obj.GetObject("entities", TwitterStatusMessageEntities.Parse);
 
             ExtendedEntities = obj.GetObject("extended_entities", TwitterExtendedEntities.Parse);
+
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "7");
 
             // For some weird reason Twitter flips the coordinates by writing longitude before latitude
             // See: https://dev.twitter.com/docs/platform-objects/tweets#obj-coordinates)
@@ -136,11 +151,17 @@ namespace Skybrud.Social.Twitter.Objects {
                 msg.Contributors = contributors.ToArray();
             }*/
 
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "8");
+
             User = obj.GetObject("user", TwitterUser.Parse);
             Place = obj.GetObject("place", TwitterPlace.Parse);
 
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "9");
+
             IsPossiblyOffensive = obj.GetBoolean("possibly_sensitive");
             Language = obj.GetString("lang");
+
+            File.WriteAllText("C:/Visual Studio Projects/Skybrud.Social.Test/WebApplication1/web/App_Data/log1.txt", "10");
 
         }
 

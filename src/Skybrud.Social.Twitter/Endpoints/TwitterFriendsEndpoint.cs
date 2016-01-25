@@ -1,6 +1,7 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Options;
 using Skybrud.Social.Twitter.Responses;
+using Skybrud.Social.Twitter.Responses.Users;
 
 namespace Skybrud.Social.Twitter.Endpoints {
     
