@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Entities.Formatting;
 using Skybrud.Social.Twitter.Enums;
@@ -9,7 +11,36 @@ using Skybrud.Social.Twitter.Enums;
 namespace Skybrud.Social.Twitter {
     
     public class TwitterUtils {
-        
+
+        #region Version
+
+        /// <summary>
+        /// Gets the assembly version as a string.
+        /// </summary>
+        public static string GetVersion() {
+            return typeof(TwitterUtils).Assembly.GetName().Version.ToString();
+        }
+
+        /// <summary>
+        /// Gets the informational version as a string.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetInformationVersion() {
+            Assembly assembly = typeof(TwitterUtils).Assembly;
+            return FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion;
+        }
+
+        /// <summary>
+        /// Gets the file version as a string.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetFileVersion() {
+            Assembly assembly = typeof(TwitterUtils).Assembly;
+            return FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
+        }
+
+        #endregion
+
         public static DateTime ParseDateTime(string date) {
             return DateTime.ParseExact(date, "ddd MMM dd HH:mm:ss K yyyy", new CultureInfo("en-US"));
         }
