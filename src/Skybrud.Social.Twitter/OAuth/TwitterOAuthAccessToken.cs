@@ -34,7 +34,7 @@ namespace Skybrud.Social.Twitter.OAuth {
         public new static TwitterOAuthAccessToken Parse(OAuthClient client, string str) {
 
             // Convert the query string to a NameValueCollection
-            NameValueCollection query = SocialUtils.ParseQueryString(str);
+            NameValueCollection query = SocialUtils.Misc.ParseQueryString(str);
 
             // Initialize a new instance
             return new TwitterOAuthAccessToken(client, query);

@@ -22,7 +22,7 @@ namespace Skybrud.Social.Twitter.OAuth {
         public new static OAuthRequestToken Parse(OAuthClient client, string str) {
 
             // Convert the query string to a NameValueCollection
-            NameValueCollection query = SocialUtils.ParseQueryString(str);
+            NameValueCollection query = SocialUtils.Misc.ParseQueryString(str);
 
             // Initialize a new instance
             return new TwitterOAuthRequestToken(client, query);

@@ -1,6 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Social.Json.Extensions;
 using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Objects.Lists {

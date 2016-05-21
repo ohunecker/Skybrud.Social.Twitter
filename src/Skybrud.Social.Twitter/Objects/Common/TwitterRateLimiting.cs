@@ -20,7 +20,7 @@ namespace Skybrud.Social.Twitter.Objects.Common {
         private TwitterRateLimiting(int limit, int remaining, int reset) {
             Limit = limit;
             Remaining = remaining;
-            Reset = SocialUtils.GetDateTimeFromUnixTime(reset);
+            Reset = SocialUtils.Time.GetDateTimeFromUnixTime(reset);
         }
 
         #endregion
