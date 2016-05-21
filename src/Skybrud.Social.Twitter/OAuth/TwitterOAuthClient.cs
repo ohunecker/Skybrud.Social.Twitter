@@ -1,5 +1,3 @@
-using System.Net.Mail;
-using Skybrud.Social.Exceptions;
 using Skybrud.Social.Http;
 using Skybrud.Social.OAuth;
 using Skybrud.Social.OAuth.Objects;
@@ -9,9 +7,8 @@ using Skybrud.Social.Twitter.Endpoints.Raw;
 namespace Skybrud.Social.Twitter.OAuth {
     
     /// <summary>
-    /// Class for handling the communication with the Twitter API. The class ha
-    /// methods for handling OAuth logins using a three-legged approach as well
-    /// as logic for calling the methods decribed in the Twitter API (not all
+    /// Class for handling the communication with the Twitter API. The class has methods for handling OAuth logins
+    /// using a three-legged approach as well as logic for calling the methods decribed in the Twitter API (not all
     /// has been implemented yet).
     /// </summary>
     public class TwitterOAuthClient : OAuthClient {
@@ -173,4 +170,5 @@ namespace Skybrud.Social.Twitter.OAuth {
         }
     
     }
+
 }
