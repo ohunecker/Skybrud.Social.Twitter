@@ -1,5 +1,4 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
-using Skybrud.Social.Twitter.Options;
 using Skybrud.Social.Twitter.Options.Favorites;
 using Skybrud.Social.Twitter.Responses;
 

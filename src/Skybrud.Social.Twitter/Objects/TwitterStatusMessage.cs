@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Interfaces;
 using Skybrud.Essentials.Json.Extensions;

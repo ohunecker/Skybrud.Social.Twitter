@@ -1,6 +1,5 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Essentials.Json;
 using Skybrud.Social.Twitter.Objects;
 
 namespace Skybrud.Social.Twitter.Responses {

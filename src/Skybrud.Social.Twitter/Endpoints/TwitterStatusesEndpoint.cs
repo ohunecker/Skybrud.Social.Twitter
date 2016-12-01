@@ -1,5 +1,4 @@
 using System;
-using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Objects;
 using Skybrud.Social.Twitter.Options;
