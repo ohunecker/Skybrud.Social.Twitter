@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Objects.Geocode {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Social.Twitter.Entities;
-using Skybrud.Social.Json.Extensions;
+using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Twitter.Objects.Statuses {
     

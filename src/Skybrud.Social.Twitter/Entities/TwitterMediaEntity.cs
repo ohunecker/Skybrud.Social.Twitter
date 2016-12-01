@@ -1,5 +1,5 @@
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Objects.Media;
 
 namespace Skybrud.Social.Twitter.Entities {

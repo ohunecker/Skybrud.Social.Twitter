@@ -1,4 +1,5 @@
 ﻿using System;
+using Skybrud.Essentials.Time;
 using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Twitter.Objects.Common {
@@ -20,7 +21,7 @@ namespace Skybrud.Social.Twitter.Objects.Common {
         private TwitterRateLimiting(int limit, int remaining, int reset) {
             Limit = limit;
             Remaining = remaining;
-            Reset = SocialUtils.Time.GetDateTimeFromUnixTime(reset);
+            Reset = TimeHelper.GetDateTimeFromUnixTime(reset);
         }
 
         #endregion

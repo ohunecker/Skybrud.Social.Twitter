@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Interfaces;
-using Skybrud.Social.Json.Extensions;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Objects.Statuses;
 
