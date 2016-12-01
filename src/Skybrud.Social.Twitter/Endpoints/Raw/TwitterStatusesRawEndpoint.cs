@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Specialized;
-using System.Net;
 using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.OAuth;
 using Skybrud.Social.Twitter.Options;
@@ -227,7 +225,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// object.</param>
         /// <returns>Returns the response from the API.</returns>
         public SocialHttpResponse Retweet(long id, bool trimUser) {
-            return Client.DoHttpPostRequest("https://api.twitter.com/1.1/statuses/retweet/" + id + ".json" + (trimUser ? "?trim_user=true" : ""), null);
+            return Client.DoHttpPostRequest("https://api.twitter.com/1.1/statuses/retweet/" + id + ".json" + (trimUser ? "?trim_user=true" : ""));
         }
 
         /// <summary>
@@ -250,7 +248,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// object.</param>
         /// <returns>Returns the response from the API.</returns>
         public SocialHttpResponse DestroyStatusMessage(long id, bool trimUser) {
-            return Client.DoHttpPostRequest("https://api.twitter.com/1.1/statuses/destroy/" + id + ".json" + (trimUser ? "?trim_user=true" : ""), null);
+            return Client.DoHttpPostRequest("https://api.twitter.com/1.1/statuses/destroy/" + id + ".json" + (trimUser ? "?trim_user=true" : ""));
         }
 
         #endregion

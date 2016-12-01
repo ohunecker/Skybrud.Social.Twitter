@@ -1,10 +1,10 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterUserTimelineOptions : IGetOptions {
+    public class TwitterUserTimelineOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -100,10 +100,10 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
+        public IHttpQueryString GetQueryString() {
 
             // Define the query string
-            SocialQueryString qs = new SocialQueryString();
+            SocialHttpQueryString qs = new SocialHttpQueryString();
 
             // Add optional parameters
             if (UserId > 0) qs.Set("user_id", UserId);

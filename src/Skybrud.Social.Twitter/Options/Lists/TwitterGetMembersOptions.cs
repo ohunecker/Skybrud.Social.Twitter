@@ -1,6 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Lists {
     
@@ -10,7 +10,7 @@ namespace Skybrud.Social.Twitter.Options.Lists {
     /// <see>
     ///     <cref>https://dev.twitter.com/rest/reference/get/lists/members</cref>
     /// </see>
-    public class TwitterGetMembersOptions : IGetOptions {
+    public class TwitterGetMembersOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -58,8 +58,8 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Id > 0) qs.Set("list_id", UserId);
             if (!String.IsNullOrWhiteSpace(Slug)) qs.Set("slug", Slug);
             if (UserId > 0) qs.Set("owner_id", UserId);

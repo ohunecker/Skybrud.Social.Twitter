@@ -1,10 +1,10 @@
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterReverseGeocodeOptions : IGetOptions {
+    public class TwitterReverseGeocodeOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -72,10 +72,10 @@ namespace Skybrud.Social.Twitter.Options {
             return this;
         }
 
-        public SocialQueryString GetQueryString() {
+        public IHttpQueryString GetQueryString() {
 
             // Initialize the query string
-            SocialQueryString query = new SocialQueryString();
+            SocialHttpQueryString query = new SocialHttpQueryString();
 
             // Set required parameters
             query.Set("lat", Latitude);

@@ -1,13 +1,13 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Lists {
 
     /// <summary>
     /// Options for a call to the Twitter API for getting the list owned by a given user.
     /// </summary>
-    public class TwitterGetOwnershipsOptions : IGetOptions {
+    public class TwitterGetOwnershipsOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -35,8 +35,8 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);
             if (!String.IsNullOrWhiteSpace(ScreenName)) qs.Set("screen_name", ScreenName);
             if (Count > 0) qs.Set("count", Count);

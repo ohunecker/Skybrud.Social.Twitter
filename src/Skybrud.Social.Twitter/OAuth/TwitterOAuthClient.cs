@@ -11,7 +11,7 @@ namespace Skybrud.Social.Twitter.OAuth {
     /// using a three-legged approach as well as logic for calling the methods decribed in the Twitter API (not all
     /// has been implemented yet).
     /// </summary>
-    public class TwitterOAuthClient : OAuthClient {
+    public class TwitterOAuthClient : SocialOAuthClient {
 
         #region Private fields
 
@@ -143,29 +143,29 @@ namespace Skybrud.Social.Twitter.OAuth {
 
         #endregion
 
-        public override OAuthRequestTokenResponse GetRequestToken() {
+        public override SocialOAuthRequestTokenResponse GetRequestToken() {
 
             // Make the call to the API/provider
             SocialHttpResponse response = GetRequestTokenResponse();
 
             // Parse the response body
-            OAuthRequestToken body = TwitterOAuthRequestToken.Parse(this, response.Body);
+            SocialOAuthRequestToken body = TwitterOAuthRequestToken.Parse(this, response.Body);
 
             // Parse the response
-            return OAuthRequestTokenResponse.ParseResponse(response, body);
+            return SocialOAuthRequestTokenResponse.ParseResponse(response, body);
 
         }
 
-        public override OAuthAccessTokenResponse GetAccessToken(string verifier) {
+        public override SocialOAuthAccessTokenResponse GetAccessToken(string verifier) {
 
             // Make the call to the API/provider
             SocialHttpResponse response = GetAccessTokenResponse(verifier);
 
             // Parse the response body
-            OAuthAccessToken body = TwitterOAuthAccessToken.Parse(this, response.Body);
+            SocialOAuthAccessToken body = TwitterOAuthAccessToken.Parse(this, response.Body);
 
             // Parse the response
-            return OAuthAccessTokenResponse.ParseResponse(response, body);
+            return SocialOAuthAccessTokenResponse.ParseResponse(response, body);
 
         }
     

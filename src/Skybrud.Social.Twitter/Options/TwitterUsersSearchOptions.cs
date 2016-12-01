@@ -1,9 +1,9 @@
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterUsersSearchOptions : IGetOptions {
+    public class TwitterUsersSearchOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -41,8 +41,8 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             qs.Set("q", Query);
             if (Page > 1) qs.Set("page", Page);
             if (Count != 20) qs.Set("count", Count);

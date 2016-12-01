@@ -61,11 +61,11 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Methods
 
-        public SocialQueryString GetQuery() {
+        public SocialHttpQueryString GetQuery() {
 
             string resultType = ResultType.ToString().ToLower();
             
-            SocialQueryString query = new SocialQueryString();
+            SocialHttpQueryString query = new SocialHttpQueryString();
             if (!String.IsNullOrWhiteSpace(Query)) query.Set("q", Query);
             if (resultType != "mixed") query.Set("result_type", resultType);
             if (Count > 0) query.Set("count", Count);

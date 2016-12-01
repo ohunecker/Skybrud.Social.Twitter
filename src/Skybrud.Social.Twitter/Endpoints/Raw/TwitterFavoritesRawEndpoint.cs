@@ -85,7 +85,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         public SocialHttpResponse Create(long statusId) {
 
             // Declare the query string
-            SocialQueryString query = new SocialQueryString();
+            SocialHttpQueryString query = new SocialHttpQueryString();
             query.Add("id", statusId);
 
             // Make the call to the API
@@ -103,7 +103,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         public SocialHttpResponse Destroy(long statusId) {
 
             // Declare the query string
-            SocialQueryString query = new SocialQueryString();
+            SocialHttpQueryString query = new SocialHttpQueryString();
             query.Add("id", statusId);
 
             // Make the call to the API

@@ -1,10 +1,10 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterFollowersListOptions : IGetOptions {
+    public class TwitterFollowersListOptions : IHttpGetOptions {
 
         #region Constants
 
@@ -66,8 +66,8 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);
             if (!String.IsNullOrWhiteSpace(ScreenName)) qs.Set("screen_name", ScreenName);
             if (Cursor != DefaultCursor) qs.Set("cursor", Cursor);

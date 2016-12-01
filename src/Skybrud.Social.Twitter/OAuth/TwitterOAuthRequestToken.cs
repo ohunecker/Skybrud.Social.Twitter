@@ -3,12 +3,12 @@ using Skybrud.Social.OAuth;
 using Skybrud.Social.OAuth.Objects;
 
 namespace Skybrud.Social.Twitter.OAuth {
-    
-    public class TwitterOAuthRequestToken : OAuthRequestToken {
+
+    public class TwitterOAuthRequestToken : SocialOAuthRequestToken {
 
         #region Constructors
 
-        protected TwitterOAuthRequestToken(OAuthClient client, NameValueCollection query) : base(client, query) { }
+        protected TwitterOAuthRequestToken(SocialOAuthClient client, NameValueCollection query) : base(client, query) { }
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace Skybrud.Social.Twitter.OAuth {
         /// </summary>
         /// <param name="client">The parent OAuth client.</param>
         /// <param name="str">The query string.</param>
-        public new static OAuthRequestToken Parse(OAuthClient client, string str) {
+        public new static SocialOAuthRequestToken Parse(SocialOAuthClient client, string str) {
 
             // Convert the query string to a NameValueCollection
             NameValueCollection query = SocialUtils.Misc.ParseQueryString(str);
@@ -34,7 +34,7 @@ namespace Skybrud.Social.Twitter.OAuth {
         /// </summary>
         /// <param name="client">The parent OAuth client.</param>
         /// <param name="query">The query string.</param>
-        public new static OAuthRequestToken Parse(OAuthClient client, NameValueCollection query) {
+        public new static SocialOAuthRequestToken Parse(SocialOAuthClient client, NameValueCollection query) {
             return query == null ? null : new TwitterOAuthRequestToken(client, query);
         }
 

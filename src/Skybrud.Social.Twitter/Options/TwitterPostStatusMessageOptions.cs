@@ -1,9 +1,9 @@
 ﻿using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterPostStatusMessageOptions : IPostOptions {
+    public class TwitterPostStatusMessageOptions : IHttpPostOptions {
 
         #region Properties
 
@@ -53,12 +53,12 @@ namespace Skybrud.Social.Twitter.Options {
 
         #endregion
 
-        public SocialQueryString GetQueryString() {
+        public IHttpQueryString GetQueryString() {
             return null;
         }
 
-        public SocialPostData GetPostData() {
-            SocialPostData data = new SocialPostData();
+        public IHttpPostData GetPostData() {
+            SocialHttpPostData data = new SocialHttpPostData();
             data.Add("status", Status ?? "");
             if (ReplyTo != null) data.Add("in_reply_to_status_id", ReplyTo);
             if (PossiblySensitive) data.Add("possibly_sensitive", "true");

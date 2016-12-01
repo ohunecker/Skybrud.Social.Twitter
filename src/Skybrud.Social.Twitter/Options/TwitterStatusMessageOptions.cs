@@ -1,9 +1,9 @@
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterStatusMessageOptions : IGetOptions {
+    public class TwitterStatusMessageOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -45,8 +45,8 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
-            SocialQueryString query = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString query = new SocialHttpQueryString();
             query.Set("id", Id);
             if (TrimUser) query.Add("trim_user", "true");
             if (IncludeMyRetweet) query.Add("include_my_retweet", "true");
