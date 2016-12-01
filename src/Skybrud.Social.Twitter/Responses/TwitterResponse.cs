@@ -44,7 +44,7 @@ namespace Skybrud.Social.Twitter.Responses {
 
             // For some types of errors, Twitter will only respond with an error message
             if (obj.HasValue("error")) {
-                throw new TwitterException(response, obj.GetString("error"), 0);
+                throw new TwitterHttpException(response, obj.GetString("error"), 0);
             }
 
             // However in most cases, Twitter responds with an array of errors
@@ -54,7 +54,7 @@ namespace Skybrud.Social.Twitter.Responses {
             JObject error = errors.GetObject(0);
 
             // Throw the exception
-            throw new TwitterException(response, error.GetString("message"), error.GetInt32("code"));
+            throw new TwitterHttpException(response, error.GetString("message"), error.GetInt32("code"));
 
         }
 

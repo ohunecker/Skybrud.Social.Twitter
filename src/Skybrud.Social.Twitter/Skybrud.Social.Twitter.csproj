@@ -85,7 +85,7 @@
     <Compile Include="Enums\TwitterGranularity.cs" />
     <Compile Include="Enums\TwitterListMode.cs" />
     <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
-    <Compile Include="Exceptions\TwitterException.cs" />
+    <Compile Include="Exceptions\TwitterHttpException.cs" />
     <Compile Include="OAuth\TwitterOAuthAccessToken.cs" />
     <Compile Include="OAuth\TwitterOAuthClient.cs" />
     <Compile Include="OAuth\TwitterOAuthRequestToken.cs" />

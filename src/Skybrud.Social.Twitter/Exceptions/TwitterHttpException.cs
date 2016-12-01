@@ -3,12 +3,12 @@ using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Twitter.Exceptions {
 
-    public class TwitterException : Exception {
+    public class TwitterHttpException : Exception {
 
         #region Properties
 
         /// <summary>
-        /// Gets a reference to the underlying <code>SocialHttpResponse</code>.
+        /// Gets a reference to the underlying <see cref="SocialHttpResponse"/>.
         /// </summary>
         public SocialHttpResponse Response { get; private set; }
 
@@ -21,11 +21,11 @@ namespace Skybrud.Social.Twitter.Exceptions {
 
         #region Constructors
 
-        internal TwitterException(SocialHttpResponse response, string message) : base(message) {
+        internal TwitterHttpException(SocialHttpResponse response, string message) : base(message) {
             Response = response;
         }
 
-        internal TwitterException(SocialHttpResponse response, string message, int code) : base(message) {
+        internal TwitterHttpException(SocialHttpResponse response, string message, int code) : base(message) {
             Response = response;
             Code = code;
         }
