@@ -6,8 +6,8 @@
     <title>$title$</title>
     <authors>Anders Bjerner</authors>
     <owners>Anders Bjerner</owners>
-    <licenseUrl>http://social.skybrud.dk/license/</licenseUrl>
-    <projectUrl>http://social.skybrud.dk/twitter/</projectUrl>
+    <licenseUrl>https://github.com/abjerner/Skybrud.Social.Twitter/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/abjerner/Skybrud.Social.Twitter</projectUrl>
     <iconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
