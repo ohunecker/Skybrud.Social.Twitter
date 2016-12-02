@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Entities;
 
-namespace Skybrud.Social.Twitter.Objects {
+namespace Skybrud.Social.Twitter.Objects.Users {
     
     /// <see>
     ///     <cref>https://dev.twitter.com/docs/platform-objects/users</cref>
@@ -244,7 +244,7 @@ namespace Skybrud.Social.Twitter.Objects {
 
         #region Constructors
 
-        private TwitterUser(JObject obj) : base(obj) {
+        protected TwitterUser(JObject obj) : base(obj) {
             Id = obj.GetInt64("id");
             IdStr = obj.GetString("id_str");
             Name = obj.GetString("name");
@@ -290,9 +290,9 @@ namespace Skybrud.Social.Twitter.Objects {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterUser</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterUser"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
         public static TwitterUser Parse(JObject obj) {
             return obj == null ? null : new TwitterUser(obj);
         }

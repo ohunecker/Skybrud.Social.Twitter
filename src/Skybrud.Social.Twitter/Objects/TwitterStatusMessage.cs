@@ -4,6 +4,7 @@ using Skybrud.Social.Interfaces;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Objects.Statuses;
+using Skybrud.Social.Twitter.Objects.Users;
 
 namespace Skybrud.Social.Twitter.Objects {
 

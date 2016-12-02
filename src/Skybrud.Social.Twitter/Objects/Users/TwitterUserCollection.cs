@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Twitter.Objects {
+namespace Skybrud.Social.Twitter.Objects.Users {
 
     public class TwitterUserCollection : TwitterObject {
 
@@ -37,9 +37,9 @@ namespace Skybrud.Social.Twitter.Objects {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterUserCollection</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterUserCollection"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
         public static TwitterUserCollection Parse(JObject obj) {
             return obj == null ? null : new TwitterUserCollection(obj);
         }

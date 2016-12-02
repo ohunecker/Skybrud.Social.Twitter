@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Enums;
+using Skybrud.Social.Twitter.Objects.Users;
 
 namespace Skybrud.Social.Twitter.Objects.Lists {
 

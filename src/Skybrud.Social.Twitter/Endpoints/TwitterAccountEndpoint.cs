@@ -1,8 +1,19 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
+using Skybrud.Social.Twitter.Options.Account;
+using Skybrud.Social.Twitter.Responses.Account;
 using Skybrud.Social.Twitter.Responses.Users;
 
 namespace Skybrud.Social.Twitter.Endpoints {
 
+    /// <summary>
+    /// Implementation of the <strong>Account</strong> endpoint.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://dev.twitter.com/rest/reference/get/account/settings</cref>
+    /// </see>
+    /// <see>
+    ///     <cref>https://dev.twitter.com/rest/reference/get/account/verify_credentials</cref>
+    /// </see>
     public class TwitterAccountEndpoint {
 
         #region Properties
@@ -32,10 +43,26 @@ namespace Skybrud.Social.Twitter.Endpoints {
         #region Member methods
 
         /// <summary>
-        /// Verify and get information about the user authenticated user (requires an access token).
+        /// Gets a represenation of the authenticated user (requires an access token).
         /// </summary>
-        public TwitterGetUserResponse VerifyCredentials() {
-            return TwitterGetUserResponse.ParseResponse(Raw.VerifyCredentials());
+        /// <returns>Returns an instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://dev.twitter.com/rest/reference/get/account/verify_credentials</cref>
+        /// </see>
+        public TwitterVerifyCredentialsResponse VerifyCredentials() {
+            return TwitterVerifyCredentialsResponse.ParseResponse(Raw.VerifyCredentials());
+        }
+
+        /// <summary>
+        /// Gets a represenation of the authenticated user (requires an access token).
+        /// </summary>
+        /// <param name="options">The options for the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://dev.twitter.com/rest/reference/get/account/verify_credentials</cref>
+        /// </see>
+        public TwitterVerifyCredentialsResponse VerifyCredentials(TwitterVerifyCrendetialsOptions options) {
+            return TwitterVerifyCredentialsResponse.ParseResponse(Raw.VerifyCredentials(options));
         }
 
         #endregion
