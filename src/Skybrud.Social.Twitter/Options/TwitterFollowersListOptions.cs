@@ -55,6 +55,9 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public TwitterFollowersListOptions() {
             Cursor = DefaultCursor;
             Count = DefaultCount;

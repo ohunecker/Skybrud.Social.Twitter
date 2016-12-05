@@ -3,7 +3,10 @@ using Skybrud.Social.Twitter.OAuth;
 using Skybrud.Social.Twitter.Options;
 
 namespace Skybrud.Social.Twitter.Endpoints.Raw {
-    
+
+    /// <summary>
+    /// Class representing the raw implementation of the geo endpoint.
+    /// </summary>
     public class TwitterGeoRawEndpoint {
 
         #region Properties
@@ -29,6 +32,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets the raw API response for a place with the specified ID.
         /// </summary>
         /// <param name="id">The ID of the place.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/docs/api/1.1/get/geo/id/:place_id</cref>
         /// </see>
@@ -48,6 +52,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// is -180.0 to +180.0 (East is positive) inclusive. This parameter will be ignored if
         /// outside that range, if it is not a number, if <var>geo_enabled</var> is disabled, or
         /// if there not a corresponding <var>lat</var> parameter.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/docs/api/1.1/get/geo/reverse_geocode</cref>
         /// </see>
@@ -64,6 +69,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// and will deliver generalized results about geography.
         /// </summary>
         /// <param name="options">The options used when making the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/docs/api/1.1/get/geo/reverse_geocode</cref>
         /// </see>

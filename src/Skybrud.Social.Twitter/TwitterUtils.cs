@@ -27,7 +27,7 @@ namespace Skybrud.Social.Twitter {
         /// <returns></returns>
         public static string GetInformationVersion() {
             Assembly assembly = typeof(TwitterUtils).Assembly;
-            return FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion;
+            return assembly.Location == null ? null : FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Skybrud.Social.Twitter {
         /// <returns></returns>
         public static string GetFileVersion() {
             Assembly assembly = typeof(TwitterUtils).Assembly;
-            return FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
+            return assembly.Location == null ? null : FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
         }
 
         #endregion
