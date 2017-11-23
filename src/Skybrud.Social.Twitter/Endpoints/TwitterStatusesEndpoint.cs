@@ -2,6 +2,7 @@ using System;
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Objects;
 using Skybrud.Social.Twitter.Options;
+using Skybrud.Social.Twitter.Options.StatusMessages;
 using Skybrud.Social.Twitter.Responses;
 
 namespace Skybrud.Social.Twitter.Endpoints {
@@ -39,14 +40,14 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
         public TwitterStatusMessageResponse GetStatusMessage(long statusId) {
-            return TwitterStatusMessageResponse.ParseResponse(Raw.GetStatusMessage(new TwitterStatusMessageOptions(statusId)));
+            return TwitterStatusMessageResponse.ParseResponse(Raw.GetStatusMessage(new TwitterGetStatusMessageOptions(statusId)));
         }
 
         /// <summary>
         /// Gets information about a status message (tweet) with the specified ID.
         /// </summary>
         /// <param name="options">Options affecting the response from the Twitter API.</param>
-        public TwitterStatusMessageResponse GetStatusMessage(TwitterStatusMessageOptions options) {
+        public TwitterStatusMessageResponse GetStatusMessage(TwitterGetStatusMessageOptions options) {
             return TwitterStatusMessageResponse.ParseResponse(Raw.GetStatusMessage(options));
         }
 

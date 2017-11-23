@@ -2,6 +2,7 @@ using System;
 using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.OAuth;
 using Skybrud.Social.Twitter.Options;
+using Skybrud.Social.Twitter.Options.StatusMessages;
 
 namespace Skybrud.Social.Twitter.Endpoints.Raw {
     
@@ -34,7 +35,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/show/:id</cref>
         /// </see>
         public SocialHttpResponse GetStatusMessage(long statusId) {
-            return GetStatusMessage(new TwitterStatusMessageOptions(statusId));
+            return GetStatusMessage(new TwitterGetStatusMessageOptions(statusId));
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// <see>
         ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/show/:id</cref>
         /// </see>
-        public SocialHttpResponse GetStatusMessage(TwitterStatusMessageOptions options) {
+        public SocialHttpResponse GetStatusMessage(TwitterGetStatusMessageOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             return Client.DoHttpGetRequest("https://api.twitter.com/1.1/statuses/show.json", options);
         }

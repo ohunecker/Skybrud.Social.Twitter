@@ -1,9 +1,11 @@
+using Skybrud.Essentials.Strings;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
+using Skybrud.Social.Twitter.Enums;
 
-namespace Skybrud.Social.Twitter.Options {
+namespace Skybrud.Social.Twitter.Options.StatusMessages {
 
-    public class TwitterStatusMessageOptions : IHttpGetOptions {
+    public class TwitterGetStatusMessageOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -17,27 +19,35 @@ namespace Skybrud.Social.Twitter.Options {
         /// including only the status authors numerical ID. Omit this parameter to receive
         /// the complete user object.
         /// </summary>
-        public bool TrimUser = false;
+        public bool TrimUser { get; set; }
 
         /// <summary>
         /// When set to <code>true</code>, any Tweets returned that have been retweeted by the
         /// authenticating user will include an additional <code>current_user_retweet</code>
         /// node, containing the ID of the source status for the retweet.
         /// </summary>
-        public bool IncludeMyRetweet = false;
+        public bool IncludeMyRetweet { get; set; }
 
         /// <summary>
         /// The entities node will be disincluded when set to <code>false</code>.
         /// </summary>
-        public bool IncludeEntities = false;
+        public bool IncludeEntities { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tweet mode, qhich determines the JSON payload of each tweet. Default is <see cref="TwitterTweetMode.Compatibility"/>.
+        /// </summary>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/tweet-updates#overview</cref>
+        /// </see>
+        public TwitterTweetMode TweetMode { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public TwitterStatusMessageOptions() { }
+        public TwitterGetStatusMessageOptions() { }
 
-        public TwitterStatusMessageOptions(long statusId) {
+        public TwitterGetStatusMessageOptions(long statusId) {
             Id = statusId;
         }
 
@@ -51,6 +61,7 @@ namespace Skybrud.Social.Twitter.Options {
             if (TrimUser) query.Add("trim_user", "true");
             if (IncludeMyRetweet) query.Add("include_my_retweet", "true");
             if (IncludeEntities) query.Add("include_entities", "true");
+            if (TweetMode != TwitterTweetMode.Compatibility) query.Add("tweet_mode", StringUtils.ToCamelCase(TweetMode));
             return query;
         }
 

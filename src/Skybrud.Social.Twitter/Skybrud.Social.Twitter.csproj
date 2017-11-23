@@ -83,6 +83,7 @@
     <Compile Include="Enums\TwitterGranularity.cs" />
     <Compile Include="Enums\TwitterListMode.cs" />
     <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
+    <Compile Include="Enums\TwitterTweetMode.cs" />
     <Compile Include="Exceptions\TwitterHttpException.cs" />
     <Compile Include="OAuth\TwitterOAuthAccessToken.cs" />
     <Compile Include="OAuth\TwitterOAuthClient.cs" />
@@ -125,7 +126,7 @@
     <Compile Include="Options\TwitterPostStatusMessageOptions.cs" />
     <Compile Include="Options\TwitterReverseGeocodeOptions.cs" />
     <Compile Include="Options\TwitterSearchTweetOptions.cs" />
-    <Compile Include="Options\TwitterStatusMessageOptions.cs" />
+    <Compile Include="Options\StatusMessages\TwitterGetStatusMessageOptions.cs" />
     <Compile Include="Options\TwitterTimelineOptions.cs" />
     <Compile Include="Options\TwitterUsersSearchOptions.cs" />
     <Compile Include="Options\TwitterUserTimelineOptions.cs" />
