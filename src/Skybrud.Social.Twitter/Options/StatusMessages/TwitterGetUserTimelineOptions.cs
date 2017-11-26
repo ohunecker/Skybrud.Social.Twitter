@@ -2,9 +2,8 @@ using System;
 using Skybrud.Essentials.Strings;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
-using Skybrud.Social.Twitter.Enums;
 
-namespace Skybrud.Social.Twitter.Options {
+namespace Skybrud.Social.Twitter.Options.StatusMessages {
 
     public class TwitterGetUserTimelineOptions : IHttpGetOptions {
 

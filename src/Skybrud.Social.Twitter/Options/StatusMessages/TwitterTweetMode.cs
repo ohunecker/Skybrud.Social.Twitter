@@ -1,6 +1,6 @@
 ﻿using Skybrud.Social.Twitter.Models;
 
-namespace Skybrud.Social.Twitter.Enums {
+namespace Skybrud.Social.Twitter.Options.StatusMessages {
     
     /// <summary>
     /// Indicates the tweet mode of requests made to the the Twitter API. 
