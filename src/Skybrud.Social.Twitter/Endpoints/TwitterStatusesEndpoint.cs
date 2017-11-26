@@ -14,14 +14,12 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <summary>
         /// Gets a reference to the Twitter service.
         /// </summary>
-        public TwitterService Service { get; private set; }
+        public TwitterService Service { get; }
 
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public TwitterStatusesRawEndpoint Raw {
-            get { return Service.Client.Statuses; }
-        }
+        public TwitterStatusesRawEndpoint Raw => Service.Client.Statuses;
 
         #endregion
 
@@ -114,7 +112,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// Gets the timeline of a user with the specified <code>options</code>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        public TwitterTimelineResponse GetUserTimeline(TwitterUserTimelineOptions options) {
+        public TwitterTimelineResponse GetUserTimeline(TwitterGetUserTimelineOptions options) {
             return TwitterTimelineResponse.ParseResponse(Raw.GetUserTimeline(options));
         }
 
@@ -217,7 +215,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <param name="status">The tweet to be retweeted.</param>
         /// <returns>Returns the response from the API.</returns>
         public TwitterStatusMessageResponse Retweet(TwitterStatusMessage status) {
-            if (status == null) throw new ArgumentNullException("status");
+            if (status == null) throw new ArgumentNullException(nameof(status));
             return Retweet(status.Id, false);
         }
 
@@ -230,7 +228,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// object.</param>
         /// <returns>Returns the response from the API.</returns>
         public TwitterStatusMessageResponse Retweet(TwitterStatusMessage status, bool trimUser) {
-            if (status == null) throw new ArgumentNullException("status");
+            if (status == null) throw new ArgumentNullException(nameof(status));
             return Retweet(status.Id, trimUser);
         }
 
@@ -264,7 +262,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <param name="status">The status to be destroyed.</param>
         /// <returns>Returns the response from the API.</returns>
         public TwitterStatusMessageResponse DestroyStatusMessage(TwitterStatusMessage status) {
-            if (status == null) throw new ArgumentNullException("status");
+            if (status == null) throw new ArgumentNullException(nameof(status));
             return DestroyStatusMessage(status.Id, false);
         }
 

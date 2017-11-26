@@ -13,7 +13,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the OAuth 1.0a client.
         /// </summary>
-        public TwitterOAuthClient Client { get; private set; }
+        public TwitterOAuthClient Client { get; }
 
         #endregion
 
@@ -28,25 +28,27 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region Member methods
 
         /// <summary>
-        /// Gets the raw API response for a status message (tweet) with the specified ID.
+        /// Gets the raw API response for a status message (tweet) with the <paramref name="statusId"/>.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/show/:id</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id</cref>
         /// </see>
         public SocialHttpResponse GetStatusMessage(long statusId) {
             return GetStatusMessage(new TwitterGetStatusMessageOptions(statusId));
         }
 
         /// <summary>
-        /// Gets the raw API response for a status message (tweet) with the specified ID.
+        /// Gets the raw API response for a status message (tweet) matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options used when making the call to the API.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/show/:id</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id</cref>
         /// </see>
         public SocialHttpResponse GetStatusMessage(TwitterGetStatusMessageOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.twitter.com/1.1/statuses/show.json", options);
         }
 
@@ -54,6 +56,10 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Posts the specified status message.
         /// </summary>
         /// <param name="status">The status message to send.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
+        /// </see>
         public SocialHttpResponse PostStatusMessage(string status) {
             return PostStatusMessage(new TwitterPostStatusMessageOptions { Status = status });
         }
@@ -63,16 +69,24 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// </summary>
         /// <param name="status">The status message to send.</param>
         /// <param name="replyTo">The ID of the status message to reply to.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
+        /// </see>
         public SocialHttpResponse PostStatusMessage(string status, long? replyTo) {
             return PostStatusMessage(new TwitterPostStatusMessageOptions { Status = status, ReplyTo = replyTo });
         }
 
         /// <summary>
-        /// Posts the specified status message.
+        /// Posts a new status message (tweet) with the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
+        /// </see>
         public SocialHttpResponse PostStatusMessage(TwitterPostStatusMessageOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpPostRequest("https://api.twitter.com/1.1/statuses/update.json", options);
         }
 
@@ -80,11 +94,12 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Get the raw API response for a user's timeline.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
         /// </see>
         public SocialHttpResponse GetUserTimeline(long userId) {
-            return GetUserTimeline(new TwitterUserTimelineOptions(userId));
+            return GetUserTimeline(new TwitterGetUserTimelineOptions(userId));
         }
 
         /// <summary>
@@ -92,22 +107,24 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
         /// </see>
         public SocialHttpResponse GetUserTimeline(long userId, int count) {
-            return GetUserTimeline(new TwitterUserTimelineOptions(userId, count));
+            return GetUserTimeline(new TwitterGetUserTimelineOptions(userId, count));
         }
 
         /// <summary>
         /// Get the raw API response for a user's timeline.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
         /// </see>
         public SocialHttpResponse GetUserTimeline(string screenName) {
-            return GetUserTimeline(new TwitterUserTimelineOptions(screenName));
+            return GetUserTimeline(new TwitterGetUserTimelineOptions(screenName));
         }
 
         /// <summary>
@@ -115,22 +132,24 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
         /// </see>
         public SocialHttpResponse GetUserTimeline(string screenName, int count) {
-            return GetUserTimeline(new TwitterUserTimelineOptions(screenName, count));
+            return GetUserTimeline(new TwitterGetUserTimelineOptions(screenName, count));
         }
 
         /// <summary>
         /// Get the raw API response for a user's timeline.
         /// </summary>
         /// <param name="options">The options used when making the call to the API.</param>
+        /// <returns>An instance <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline</cref>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
         /// </see>
-        public SocialHttpResponse GetUserTimeline(TwitterUserTimelineOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+        public SocialHttpResponse GetUserTimeline(TwitterGetUserTimelineOptions options) {
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.DoHttpGetRequest("https://api.twitter.com/1.1/statuses/user_timeline.json", options);
         }
 

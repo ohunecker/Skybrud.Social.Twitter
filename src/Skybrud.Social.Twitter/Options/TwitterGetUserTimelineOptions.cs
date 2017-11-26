@@ -1,10 +1,12 @@
 using System;
+using Skybrud.Essentials.Strings;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
+using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Options {
 
-    public class TwitterUserTimelineOptions : IHttpGetOptions {
+    public class TwitterGetUserTimelineOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -65,32 +67,40 @@ namespace Skybrud.Social.Twitter.Options {
         /// the retweets will still contain a full user object.
         /// </summary>
         public bool IncludeRetweets { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the tweet mode, qhich determines the JSON payload of each tweet. Default is <see cref="TwitterTweetMode.Compatibility"/>.
+        /// </summary>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/tweet-updates#overview</cref>
+        /// </see>
+        public TwitterTweetMode TweetMode { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public TwitterUserTimelineOptions() {
+        public TwitterGetUserTimelineOptions() {
             IncludeRetweets = true;
         }
 
-        public TwitterUserTimelineOptions(long userId) {
+        public TwitterGetUserTimelineOptions(long userId) {
             UserId = userId;
             IncludeRetweets = true;
         }
 
-        public TwitterUserTimelineOptions(long userId, int count) {
+        public TwitterGetUserTimelineOptions(long userId, int count) {
             UserId = userId;
             Count = count;
             IncludeRetweets = true;
         }
 
-        public TwitterUserTimelineOptions(string screenName) {
+        public TwitterGetUserTimelineOptions(string screenName) {
             ScreenName = screenName;
             IncludeRetweets = true;
         }
 
-        public TwitterUserTimelineOptions(string screenName, int count) {
+        public TwitterGetUserTimelineOptions(string screenName, int count) {
             ScreenName = screenName;
             Count = count;
             IncludeRetweets = true;
@@ -115,6 +125,7 @@ namespace Skybrud.Social.Twitter.Options {
             if (ExcludeReplies) qs.Set("exclude_replies", "true");
             if (ContributorDetails) qs.Set("contributor_details", "true");
             if (!IncludeRetweets) qs.Set("include_rts", "false");
+            if (TweetMode != TwitterTweetMode.Compatibility) qs.Add("tweet_mode", StringUtils.ToCamelCase(TweetMode));
 
             return qs;
 
