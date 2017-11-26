@@ -7,6 +7,7 @@ using System.Reflection;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Entities.Formatting;
 using Skybrud.Social.Twitter.Enums;
+using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter {
     

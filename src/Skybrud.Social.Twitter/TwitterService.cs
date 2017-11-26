@@ -36,7 +36,7 @@ namespace Skybrud.Social.Twitter {
         /// <summary>
         /// Gets a reference to the Geo endpoint.
         /// </summary>
-        public TwitterGeoEndpoint Geo { get; private set; }
+        public TwitterGeocodeEndpoint Geocode { get; private set; }
 
         /// <summary>
         /// Gets a reference to the Lists endpoint.
@@ -88,7 +88,7 @@ namespace Skybrud.Social.Twitter {
             service.Favorites = new TwitterFavoritesEndpoint(service);
             service.Followers = new TwitterFollowersEndpoint(service);
             service.Friends = new TwitterFriendsEndpoint(service);
-            service.Geo = new TwitterGeoEndpoint(service);
+            service.Geocode = new TwitterGeocodeEndpoint(service);
             service.Lists = new TwitterListsEndpoint(service);
             service.Search = new TwitterSearchEndpoint(service);
             service.Statuses = new TwitterStatusesEndpoint(service);

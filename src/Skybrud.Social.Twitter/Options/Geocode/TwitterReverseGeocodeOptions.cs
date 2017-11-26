@@ -1,8 +1,8 @@
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
-using Skybrud.Social.Twitter.Enums;
+using Skybrud.Social.Twitter.Models.Geocode;
 
-namespace Skybrud.Social.Twitter.Options {
+namespace Skybrud.Social.Twitter.Options.Geocode {
 
     public class TwitterReverseGeocodeOptions : IHttpGetOptions {
 

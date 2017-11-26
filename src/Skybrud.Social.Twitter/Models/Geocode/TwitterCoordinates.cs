@@ -1,7 +1,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Twitter.Models {
+namespace Skybrud.Social.Twitter.Models.Geocode {
 
     public class TwitterCoordinates : TwitterObject {
 

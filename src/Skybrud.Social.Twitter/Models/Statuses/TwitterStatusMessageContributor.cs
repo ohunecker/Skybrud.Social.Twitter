@@ -1,6 +1,6 @@
-namespace Skybrud.Social.Twitter.Models {
+namespace Skybrud.Social.Twitter.Models.Statuses {
 
-    public class TwitterContributor {
+    public class TwitterStatusMessageContributor {
    
         public long UserId { get; internal set; }
         

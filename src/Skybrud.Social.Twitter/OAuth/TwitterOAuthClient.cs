@@ -19,7 +19,7 @@ namespace Skybrud.Social.Twitter.OAuth {
         private TwitterFavoritesRawEndpoint _favorites;
         private TwitterFollowersRawEndpoint _followers;
         private TwitterFriendsRawEndpoint _friends;
-        private TwitterGeoRawEndpoint _geo;
+        private TwitterGeocodeRawEndpoint _geo;
         private TwitterListsRawEndpoint _lists;
         private TwitterSearchRawEndpoint _search;
         private TwitterStatusesRawEndpoint _statuses;
@@ -60,8 +60,8 @@ namespace Skybrud.Social.Twitter.OAuth {
         /// <summary>
         /// Gets a reference to the geo endpoint.
         /// </summary>
-        public TwitterGeoRawEndpoint Geo {
-            get { return _geo ?? (_geo = new TwitterGeoRawEndpoint(this)); }
+        public TwitterGeocodeRawEndpoint Geocode {
+            get { return _geo ?? (_geo = new TwitterGeocodeRawEndpoint(this)); }
         }
 
         /// <summary>

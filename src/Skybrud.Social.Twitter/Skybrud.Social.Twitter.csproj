@@ -53,7 +53,7 @@
     <Compile Include="Endpoints\Raw\TwitterFavoritesRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\TwitterFollowersRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\TwitterFriendsRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\TwitterGeoRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\TwitterGeocodeRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\TwitterListsRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\TwitterSearchRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\TwitterStatusesRawEndpoint.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="Endpoints\TwitterFavoritesEndpoint.cs" />
     <Compile Include="Endpoints\TwitterFollowersEndpoint.cs" />
     <Compile Include="Endpoints\TwitterFriendsEndpoint.cs" />
-    <Compile Include="Endpoints\TwitterGeoEndpoint.cs" />
+    <Compile Include="Endpoints\TwitterGeocodeEndpoint.cs" />
     <Compile Include="Endpoints\TwitterListsEndpoint.cs" />
     <Compile Include="Endpoints\TwitterSearchEndpoint.cs" />
     <Compile Include="Endpoints\TwitterStatusesEndpoint.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Entities\TwitterUserDescriptionEntities.cs" />
     <Compile Include="Entities\TwitterUserEntities.cs" />
     <Compile Include="Entities\TwitterUserUrlEntities.cs" />
-    <Compile Include="Enums\TwitterGranularity.cs" />
+    <Compile Include="Models\Geocode\TwitterGranularity.cs" />
     <Compile Include="Enums\TwitterListMode.cs" />
     <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
     <Compile Include="Options\Statuses\TwitterGetHomeTimelineOptions.cs" />
@@ -105,13 +105,13 @@
     <Compile Include="Models\Search\TwitterSearchTweetsMetaData.cs" />
     <Compile Include="Models\Search\TwitterSearchTweetsResults.cs" />
     <Compile Include="Models\Statuses\TwitterExtendedEntities.cs" />
-    <Compile Include="Models\TwitterBoundingBox.cs" />
-    <Compile Include="Models\TwitterContributor.cs" />
-    <Compile Include="Models\TwitterCoordinates.cs" />
+    <Compile Include="Models\Geocode\TwitterBoundingBox.cs" />
+    <Compile Include="Models\Statuses\TwitterStatusMessageContributor.cs" />
+    <Compile Include="Models\Geocode\TwitterCoordinates.cs" />
     <Compile Include="Models\TwitterIdsCollection.cs" />
     <Compile Include="Models\TwitterObject.cs" />
-    <Compile Include="Models\TwitterPlace.cs" />
-    <Compile Include="Models\TwitterReplyTo.cs" />
+    <Compile Include="Models\Geocode\TwitterPlace.cs" />
+    <Compile Include="Models\Statuses\TwitterReplyTo.cs" />
     <Compile Include="Models\Statuses\TwitterStatusMessage.cs" />
     <Compile Include="Models\Users\TwitterUser.cs" />
     <Compile Include="Models\Users\TwitterUserCollection.cs" />
@@ -127,7 +127,7 @@
     <Compile Include="Options\TwitterFriendsIdsOptions.cs" />
     <Compile Include="Options\TwitterFriendsListOptions.cs" />
     <Compile Include="Options\Statuses\TwitterPostStatusMessageOptions.cs" />
-    <Compile Include="Options\TwitterReverseGeocodeOptions.cs" />
+    <Compile Include="Options\Geocode\TwitterReverseGeocodeOptions.cs" />
     <Compile Include="Options\TwitterSearchTweetOptions.cs" />
     <Compile Include="Options\Statuses\TwitterGetStatusMessageOptions.cs" />
     <Compile Include="Options\Statuses\TwitterTimelineOptions.cs" />
@@ -146,9 +146,9 @@
     <Compile Include="Responses\Statuses\TwitterPostStatusMessageResponse.cs" />
     <Compile Include="Responses\Statuses\TwitterGetUserTimelineResponse.cs" />
     <Compile Include="Responses\TwitterIdsResponse.cs" />
-    <Compile Include="Responses\TwitterPlaceResponse.cs" />
+    <Compile Include="Responses\Geocode\TwitterGetPlaceResponse.cs" />
     <Compile Include="Responses\TwitterResponse.cs" />
-    <Compile Include="Responses\TwitterReverseGeocodeResponse.cs" />
+    <Compile Include="Responses\Geocode\TwitterReverseGeocodeResponse.cs" />
     <Compile Include="Responses\TwitterSearchTweetsResponse.cs" />
     <Compile Include="Responses\TwitterTimelineResponse.cs" />
     <Compile Include="Responses\Statuses\TwitterGetStatusMessageResponse.cs" />
