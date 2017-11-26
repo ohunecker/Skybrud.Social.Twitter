@@ -1,4 +1,4 @@
-﻿using Skybrud.Social.Twitter.Objects;
+﻿using Skybrud.Social.Twitter.Models;
 
 namespace Skybrud.Social.Twitter.Enums {
     

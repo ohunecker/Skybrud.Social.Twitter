@@ -1,6 +1,6 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Twitter.Objects.Geocode;
+using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter.Responses {
 

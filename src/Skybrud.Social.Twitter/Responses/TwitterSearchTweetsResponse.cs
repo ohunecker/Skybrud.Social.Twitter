@@ -1,6 +1,6 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Twitter.Objects.Search;
+using Skybrud.Social.Twitter.Models.Search;
 
 namespace Skybrud.Social.Twitter.Responses {
 

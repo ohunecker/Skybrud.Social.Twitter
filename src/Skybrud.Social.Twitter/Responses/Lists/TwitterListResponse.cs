@@ -1,6 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Twitter.Objects.Lists;
+using Skybrud.Social.Twitter.Models.Lists;
 
 namespace Skybrud.Social.Twitter.Responses.Lists {
     

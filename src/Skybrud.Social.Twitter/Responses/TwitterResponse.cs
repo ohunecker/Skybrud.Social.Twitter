@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Exceptions;
-using Skybrud.Social.Twitter.Objects.Common;
+using Skybrud.Social.Twitter.Models.Common;
 
 namespace Skybrud.Social.Twitter.Responses {
 

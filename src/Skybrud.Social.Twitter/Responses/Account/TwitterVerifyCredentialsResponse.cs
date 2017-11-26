@@ -1,6 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Twitter.Objects.Account;
+using Skybrud.Social.Twitter.Models.Account;
 
 namespace Skybrud.Social.Twitter.Responses.Account {
 

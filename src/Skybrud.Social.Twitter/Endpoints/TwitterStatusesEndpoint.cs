@@ -1,6 +1,6 @@
 using System;
 using Skybrud.Social.Twitter.Endpoints.Raw;
-using Skybrud.Social.Twitter.Objects;
+using Skybrud.Social.Twitter.Models;
 using Skybrud.Social.Twitter.Options;
 using Skybrud.Social.Twitter.Options.StatusMessages;
 using Skybrud.Social.Twitter.Responses;
