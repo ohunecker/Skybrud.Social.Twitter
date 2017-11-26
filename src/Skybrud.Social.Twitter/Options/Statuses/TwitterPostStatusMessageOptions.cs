@@ -1,7 +1,7 @@
 ﻿using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
-namespace Skybrud.Social.Twitter.Options {
+namespace Skybrud.Social.Twitter.Options.Statuses {
 
     public class TwitterPostStatusMessageOptions : IHttpPostOptions {
 
@@ -47,9 +47,7 @@ namespace Skybrud.Social.Twitter.Options {
         /// </summary>
         public bool DisplayCoordinates { get; set; }
         
-        public bool IsMultipart {
-            get { return false; }
-        }
+        public bool IsMultipart => false;
 
         #endregion
 

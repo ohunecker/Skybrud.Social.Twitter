@@ -11,7 +11,7 @@ namespace Skybrud.Social.Twitter.Models {
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>obj</code>.
+        /// Initializes a new instance from the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> representing the object.</param>
         protected TwitterObject(JObject obj) : base(obj) { }

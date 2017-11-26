@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Social.Twitter.Models.Statuses;
 
 namespace Skybrud.Social.Twitter.Models.Search {
 

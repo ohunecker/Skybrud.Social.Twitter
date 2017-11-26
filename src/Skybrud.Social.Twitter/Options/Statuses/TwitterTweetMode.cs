@@ -1,6 +1,7 @@
 ﻿using Skybrud.Social.Twitter.Models;
+using Skybrud.Social.Twitter.Models.Statuses;
 
-namespace Skybrud.Social.Twitter.Options.StatusMessages {
+namespace Skybrud.Social.Twitter.Options.Statuses {
     
     /// <summary>
     /// Indicates the tweet mode of requests made to the the Twitter API. 

@@ -1,27 +1,16 @@
-using System;
 using Skybrud.Essentials.Strings;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
-namespace Skybrud.Social.Twitter.Options.StatusMessages {
+namespace Skybrud.Social.Twitter.Options.Statuses {
 
-    public class TwitterGetUserTimelineOptions : IHttpGetOptions {
+    public abstract class TwitterTimelineOptions : IHttpGetOptions {
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets the ID of the user for whom to return results for.
-        /// </summary>
-        public long UserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the screen name of the user for whom to return results for.
-        /// </summary>
-        public string ScreenName { get; set; }
-
-        /// <summary>
         /// Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to
-        /// the number of Tweets which can be accessed  through the API. If the limit of Tweets has occured since the
+        /// the number of tweets which can be accessed through the API. If the limit of tweets has occured since the
         /// <code>since_id</code>, the <code>since_id</code> will be forced to the oldest ID available.
         /// </summary>
         public long SinceId { get; set; }
@@ -53,20 +42,21 @@ namespace Skybrud.Social.Twitter.Options.StatusMessages {
         public bool ExcludeReplies { get; set; }
 
         /// <summary>
-        /// This parameter enhances the contributors element of the status response to include the screen_name of the
-        /// contributor. By default only the user_id of the contributor is included.
+        /// This parameter enhances the contributors element of the status response to include the
+        /// <code>screen_name</code> of the contributor. By default only the <code>user_id</code> of the contributor is
+        /// included.
         /// </summary>
         public bool ContributorDetails { get; set; }
 
         /// <summary>
-        /// When set to <code>false</code>, the timeline will strip any native retweets  (though they will still count
+        /// When set to <code>false</code>, the timeline will strip any native retweets (though they will still count
         /// toward both the maximal length of the timeline and the slice selected by the count parameter).
         /// 
         /// Note: If you're using the <code>trim_user</code> parameter in conjunction with <code>include_rts</code>,
         /// the retweets will still contain a full user object.
         /// </summary>
         public bool IncludeRetweets { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the tweet mode, qhich determines the JSON payload of each tweet. Default is <see cref="TwitterTweetMode.Compatibility"/>.
         /// </summary>
@@ -79,28 +69,11 @@ namespace Skybrud.Social.Twitter.Options.StatusMessages {
 
         #region Constructors
 
-        public TwitterGetUserTimelineOptions() {
+        protected TwitterTimelineOptions() {
             IncludeRetweets = true;
         }
 
-        public TwitterGetUserTimelineOptions(long userId) {
-            UserId = userId;
-            IncludeRetweets = true;
-        }
-
-        public TwitterGetUserTimelineOptions(long userId, int count) {
-            UserId = userId;
-            Count = count;
-            IncludeRetweets = true;
-        }
-
-        public TwitterGetUserTimelineOptions(string screenName) {
-            ScreenName = screenName;
-            IncludeRetweets = true;
-        }
-
-        public TwitterGetUserTimelineOptions(string screenName, int count) {
-            ScreenName = screenName;
+        protected TwitterTimelineOptions(int count) {
             Count = count;
             IncludeRetweets = true;
         }
@@ -115,15 +88,13 @@ namespace Skybrud.Social.Twitter.Options.StatusMessages {
             SocialHttpQueryString qs = new SocialHttpQueryString();
 
             // Add optional parameters
-            if (UserId > 0) qs.Set("user_id", UserId);
-            if (!String.IsNullOrWhiteSpace(ScreenName)) qs.Set("screen_name", ScreenName);
-            if (SinceId > 0) qs.Set("since_id", SinceId);
-            if (Count > 0) qs.Set("count", Count);
-            if (MaxId > 0) qs.Set("max_id", MaxId);
-            if (TrimUser) qs.Set("trim_user", "true");
-            if (ExcludeReplies) qs.Set("exclude_replies", "true");
-            if (ContributorDetails) qs.Set("contributor_details", "true");
-            if (!IncludeRetweets) qs.Set("include_rts", "false");
+            if (SinceId > 0) qs.Add("since_id", SinceId);
+            if (Count > 0) qs.Add("count", Count);
+            if (MaxId > 0) qs.Add("max_id", MaxId);
+            if (TrimUser) qs.Add("trim_user", "true");
+            if (ExcludeReplies) qs.Add("exclude_replies", "true");
+            if (ContributorDetails) qs.Add("contributor_details", "true");
+            if (!IncludeRetweets) qs.Add("include_rts", "false");
             if (TweetMode != TwitterTweetMode.Compatibility) qs.Add("tweet_mode", StringUtils.ToCamelCase(TweetMode));
 
             return qs;

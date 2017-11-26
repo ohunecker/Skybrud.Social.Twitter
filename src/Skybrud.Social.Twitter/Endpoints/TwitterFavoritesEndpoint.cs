@@ -1,6 +1,7 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Options.Favorites;
 using Skybrud.Social.Twitter.Responses;
+using Skybrud.Social.Twitter.Responses.Statuses;
 
 namespace Skybrud.Social.Twitter.Endpoints {
     
@@ -70,16 +71,16 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// Favorites the status message with the specified <code>statusId</code> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
-        public TwitterStatusMessageResponse Create(long statusId) {
-            return TwitterStatusMessageResponse.ParseResponse(Raw.Create(statusId));
+        public TwitterGetStatusMessageResponse Create(long statusId) {
+            return TwitterGetStatusMessageResponse.ParseResponse(Raw.Create(statusId));
         }
 
         /// <summary>
         /// Un-favorites the status message with the specified <code>statusId</code> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
-        public TwitterStatusMessageResponse Destroy(long statusId) {
-            return TwitterStatusMessageResponse.ParseResponse(Raw.Destroy(statusId));
+        public TwitterGetStatusMessageResponse Destroy(long statusId) {
+            return TwitterGetStatusMessageResponse.ParseResponse(Raw.Destroy(statusId));
         }
 
         #endregion

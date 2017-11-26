@@ -3,11 +3,13 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Interfaces;
 using Skybrud.Social.Twitter.Entities;
-using Skybrud.Social.Twitter.Models.Statuses;
 using Skybrud.Social.Twitter.Models.Users;
 
-namespace Skybrud.Social.Twitter.Models {
+namespace Skybrud.Social.Twitter.Models.Statuses {
 
+    /// <summary>
+    /// Class representing a status message (tweet) as received from the Twitter API.
+    /// </summary>
     public class TwitterStatusMessage : TwitterObject, ISocialTimelineEntry {
 
         #region Properties
@@ -72,22 +74,22 @@ namespace Skybrud.Social.Twitter.Models {
 
         public string Language { get; private set; }
 
-        public DateTime SortDate {
-            get { return CreatedAt; }
-        }
+        public DateTime SortDate => CreatedAt;
 
         /// <summary>
         /// Gets whether the status message has any extended entities.
         /// </summary>
-        public bool HasExtendedEntities {
-            get { return ExtendedEntities != null; }
-        }
+        public bool HasExtendedEntities => ExtendedEntities != null;
 
         #endregion
 
         #region Constructors
 
-        private TwitterStatusMessage(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the status message.</param>
+        protected TwitterStatusMessage(JObject obj) : base(obj) {
 
             // Parse basic properties
             Id = obj.GetInt64("id");
@@ -150,9 +152,10 @@ namespace Skybrud.Social.Twitter.Models {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterStatusMessage</code> from the specified <code>JObject</code>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="TwitterStatusMessage"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>An instance of <see cref="TwitterStatusMessage"/>.</returns>
         public static TwitterStatusMessage Parse(JObject obj) {
             return obj == null ? null : new TwitterStatusMessage(obj);
         }
