@@ -133,6 +133,21 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <summary>
         /// Get the raw API response for a user's timeline.
         /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="count">The maximum amount of tweets to return.</param>
+        /// <param name="maxId">The maximum status message ID. Only status message with an ID less then (that is, older
+        /// than) this ID will be returned.</param>
+        /// <returns>An instance of <see cref="TwitterGetUserTimelineResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
+        /// </see>
+        public TwitterGetUserTimelineResponse GetUserTimeline(long userId, int count, long maxId) {
+            return TwitterGetUserTimelineResponse.ParseResponse(Raw.GetUserTimeline(userId, count, maxId));
+        }
+
+        /// <summary>
+        /// Get the raw API response for a user's timeline.
+        /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="TwitterGetUserTimelineResponse"/> representing the response.</returns>
         /// <see>
@@ -153,6 +168,21 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// </see>
         public TwitterGetUserTimelineResponse GetUserTimeline(string screenName, int count) {
             return TwitterGetUserTimelineResponse.ParseResponse(Raw.GetUserTimeline(screenName, count));
+        }
+
+        /// <summary>
+        /// Get the raw API response for a user's timeline.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        /// <param name="count">The maximum amount of tweets to return.</param>
+        /// <param name="maxId">The maximum status message ID. Only status message with an ID less then (that is, older
+        /// than) this ID will be returned.</param>
+        /// <returns>An instance of <see cref="TwitterGetUserTimelineResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
+        /// </see>
+        public TwitterGetUserTimelineResponse GetUserTimeline(string screenName, int count, long maxId) {
+            return TwitterGetUserTimelineResponse.ParseResponse(Raw.GetUserTimeline(screenName, count, maxId));
         }
 
         /// <summary>

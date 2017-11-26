@@ -97,6 +97,13 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
             IncludeRetweets = true;
         }
 
+        public TwitterGetUserTimelineOptions(long userId, int count, long maxId) {
+            UserId = userId;
+            Count = count;
+            MaxId = maxId;
+            IncludeRetweets = true;
+        }
+
         public TwitterGetUserTimelineOptions(string screenName) {
             ScreenName = screenName;
             IncludeRetweets = true;
@@ -105,6 +112,13 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
         public TwitterGetUserTimelineOptions(string screenName, int count) {
             ScreenName = screenName;
             Count = count;
+            IncludeRetweets = true;
+        }
+
+        public TwitterGetUserTimelineOptions(string screenName, int count, long maxId) {
+            ScreenName = screenName;
+            Count = count;
+            MaxId = maxId;
             IncludeRetweets = true;
         }
 
