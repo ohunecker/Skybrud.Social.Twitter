@@ -3,6 +3,12 @@ Skybrud.Social.Twitter
 
 As an add-on for [Skybrud.Social](https://github.com/abjerner/Skybrud.Social), **Skybrud.Social.Twitter** helps you with both authentication as well as raw and object-oriented communication with the Twitter Graph API.
 
+### Beta
+
+This package is currently in beta, which primarily means that it is still under development. This may lead to breaking changes between each beta release.
+
+If you're looking for a stable release, you can use the older [Skybrud.Social)[https://www.nuget.org/packages/Skybrud.Social/] instead, which includes support for the Twitter API.
+
 ### Installation
 
 You can download this package from either NuGet (recommended) or download a ZIP file with the neccessary files from here on GitHub:
@@ -12,6 +18,14 @@ Install this NuGet package in your Visual Studio project. Makes updating easy.
 
 2. [**ZIP file**][GitHubRelease]  
 Grab a ZIP file of the latest release; unzip and move the files to the bin directory of your project.
+
+### Dependencies
+
+- [**Skybrud.Social.Core**](https://github.com/abjerner/Skybrud.Social)<br />A package with common logic used throughout the Skybrud.Social packages.
+
+  - [**Json.NET**](https://github.com/jamesnk/newtonsoft.json)<br />Used for searializing/deserializing JSON.
+
+  - [**Skybrud.Essentials**](https://github.com/skybrud/Skybrud.Essentials)<br />A package with logic for handling various common tasks in .NET.
 
 ### Found a bug? Have a question?
 
