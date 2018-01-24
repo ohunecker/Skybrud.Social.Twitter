@@ -63,6 +63,11 @@ namespace Skybrud.Social.Twitter.Models.Lists {
         public string Description { get; private set; }
 
         /// <summary>
+        /// Gets whether the list has a description.
+        /// </summary>
+        public bool HasDescription => !String.IsNullOrWhiteSpace(Description);
+
+        /// <summary>
         /// Gets a referecne to the user owning the list.
         /// </summary>
         public TwitterUser User { get; private set; }
