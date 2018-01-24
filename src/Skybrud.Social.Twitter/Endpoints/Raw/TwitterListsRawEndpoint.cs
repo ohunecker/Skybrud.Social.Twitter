@@ -1,3 +1,4 @@
+using System;
 using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.OAuth;
 using Skybrud.Social.Twitter.Options.Lists;
@@ -259,6 +260,56 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetMembers(TwitterGetMembersOptions options) {
             return Client.DoHttpGetRequest("https://api.twitter.com/1.1/lists/members.json", options);
+        }
+
+        /// <summary>
+        /// Creates a new list for the authenticated user. Note that you can create up to 1000 lists per account. The created list will be public.
+        /// </summary>
+        /// <param name="name">The name of the list.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-create</cref>
+        /// </see>
+        public SocialHttpResponse CreateList(string name) {
+            return CreateList(new TwitterCreateListOptions(name));
+        }
+
+        /// <summary>
+        /// Creates a new list for the authenticated user. Note that you can create up to 1000 lists per account.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-create</cref>
+        /// </see>
+        public SocialHttpResponse CreateList(TwitterCreateListOptions options) {
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            return Client.DoHttpPostRequest("https://api.twitter.com/1.1/lists/create.json", options);
+        }
+
+        /// <summary>
+        /// Deletes the specified list. The authenticated user must own the list to be able to destroy it.
+        /// </summary>
+        /// <param name="listId"></param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
+        /// </see>
+        public SocialHttpResponse DestroyList(long listId) {
+            return DestroyList(new TwitterDestroyListOptions(listId));
+        }
+
+        /// <summary>
+        /// Deletes the specified list. The authenticated user must own the list to be able to destroy it.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
+        /// </see>
+        public SocialHttpResponse DestroyList(TwitterDestroyListOptions options) {
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            return Client.DoHttpPostRequest("https://api.twitter.com/1.1/lists/destroy.json", options);
         }
 
         #endregion

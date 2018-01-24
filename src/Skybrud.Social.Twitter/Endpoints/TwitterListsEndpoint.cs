@@ -93,6 +93,55 @@ namespace Skybrud.Social.Twitter.Endpoints {
             return TwitterListsResponse.ParseResponse(Raw.GetLists(screenName));
         }
 
+        
+        /// <summary>
+        /// Creates a new list for the authenticated user. Note that you can create up to 1000 lists per account. The created list will be public.
+        /// </summary>
+        /// <param name="name">The name of the list.</param>
+        /// <returns>An instance of <see cref="TwitterCreateListResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-create</cref>
+        /// </see>
+        public TwitterCreateListResponse CreateList(string name) {
+            return CreateList(new TwitterCreateListOptions(name));
+        }
+
+        /// <summary>
+        /// Creates a new list for the authenticated user. Note that you can create up to 1000 lists per account.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="TwitterCreateListResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-create</cref>
+        /// </see>
+        public TwitterCreateListResponse CreateList(TwitterCreateListOptions options) {
+            return TwitterCreateListResponse.ParseResponse(Raw.CreateList(options));
+        }
+
+        /// <summary>
+        /// Deletes the specified list. The authenticated user must own the list to be able to destroy it.
+        /// </summary>
+        /// <param name="listId"></param>
+        /// <returns>An instance of <see cref="TwitterDeleteListResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
+        /// </see>
+        public TwitterDeleteListResponse DestroyList(long listId) {
+            return DestroyList(new TwitterDestroyListOptions(listId));
+        }
+
+        /// <summary>
+        /// Deletes the specified list. The authenticated user must own the list to be able to destroy it.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="TwitterDeleteListResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
+        /// </see>
+        public TwitterDeleteListResponse DestroyList(TwitterDestroyListOptions options) {
+            return TwitterDeleteListResponse.ParseResponse(Raw.DestroyList(options));
+        }
+
         #endregion
 
     }
