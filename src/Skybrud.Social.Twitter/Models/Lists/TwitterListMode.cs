@@ -1,4 +1,4 @@
-﻿namespace Skybrud.Social.Twitter.Enums {
+﻿namespace Skybrud.Social.Twitter.Models.Lists {
     
     /// <summary>
     /// Enumeration describing the mode (visibility) of a list.

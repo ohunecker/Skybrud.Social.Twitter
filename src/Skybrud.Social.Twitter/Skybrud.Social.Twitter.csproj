@@ -81,7 +81,7 @@
     <Compile Include="Entities\TwitterUserEntities.cs" />
     <Compile Include="Entities\TwitterUserUrlEntities.cs" />
     <Compile Include="Models\Geocode\TwitterGranularity.cs" />
-    <Compile Include="Enums\TwitterListMode.cs" />
+    <Compile Include="Models\Lists\TwitterListMode.cs" />
     <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
     <Compile Include="Options\Statuses\TwitterGetHomeTimelineOptions.cs" />
     <Compile Include="Options\Statuses\TwitterGetMentionsTimelineOptions.cs" />
