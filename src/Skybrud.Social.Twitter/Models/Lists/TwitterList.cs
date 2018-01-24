@@ -101,9 +101,10 @@ namespace Skybrud.Social.Twitter.Models.Lists {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterList</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterList"/> from the specified <paramref name="obj"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterList"/>.</returns>
         public static TwitterList Parse(JObject obj) {
             return obj == null ? null : new TwitterList(obj);
         }
