@@ -142,6 +142,82 @@ namespace Skybrud.Social.Twitter.Endpoints {
             return TwitterDeleteListResponse.ParseResponse(Raw.DestroyList(options));
         }
 
+        /// <summary>
+        /// Adds a member to a list. The authenticated user must own the list to be able to add members to it. Note that lists cannot have more than 5,000 members.
+        /// </summary>
+        /// <param name="listId">The numeric ID of the list.</param>
+        /// <param name="userId">The numeric ID of the user.</param>
+        /// <returns>An instance of <see cref="TwitterAddMemberResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-create</cref>
+        /// </see>
+        public TwitterAddMemberResponse AddMember(long listId, long userId) {
+            return AddMember(new TwitterAddMemberOptions(listId, userId));
+        }
+
+        /// <summary>
+        /// Adds a member to a list. The authenticated user must own the list to be able to add members to it. Note that lists cannot have more than 5,000 members.
+        /// </summary>
+        /// <param name="listId">The numeric ID of the list.</param>
+        /// <param name="screenName">The screen name of the user.</param>
+        /// <returns>An instance of <see cref="TwitterAddMemberResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-create</cref>
+        /// </see>
+        public TwitterAddMemberResponse AddMember(long listId, string screenName) {
+            return AddMember(new TwitterAddMemberOptions(listId, screenName));
+        }
+
+        /// <summary>
+        /// Adds a member to a list. The authenticated user must own the list to be able to add members to it. Note that lists cannot have more than 5,000 members.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="TwitterAddMemberResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-create</cref>
+        /// </see>
+        public TwitterAddMemberResponse AddMember(TwitterAddMemberOptions options) {
+            return TwitterAddMemberResponse.ParseResponse(Raw.AddMember(options));
+        }
+
+        /// <summary>
+        /// Removes the specified member from the list. The authenticated user must be the list’s owner to remove members from the list.
+        /// </summary>
+        /// <param name="listId">The numeric ID of the list.</param>
+        /// <param name="userId">The numeric ID of the user.</param>
+        /// <returns>An instance of <see cref="TwitterRemoveMemberResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-destroy</cref>
+        /// </see>
+        public TwitterRemoveMemberResponse RemoveMember(long listId, long userId) {
+            return RemoveMember(new TwitterRemoveMemberOptions(listId, userId));
+        }
+
+        /// <summary>
+        /// Removes the specified member from the list. The authenticated user must be the list’s owner to remove members from the list.
+        /// </summary>
+        /// <param name="listId">The numeric ID of the list.</param>
+        /// <param name="screenName">The screen name of the user.</param>
+        /// <returns>An instance of <see cref="TwitterRemoveMemberResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-destroy</cref>
+        /// </see>
+        public TwitterRemoveMemberResponse RemoveMember(long listId, string screenName) {
+            return RemoveMember(new TwitterRemoveMemberOptions(listId, screenName));
+        }
+
+        /// <summary>
+        /// Removes the specified member from the list. The authenticated user must be the list’s owner to remove members from the list.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="TwitterRemoveMemberResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-destroy</cref>
+        /// </see>
+        public TwitterRemoveMemberResponse RemoveMember(TwitterRemoveMemberOptions options) {
+            return TwitterRemoveMemberResponse.ParseResponse(Raw.RemoveMember(options));
+        }
+
         #endregion
 
     }
