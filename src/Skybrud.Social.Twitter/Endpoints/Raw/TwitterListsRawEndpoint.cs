@@ -89,7 +89,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/lists/list</cref>
         /// </see>
         public SocialHttpResponse GetLists() {
-            return GetLists(default(TwitterGetListsOptions));
+            return GetLists(new TwitterGetListsOptions());
         }
 
         /// <summary>
