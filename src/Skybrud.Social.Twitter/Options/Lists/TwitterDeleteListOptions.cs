@@ -9,7 +9,7 @@ namespace Skybrud.Social.Twitter.Options.Lists {
     /// <see>
     ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
     /// </see>
-    public class TwitterDestroyListOptions : IHttpPostOptions {
+    public class TwitterDeleteListOptions : IHttpPostOptions {
 
         #region Properties
 
@@ -31,13 +31,13 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         /// <summary>
         /// Initializes a new instance with default options.
         /// </summary>
-        public TwitterDestroyListOptions() { }
+        public TwitterDeleteListOptions() { }
 
         /// <summary>
         /// Initializes a new instance with the specified <paramref name="listId"/>.
         /// </summary>
         /// <param name="listId">The numerical ID of the list.</param>
-        public TwitterDestroyListOptions(long listId) {
+        public TwitterDeleteListOptions(long listId) {
             ListId = listId;
         }
         

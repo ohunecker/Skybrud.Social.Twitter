@@ -85,7 +85,7 @@
     <Compile Include="Enums\TwitterSearchTweetResultType.cs" />
     <Compile Include="Options\Lists\TwitterRemoveMemberOptions.cs" />
     <Compile Include="Options\Lists\TwitterAddMemberOptions.cs" />
-    <Compile Include="Options\Lists\TwitterDestroyListOptions.cs" />
+    <Compile Include="Options\Lists\TwitterDeleteListOptions.cs" />
     <Compile Include="Options\Lists\TwitterCreateListOptions.cs" />
     <Compile Include="Options\Statuses\TwitterGetHomeTimelineOptions.cs" />
     <Compile Include="Options\Statuses\TwitterGetMentionsTimelineOptions.cs" />

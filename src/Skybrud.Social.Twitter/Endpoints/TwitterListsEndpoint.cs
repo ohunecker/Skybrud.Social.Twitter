@@ -126,8 +126,8 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
         /// </see>
-        public TwitterDeleteListResponse DestroyList(long listId) {
-            return DestroyList(new TwitterDestroyListOptions(listId));
+        public TwitterDeleteListResponse DeleteList(long listId) {
+            return DeleteList(new TwitterDeleteListOptions(listId));
         }
 
         /// <summary>
@@ -138,8 +138,8 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-destroy</cref>
         /// </see>
-        public TwitterDeleteListResponse DestroyList(TwitterDestroyListOptions options) {
-            return TwitterDeleteListResponse.ParseResponse(Raw.DestroyList(options));
+        public TwitterDeleteListResponse DeleteList(TwitterDeleteListOptions options) {
+            return TwitterDeleteListResponse.ParseResponse(Raw.DeleteList(options));
         }
 
         /// <summary>
