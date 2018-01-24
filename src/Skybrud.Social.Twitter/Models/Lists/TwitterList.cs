@@ -29,7 +29,7 @@ namespace Skybrud.Social.Twitter.Models.Lists {
         public string Name { get; private set; }
 
         /// <summary>
-        /// Gets the timestam for when the list was created.
+        /// Gets the timestamp for when the list was created.
         /// </summary>
         public DateTime CreatedAt { get; private set; }
 
