@@ -3,8 +3,8 @@
   "description": "Authentication and service implementation for the Twitter API.",
   "company": "Skybrud.dk",
   "product": "Skybrud.Social",
-  "copyright": "Copyright © 2017",
+  "copyright": "Copyright © 2018",
   "version": "1.0.0.0",
-  "informationalVersion": "1.0.0-beta002",
-  "fileVersion": "0.0.1945.18"
+  "informationalVersion": "1.0.0-beta003",
+  "fileVersion": "0.0.2004.16"
 }
