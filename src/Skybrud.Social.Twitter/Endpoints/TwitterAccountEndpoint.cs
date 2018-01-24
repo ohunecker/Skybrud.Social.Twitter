@@ -1,7 +1,6 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Options.Account;
 using Skybrud.Social.Twitter.Responses.Account;
-using Skybrud.Social.Twitter.Responses.Users;
 
 namespace Skybrud.Social.Twitter.Endpoints {
 
@@ -21,14 +20,12 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <summary>
         /// Gets a reference to the Twitter service.
         /// </summary>
-        public TwitterService Service { get; private set; }
+        public TwitterService Service { get; }
 
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public TwitterAccountRawEndpoint Raw {
-            get { return Service.Client.Account; }
-        }
+        public TwitterAccountRawEndpoint Raw => Service.Client.Account;
 
         #endregion
 

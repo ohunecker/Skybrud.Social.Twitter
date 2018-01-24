@@ -14,14 +14,12 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <summary>
         /// Gets a reference to the Twitter service.
         /// </summary>
-        public TwitterService Service { get; private set; }
+        public TwitterService Service { get; }
 
         /// <summary>
         /// Gets a reference to the raw lists endpoint.
         /// </summary>
-        public TwitterListsRawEndpoint Raw {
-            get { return Service.Client.Lists; }
-        }
+        public TwitterListsRawEndpoint Raw => Service.Client.Lists;
 
         #endregion
 

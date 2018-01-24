@@ -23,13 +23,8 @@ namespace Skybrud.Social.Twitter.Responses {
         #region Static methods
 
         public static TwitterUsersSearchResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
-
-            // Initialize the response object
+            if (response == null) throw new ArgumentNullException(nameof(response));
             return new TwitterUsersSearchResponse(response);
-
         }
 
         #endregion

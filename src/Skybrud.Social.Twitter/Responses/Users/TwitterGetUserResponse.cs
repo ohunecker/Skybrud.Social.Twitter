@@ -26,18 +26,13 @@ namespace Skybrud.Social.Twitter.Responses.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>TwitterGetUserResponse</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="TwitterGetUserResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>TwitterGetUserResponse</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="TwitterGetUserResponse"/> representing the response.</returns>
         public static TwitterGetUserResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
-
-            // Initialize the response object
+            if (response == null) throw new ArgumentNullException(nameof(response));
             return new TwitterGetUserResponse(response);
-
         }
 
         #endregion

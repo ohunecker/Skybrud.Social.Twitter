@@ -1,6 +1,5 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Twitter.Models;
 using Skybrud.Social.Twitter.Models.Statuses;
 
 namespace Skybrud.Social.Twitter.Responses.Statuses {

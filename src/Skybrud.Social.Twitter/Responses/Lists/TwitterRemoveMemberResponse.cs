@@ -1,4 +1,5 @@
-﻿using Skybrud.Social.Http;
+﻿using System;
+using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.Models.Lists;
 
 namespace Skybrud.Social.Twitter.Responses.Lists {
@@ -30,7 +31,8 @@ namespace Skybrud.Social.Twitter.Responses.Lists {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="TwitterRemoveMemberResponse"/> representing the response.</returns>
         public static TwitterRemoveMemberResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new TwitterRemoveMemberResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new TwitterRemoveMemberResponse(response);
         }
 
         #endregion

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Entities.Formatting;
-using Skybrud.Social.Twitter.Enums;
 using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter {
@@ -28,7 +27,7 @@ namespace Skybrud.Social.Twitter {
         /// <returns></returns>
         public static string GetInformationVersion() {
             Assembly assembly = typeof(TwitterUtils).Assembly;
-            return assembly.Location == null ? null : FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
+            return FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
         }
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace Skybrud.Social.Twitter {
         /// <returns></returns>
         public static string GetFileVersion() {
             Assembly assembly = typeof(TwitterUtils).Assembly;
-            return assembly.Location == null ? null : FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
+            return FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the OAuth 1.0a client.
         /// </summary>
-        public TwitterOAuthClient Client { get; private set; }
+        public TwitterOAuthClient Client { get; }
 
         #endregion
 

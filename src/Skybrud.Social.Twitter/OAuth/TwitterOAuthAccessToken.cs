@@ -9,9 +9,9 @@ namespace Skybrud.Social.Twitter.OAuth {
 
         #region Properties
 
-        public long UserId { get; private set; }
+        public long UserId { get; }
 
-        public string ScreenName { get; private set; }
+        public string ScreenName { get; }
 
         #endregion
 

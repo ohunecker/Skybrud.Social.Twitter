@@ -11,7 +11,7 @@ namespace Skybrud.Social.Twitter {
         /// <summary>
         /// Gets a reference to the underlying OAuth client.
         /// </summary>
-        public TwitterOAuthClient Client { get; private set; }
+        public TwitterOAuthClient Client { get; }
 
         /// <summary>
         /// Gets a reference to the Account endpoint.
@@ -62,7 +62,23 @@ namespace Skybrud.Social.Twitter {
 
         #region Constructors
 
-        private TwitterService() { }
+        private TwitterService(TwitterOAuthClient client) {
+
+            // Set the client
+            Client = client;
+            
+            // Set the endpoints etc.
+            Account = new TwitterAccountEndpoint(this);
+            Favorites = new TwitterFavoritesEndpoint(this);
+            Followers = new TwitterFollowersEndpoint(this);
+            Friends = new TwitterFriendsEndpoint(this);
+            Geocode = new TwitterGeocodeEndpoint(this);
+            Lists = new TwitterListsEndpoint(this);
+            Search = new TwitterSearchEndpoint(this);
+            Statuses = new TwitterStatusesEndpoint(this);
+            Users = new TwitterUsersEndpoint(this);
+
+        }
 
         #endregion
 
@@ -74,29 +90,8 @@ namespace Skybrud.Social.Twitter {
         /// <param name="client">An instance of <see cref="TwitterOAuthClient"/>.</param>
         /// <returns>Returns a new instance of <see cref="TwitterService"/>.</returns>
         public static TwitterService CreateFromOAuthClient(TwitterOAuthClient client) {
-
-            // This should never be null
-            if (client == null) throw new ArgumentNullException("client");
-
-            // Initialize the service
-            TwitterService service = new TwitterService {
-                Client = client
-            };
-
-            // Set the endpoints etc.
-            service.Account = new TwitterAccountEndpoint(service);
-            service.Favorites = new TwitterFavoritesEndpoint(service);
-            service.Followers = new TwitterFollowersEndpoint(service);
-            service.Friends = new TwitterFriendsEndpoint(service);
-            service.Geocode = new TwitterGeocodeEndpoint(service);
-            service.Lists = new TwitterListsEndpoint(service);
-            service.Search = new TwitterSearchEndpoint(service);
-            service.Statuses = new TwitterStatusesEndpoint(service);
-            service.Users = new TwitterUsersEndpoint(service);
-
-            // Return the service
-            return service;
-
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            return new TwitterService(client);
         }
 
         #endregion

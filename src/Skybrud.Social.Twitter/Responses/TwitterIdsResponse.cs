@@ -8,25 +8,23 @@ namespace Skybrud.Social.Twitter.Responses {
 
         #region Constructors
 
-        private TwitterIdsResponse(SocialHttpResponse response) : base(response) { }
+        private TwitterIdsResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, TwitterIdsCollection.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         public static TwitterIdsResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Initialize the response object
-            return new TwitterIdsResponse(response) {
-                Body = ParseJsonObject(response.Body, TwitterIdsCollection.Parse)
-            };
-
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new TwitterIdsResponse(response);
         }
 
         #endregion

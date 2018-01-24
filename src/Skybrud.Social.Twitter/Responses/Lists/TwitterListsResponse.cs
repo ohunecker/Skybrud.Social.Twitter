@@ -11,29 +11,28 @@ namespace Skybrud.Social.Twitter.Responses.Lists {
 
         #region Constructors
 
-        private TwitterListsResponse(SocialHttpResponse response) : base(response) { }
+        private TwitterListsResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonArray(response.Body, TwitterList.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses and validates the specified <code>response</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="TwitterListsResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
+        /// <returns>An instance of <see cref="TwitterListsResponse"/> representing the response.</returns>
         public static TwitterListsResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Initialize the response object
-            return new TwitterListsResponse(response) {
-                Body = ParseJsonArray(response.Body, TwitterList.Parse)
-            };
-
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new TwitterListsResponse(response);
         }
 
         #endregion

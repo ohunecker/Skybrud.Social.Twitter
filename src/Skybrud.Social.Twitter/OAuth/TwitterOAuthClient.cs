@@ -32,65 +32,47 @@ namespace Skybrud.Social.Twitter.OAuth {
         /// <summary>
         /// Gets a reference to the account endpoint.
         /// </summary>
-        public TwitterAccountRawEndpoint Account {
-            get { return _account ?? (_account = new TwitterAccountRawEndpoint(this)); }
-        }
+        public TwitterAccountRawEndpoint Account => _account ?? (_account = new TwitterAccountRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the favorites endpoint.
         /// </summary>
-        public TwitterFavoritesRawEndpoint Favotires {
-            get { return _favorites ?? (_favorites = new TwitterFavoritesRawEndpoint(this)); }
-        }
+        public TwitterFavoritesRawEndpoint Favotires => _favorites ?? (_favorites = new TwitterFavoritesRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the followers endpoint.
         /// </summary>
-        public TwitterFollowersRawEndpoint Followers {
-            get { return _followers ?? (_followers = new TwitterFollowersRawEndpoint(this)); }
-        }
+        public TwitterFollowersRawEndpoint Followers => _followers ?? (_followers = new TwitterFollowersRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the friends endpoint.
         /// </summary>
-        public TwitterFriendsRawEndpoint Friends {
-            get { return _friends ?? (_friends = new TwitterFriendsRawEndpoint(this)); }
-        }
+        public TwitterFriendsRawEndpoint Friends => _friends ?? (_friends = new TwitterFriendsRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the geo endpoint.
         /// </summary>
-        public TwitterGeocodeRawEndpoint Geocode {
-            get { return _geo ?? (_geo = new TwitterGeocodeRawEndpoint(this)); }
-        }
+        public TwitterGeocodeRawEndpoint Geocode => _geo ?? (_geo = new TwitterGeocodeRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the lists endpoint.
         /// </summary>
-        public TwitterListsRawEndpoint Lists {
-            get { return _lists ?? (_lists = new TwitterListsRawEndpoint(this)); }
-        }
+        public TwitterListsRawEndpoint Lists => _lists ?? (_lists = new TwitterListsRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the statuses endpoint.
         /// </summary>
-        public TwitterSearchRawEndpoint Search {
-            get { return _search ?? (_search = new TwitterSearchRawEndpoint(this)); }
-        }
+        public TwitterSearchRawEndpoint Search => _search ?? (_search = new TwitterSearchRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the statuses endpoint.
         /// </summary>
-        public TwitterStatusesRawEndpoint Statuses {
-            get { return _statuses ?? (_statuses = new TwitterStatusesRawEndpoint(this)); }
-        }
+        public TwitterStatusesRawEndpoint Statuses => _statuses ?? (_statuses = new TwitterStatusesRawEndpoint(this));
 
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public TwitterUsersRawEndpoint Users {
-            get { return _users ?? (_users = new TwitterUsersRawEndpoint(this)); }
-        }
+        public TwitterUsersRawEndpoint Users => _users ?? (_users = new TwitterUsersRawEndpoint(this));
 
         #endregion
 
