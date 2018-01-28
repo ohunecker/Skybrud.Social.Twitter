@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Specialized;
+using Skybrud.Social.Http;
+using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.OAuth;
-using Skybrud.Social.OAuth.Objects;
+using Skybrud.Social.OAuth.Models;
 
 namespace Skybrud.Social.Twitter.OAuth {
 
@@ -17,7 +18,7 @@ namespace Skybrud.Social.Twitter.OAuth {
 
         #region Constructors
 
-        protected TwitterOAuthAccessToken(SocialOAuthClient client, NameValueCollection query) : base(client, query) {
+        protected TwitterOAuthAccessToken(SocialOAuthClient client, IHttpQueryString query) : base(client, query) {
             UserId = Int64.Parse(query["user_id"]);
             ScreenName = query["screen_name"];
         }
@@ -33,8 +34,8 @@ namespace Skybrud.Social.Twitter.OAuth {
         /// <param name="str">The query string.</param>
         public new static TwitterOAuthAccessToken Parse(SocialOAuthClient client, string str) {
 
-            // Convert the query string to a NameValueCollection
-            NameValueCollection query = SocialUtils.Misc.ParseQueryString(str);
+            // Convert the query string to an IHttpQueryString
+            IHttpQueryString query = SocialHttpQueryString.ParseQueryString(str);
 
             // Initialize a new instance
             return new TwitterOAuthAccessToken(client, query);
@@ -46,7 +47,7 @@ namespace Skybrud.Social.Twitter.OAuth {
         /// </summary>
         /// <param name="client">The parent OAuth client.</param>
         /// <param name="query">The query string.</param>
-        public new static TwitterOAuthAccessToken Parse(SocialOAuthClient client, NameValueCollection query) {
+        public static TwitterOAuthAccessToken Parse(SocialOAuthClient client, IHttpQueryString query) {
             return query == null ? null : new TwitterOAuthAccessToken(client, query);
         }
 

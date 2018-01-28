@@ -1,6 +1,6 @@
 using Skybrud.Social.Http;
 using Skybrud.Social.OAuth;
-using Skybrud.Social.OAuth.Objects;
+using Skybrud.Social.OAuth.Models;
 using Skybrud.Social.OAuth.Responses;
 using Skybrud.Social.Twitter.Endpoints.Raw;
 

@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Time;
 using Skybrud.Social.Interfaces;
 using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Models.Geocode;
@@ -75,7 +76,7 @@ namespace Skybrud.Social.Twitter.Models.Statuses {
 
         public string Language { get; private set; }
 
-        public DateTime SortDate => CreatedAt;
+        public EssentialsDateTime SortDate => CreatedAt;
 
         /// <summary>
         /// Gets whether the status message has any extended entities.

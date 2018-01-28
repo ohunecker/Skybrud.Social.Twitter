@@ -1,10 +1,11 @@
 ﻿using System;
 using Skybrud.Social.Http;
+using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Options {
     
-    public class TwitterSearchTweetOptions {
+    public class TwitterSearchTweetOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -61,7 +62,7 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Methods
 
-        public SocialHttpQueryString GetQuery() {
+        public IHttpQueryString GetQueryString() {
 
             string resultType = ResultType.ToString().ToLower();
             

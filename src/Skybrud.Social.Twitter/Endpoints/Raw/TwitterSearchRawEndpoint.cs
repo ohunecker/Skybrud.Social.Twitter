@@ -51,7 +51,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// <param name="options">The search options.</param>
         public SocialHttpResponse GetTweets(TwitterSearchTweetOptions options) {
             if (options == null) options = new TwitterSearchTweetOptions();
-            return Client.DoHttpGetRequest("https://api.twitter.com/1.1/search/tweets.json", options.GetQuery().NameValueCollection);
+            return Client.DoHttpGetRequest("https://api.twitter.com/1.1/search/tweets.json", options);
         }
 
         #endregion
