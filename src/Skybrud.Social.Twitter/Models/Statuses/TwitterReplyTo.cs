@@ -1,4 +1,4 @@
-namespace Skybrud.Social.Twitter.Models {
+namespace Skybrud.Social.Twitter.Models.Statuses {
 
     public class TwitterReplyTo {
     

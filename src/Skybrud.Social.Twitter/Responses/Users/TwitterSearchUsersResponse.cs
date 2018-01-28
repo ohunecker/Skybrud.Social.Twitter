@@ -4,11 +4,11 @@ using Skybrud.Social.Twitter.Models.Users;
 
 namespace Skybrud.Social.Twitter.Responses {
 
-    public class TwitterUsersSearchResponse : TwitterResponse<TwitterUser[]> {
+    public class TwitterSearchUsersResponse : TwitterResponse<TwitterUser[]> {
 
         #region Constructors
 
-        private TwitterUsersSearchResponse(SocialHttpResponse response) : base(response) {
+        private TwitterSearchUsersResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -22,9 +22,9 @@ namespace Skybrud.Social.Twitter.Responses {
 
         #region Static methods
 
-        public static TwitterUsersSearchResponse ParseResponse(SocialHttpResponse response) {
+        public static TwitterSearchUsersResponse ParseResponse(SocialHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
-            return new TwitterUsersSearchResponse(response);
+            return new TwitterSearchUsersResponse(response);
         }
 
         #endregion

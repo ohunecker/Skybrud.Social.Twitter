@@ -31,7 +31,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// <summary>
         /// Gets a list of favorites of the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
         /// </see>
@@ -43,7 +43,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of favorites of the user with the specified <code>userId</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
         /// </see>
@@ -57,7 +57,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of favorites of the user with the specified <code>screenName</code>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
         /// </see>
@@ -71,7 +71,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of favorites based on the specified <code>options</code>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
         /// </see>
@@ -83,7 +83,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Favorites the status message with the specified <code>statusId</code> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/post/favorites/create</cref>
         /// </see>
@@ -102,7 +102,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Un-favorites the status message with the specified <code>statusId</code> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/post/favorites/destroy</cref>
         /// </see>

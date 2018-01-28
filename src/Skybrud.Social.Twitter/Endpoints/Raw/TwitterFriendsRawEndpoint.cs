@@ -32,7 +32,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of IDs representing the friends of a given user.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/ids</cref>
         /// </see>
@@ -46,7 +46,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of IDs representing the friends of a given user.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/ids</cref>
         /// </see>
@@ -60,7 +60,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of IDs representing the friends of a given user.
         /// </summary>
         /// <param name="options">The options for the call.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/ids</cref>
         /// </see>
@@ -72,7 +72,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of friends for a given user using the default options.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/list</cref>
         /// </see>
@@ -86,7 +86,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of friends for a given user using the default options.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/list</cref>
         /// </see>
@@ -100,7 +100,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// Gets a list of friends for a given user using the specified options.
         /// </summary>
         /// <param name="options">The options for the call.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/list</cref>
         /// </see>

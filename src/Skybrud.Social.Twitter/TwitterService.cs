@@ -4,6 +4,9 @@ using Skybrud.Social.Twitter.OAuth;
 
 namespace Skybrud.Social.Twitter {
 
+    /// <summary>
+    /// Class working as an entry point to the Twitter API.
+    /// </summary>
     public class TwitterService {
 
         #region Properties
@@ -88,7 +91,7 @@ namespace Skybrud.Social.Twitter {
         /// Initializes a new instance from the specified <see cref="TwitterOAuthClient"/>.
         /// </summary>
         /// <param name="client">An instance of <see cref="TwitterOAuthClient"/>.</param>
-        /// <returns>Returns a new instance of <see cref="TwitterService"/>.</returns>
+        /// <returns>A new instance of <see cref="TwitterService"/>.</returns>
         public static TwitterService CreateFromOAuthClient(TwitterOAuthClient client) {
             if (client == null) throw new ArgumentNullException(nameof(client));
             return new TwitterService(client);

@@ -1,9 +1,9 @@
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
-namespace Skybrud.Social.Twitter.Options {
+namespace Skybrud.Social.Twitter.Options.Users {
 
-    public class TwitterUsersSearchOptions : IHttpGetOptions {
+    public class TwitterSearchUsersOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -31,7 +31,7 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Constructors
 
-        public TwitterUsersSearchOptions() {
+        public TwitterSearchUsersOptions() {
             Page = 1;
             Count = 20;
             IncludeEntities = true;
@@ -41,13 +41,21 @@ namespace Skybrud.Social.Twitter.Options {
 
         #region Member methods
 
+        /// <summary>
+        /// Return a new instance of <see cref="IHttpQueryString"/> representing the specified options.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
-            SocialHttpQueryString qs = new SocialHttpQueryString();
-            qs.Set("q", Query);
-            if (Page > 1) qs.Set("page", Page);
-            if (Count != 20) qs.Set("count", Count);
-            if (!IncludeEntities) qs.Set("include_entities", "false");
-            return qs;
+
+            SocialHttpQueryString query = new SocialHttpQueryString();
+
+            query.Set("q", Query);
+            if (Page > 1) query.Set("page", Page);
+            if (Count != 20) query.Set("count", Count);
+            if (!IncludeEntities) query.Set("include_entities", "false");
+
+            return query;
+
         }
 
         #endregion
