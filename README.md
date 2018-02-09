@@ -1,7 +1,7 @@
 Skybrud.Social.Twitter
 ========================
 
-As an add-on for [Skybrud.Social](https://github.com/abjerner/Skybrud.Social), **Skybrud.Social.Twitter** helps you with both authentication as well as raw and object-oriented communication with the Twitter Graph API.
+As an add-on for [Skybrud.Social](https://github.com/abjerner/Skybrud.Social), **Skybrud.Social.Twitter** helps you with both authentication as well as raw and object-oriented communication with the Twitter API.
 
 ### Beta
 
