@@ -85,7 +85,7 @@ namespace Skybrud.Social.Twitter.Options.Users {
             SocialHttpQueryString query = new SocialHttpQueryString();
 
             if (UserId != 0) query.Add("user_id", UserId);
-            if (!String.IsNullOrWhiteSpace(ScreenName)) query.Add("screen_name", UserId);
+            if (!String.IsNullOrWhiteSpace(ScreenName)) query.Add("screen_name", ScreenName);
             if (IncludeEntities) query.Add("include_entities", "true");
 
             return query;
