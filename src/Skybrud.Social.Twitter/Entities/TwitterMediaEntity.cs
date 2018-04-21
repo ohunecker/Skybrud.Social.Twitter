@@ -57,7 +57,7 @@ namespace Skybrud.Social.Twitter.Entities {
         /// <summary>
         /// Gets an object with references to the resized formats of the media.
         /// </summary>
-        public TwitterMediaFormats Sizes { get; }
+        public TwitterMediaSizes Sizes { get; }
 
         /// <summary>
         /// Gets an object with video information if the media is a video, otherwise <c>null</c>.
@@ -86,7 +86,7 @@ namespace Skybrud.Social.Twitter.Entities {
             DisplayUrl = obj.GetString("display_url");
             ExpandedUrl = obj.GetString("expanded_url");
             Type = obj.GetString("type");
-            Sizes = obj.GetObject("sizes", TwitterMediaFormats.Parse);
+            Sizes = obj.GetObject("sizes", TwitterMediaSizes.Parse);
             VideoInfo = obj.GetObject("video_info", TwitterVideoInfo.Parse);
         }
 

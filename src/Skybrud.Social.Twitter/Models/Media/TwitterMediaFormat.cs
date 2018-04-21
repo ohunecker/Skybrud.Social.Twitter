@@ -9,7 +9,7 @@ namespace Skybrud.Social.Twitter.Models.Media {
     /// <see>
     ///     <cref>https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/entities-object#size</cref>
     /// </see>
-    public class TwitterMediaFormat : TwitterObject {
+    public class TwitterMediaSize : TwitterObject {
 
         #region Properties
 
@@ -37,7 +37,7 @@ namespace Skybrud.Social.Twitter.Models.Media {
 
         #region Constructors
 
-        private TwitterMediaFormat(JObject obj) : base(obj) {
+        private TwitterMediaSize(JObject obj) : base(obj) {
             JProperty property = obj.Parent as JProperty;
             Alias = property?.Name;
             Width = obj.GetInt32("w");
@@ -50,12 +50,12 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="TwitterMediaFormat"/> from the specified <see cref="JObject"/>.
+        /// Gets an instance of <see cref="TwitterMediaSize"/> from the specified <see cref="JObject"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="TwitterMediaFormat"/>.</returns>
-        public static TwitterMediaFormat Parse(JObject obj) {
-            return obj == null ? null : new TwitterMediaFormat(obj);
+        /// <returns>An instance of <see cref="TwitterMediaSize"/>.</returns>
+        public static TwitterMediaSize Parse(JObject obj) {
+            return obj == null ? null : new TwitterMediaSize(obj);
         }
 
         #endregion
