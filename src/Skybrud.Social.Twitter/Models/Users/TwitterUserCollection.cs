@@ -3,6 +3,9 @@ using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Twitter.Models.Users {
 
+    /// <summary>
+    /// Class representing a collection of Twitter users.
+    /// </summary>
     public class TwitterUserCollection : TwitterObject {
 
         #region Properties
@@ -10,17 +13,17 @@ namespace Skybrud.Social.Twitter.Models.Users {
         /// <summary>
         /// Gets the array with the users returned in the response.
         /// </summary>
-        public TwitterUser[] Users { get; private set; }
+        public TwitterUser[] Users { get; }
 
         /// <summary>
         /// Gets the cursor pointing to the next page in the result set.
         /// </summary>
-        public long NextCursor { get; private set; }
+        public long NextCursor { get; }
 
         /// <summary>
         /// Gets the cursor pointing to the previous page in the result set.
         /// </summary>
-        public long PreviousCursor { get; private set; }
+        public long PreviousCursor { get; }
 
         #endregion
 
@@ -40,6 +43,7 @@ namespace Skybrud.Social.Twitter.Models.Users {
         /// Gets an instance of <see cref="TwitterUserCollection"/> from the specified <see cref="JObject"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterUserCollection"/>.</returns>
         public static TwitterUserCollection Parse(JObject obj) {
             return obj == null ? null : new TwitterUserCollection(obj);
         }

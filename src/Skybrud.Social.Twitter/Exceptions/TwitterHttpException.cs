@@ -3,6 +3,9 @@ using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Twitter.Exceptions {
 
+    /// <summary>
+    /// Exception class representing an error received from the Twitter API.
+    /// </summary>
     public class TwitterHttpException : Exception {
 
         #region Properties

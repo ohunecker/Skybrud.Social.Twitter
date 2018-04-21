@@ -326,6 +326,7 @@ namespace Skybrud.Social.Twitter.Models.Users {
         /// Gets an instance of <see cref="TwitterUser"/> from the specified <see cref="JObject"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterUser"/>.</returns>
         public static TwitterUser Parse(JObject obj) {
             return obj == null ? null : new TwitterUser(obj);
         }

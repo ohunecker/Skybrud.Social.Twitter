@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Social.Twitter.Models;
 using Skybrud.Social.Twitter.Models.Users;
 
 namespace Skybrud.Social.Twitter.Entities {
@@ -7,7 +8,7 @@ namespace Skybrud.Social.Twitter.Entities {
     /// <summary>
     /// Class representing the entities of a Twitter user.
     /// </summary>
-    public class TwitterUserEntities {
+    public class TwitterUserEntities : TwitterObject {
 
         #region Properties
 
@@ -29,7 +30,7 @@ namespace Skybrud.Social.Twitter.Entities {
         /// Initializes a new instance of <see cref="TwitterUserEntities"/> parsed from the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
-        protected TwitterUserEntities(JObject obj) {
+        protected TwitterUserEntities(JObject obj) : base(obj) {
             Url = obj.GetObject("url", TwitterUserUrlEntities.Parse);
             Description = obj.GetObject("description", TwitterUserDescriptionEntities.Parse);
         }
@@ -42,6 +43,7 @@ namespace Skybrud.Social.Twitter.Entities {
         /// Gets an instance of <see cref="TwitterUserEntities"/> from the specified <see cref="JObject"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterUserEntities"/>.</returns>
         public static TwitterUserEntities Parse(JObject obj) {
             return obj == null ? null : new TwitterUserEntities(obj);
         }

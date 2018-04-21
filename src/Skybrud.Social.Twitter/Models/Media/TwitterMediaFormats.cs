@@ -1,44 +1,72 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Twitter.Models.Media {
-    
+   
     /// <summary>
     /// Class representing a collection of formats of a given media.
     /// </summary>
-    public class TwitterMediaFormats : TwitterObject {
+    /// <see>
+    ///     <cref>https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/entities-object#media-size</cref>
+    /// </see>
+    public class TwitterMediaFormats : TwitterObject, IEnumerable<TwitterMediaFormat> {
+
+        private readonly TwitterMediaFormat[] _all;
 
         #region Properties
 
         /// <summary>
-        /// Gets a reference to the <code>small</code> media format.
+        /// Gets a reference to the <c>small</c> media format.
         /// </summary>
-        public TwitterMediaFormat Small { get; private set; }
+        public TwitterMediaFormat Small { get; }
         
         /// <summary>
-        /// Gets a reference to the <code>thumb</code> media format.
+        /// Gets a reference to the <c>thumb</c> media format.
         /// </summary>
-        public TwitterMediaFormat Thumb { get; private set; }
+        public TwitterMediaFormat Thumb { get; }
         
         /// <summary>
-        /// Gets a reference to the <code>medium</code> media format.
+        /// Gets a reference to the <c>medium</c> media format.
         /// </summary>
-        public TwitterMediaFormat Medium { get; private set; }
+        public TwitterMediaFormat Medium { get; }
         
         /// <summary>
-        /// Gets a reference to the <code>large</code> media format.
+        /// Gets a reference to the <c>large</c> media format.
         /// </summary>
-        public TwitterMediaFormat Large { get; private set; }
+        public TwitterMediaFormat Large { get; }
 
         #endregion
 
         #region Constructors
 
-        private TwitterMediaFormats(JObject obj) : base(obj) {
-            Small = GetMediaFormatByAlias(obj, "small");
-            Thumb = GetMediaFormatByAlias(obj, "thumb");
-            Medium = GetMediaFormatByAlias(obj, "medium");
-            Large = GetMediaFormatByAlias(obj, "large");
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterMediaFormats"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterMediaFormats(JObject obj) : base(obj) {
+            Small = obj.GetObject("small", TwitterMediaFormat.Parse);
+            Thumb = obj.GetObject("thumb", TwitterMediaFormat.Parse);
+            Medium = obj.GetObject("medium", TwitterMediaFormat.Parse);
+            Large = obj.GetObject("large", TwitterMediaFormat.Parse);
+            _all = new[] {Small, Thumb, Medium, Large};
+        }
+
+        #endregion
+
+        #region Member methods
+
+        /// <summary>
+        /// Gets an instance of <see cref="IEnumerator{TwitterMediaFormat}"/> for iterating through the sizez of the media.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<TwitterMediaFormat> GetEnumerator() {
+            return ((IEnumerable<TwitterMediaFormat>) _all).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
 
         #endregion
@@ -46,15 +74,12 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterMediaFormats</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterMediaFormats"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterMediaFormats"/>.</returns>
         public static TwitterMediaFormats Parse(JObject obj) {
             return obj == null ? null : new TwitterMediaFormats(obj);
-        }
-
-        private static TwitterMediaFormat GetMediaFormatByAlias(JObject parent, string alias) {
-            return parent.GetObject(alias, x => TwitterMediaFormat.Parse(alias, x));
         }
 
         #endregion

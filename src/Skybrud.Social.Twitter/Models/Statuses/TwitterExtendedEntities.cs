@@ -14,13 +14,17 @@ namespace Skybrud.Social.Twitter.Models.Statuses {
         /// <summary>
         /// Gets an array of all media mentioned in the parent status message.
         /// </summary>
-        public TwitterMediaEntity[] Media { get; private set; }
+        public TwitterMediaEntity[] Media { get; }
 
         #endregion
 
         #region Constructors
 
-        private TwitterExtendedEntities(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterExtendedEntities"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterExtendedEntities(JObject obj) : base(obj) {
             Media = obj.GetArray("media", TwitterMediaEntity.Parse);
         }
 

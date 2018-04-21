@@ -11,32 +11,34 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Properties
 
         /// <summary>
-        /// Gets the bitrate of the video, or <code>0</code> if not specified.
+        /// Gets the bitrate of the video, or <c>0</c> if not specified.
         /// </summary>
-        public int Bitrate { get; private set; }
-
-        /// <summary>
-        /// Gets the content type of the format.
-        /// </summary>
-        public string ContentType { get; private set; }
-
-        /// <summary>
-        /// Gets the URL of the format.
-        /// </summary>
-        public string Url { get; private set; }
+        public int Bitrate { get; }
 
         /// <summary>
         /// Gets whether a bitrate has been specified for the format.
         /// </summary>
-        public bool HasBitrate {
-            get { return Bitrate > 0; }
-        }
+        public bool HasBitrate => Bitrate > 0;
+
+        /// <summary>
+        /// Gets the content type of the format.
+        /// </summary>
+        public string ContentType { get; }
+
+        /// <summary>
+        /// Gets the URL of the format.
+        /// </summary>
+        public string Url { get; }
 
         #endregion
 
         #region Constructors
 
-        private TwitterVideoFormat(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterVideoFormat"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterVideoFormat(JObject obj) : base(obj) {
             Bitrate = obj.GetInt32("bitrate");
             ContentType = obj.GetString("content_type");
             Url = obj.GetString("url");
@@ -47,9 +49,10 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterVideoFormat</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterVideoFormat"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterVideoFormat"/>.</returns>
         public static TwitterVideoFormat Parse(JObject obj) {
             return obj == null ? null : new TwitterVideoFormat(obj);
         }

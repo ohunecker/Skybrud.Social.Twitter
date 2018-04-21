@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Social.Twitter.Models;
 
 namespace Skybrud.Social.Twitter.Entities {
 
     /// <summary>
     /// Class representing a collection of entities used in the description field of a Twitter user.
     /// </summary>
-    public class TwitterUserDescriptionEntities : ITwitterEntities {
+    public class TwitterUserDescriptionEntities : TwitterObject, ITwitterEntities {
 
         #region Properties
 
@@ -25,8 +26,8 @@ namespace Skybrud.Social.Twitter.Entities {
         /// Initializes a new instance of <see cref="TwitterUserDescriptionEntities"/> parsed from the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
-        protected TwitterUserDescriptionEntities(JObject obj) {
-            Urls = obj.GetArray("urls", TwitterUrlEntity.Parse);
+        protected TwitterUserDescriptionEntities(JObject obj) : base(obj) {
+            Urls = obj.GetArrayItems("urls", TwitterUrlEntity.Parse);
         }
 
         #endregion
@@ -59,6 +60,7 @@ namespace Skybrud.Social.Twitter.Entities {
         /// Gets an instance of <see cref="TwitterUserDescriptionEntities"/> from the specified <see cref="JObject"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterUserDescriptionEntities"/>.</returns>
         public static TwitterUserDescriptionEntities Parse(JObject obj) {
             return obj == null ? null : new TwitterUserDescriptionEntities(obj);
         }

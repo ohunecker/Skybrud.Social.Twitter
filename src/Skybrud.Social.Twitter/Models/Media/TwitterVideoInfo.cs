@@ -14,24 +14,22 @@ namespace Skybrud.Social.Twitter.Models.Media {
         /// <summary>
         /// Gets a 2-element array with the aspect ratio of the video.
         /// </summary>
-        public int[] AspectRatio { get; private set; }
+        public int[] AspectRatio { get; }
 
         /// <summary>
         /// Gets the duration of the video. For animated GIFs a duration won't be specified.
         /// </summary>
-        public TimeSpan Duration { get; private set; }
-
-        /// <summary>
-        /// Gets an array of all variants/formats of the video.
-        /// </summary>
-        public TwitterVideoFormat[] Variants { get; private set; }
+        public TimeSpan Duration { get; }
 
         /// <summary>
         /// Gets whether a duration has been specified for the video.
         /// </summary>
-        public bool HasDuration {
-            get { return Duration.TotalMilliseconds > 0; }
-        }
+        public bool HasDuration => Duration.TotalMilliseconds > 0;
+
+        /// <summary>
+        /// Gets an array of all variants/formats of the video.
+        /// </summary>
+        public TwitterVideoFormat[] Variants { get; }
 
         #endregion
 
@@ -48,9 +46,10 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterVideoInfo</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterVideoInfo"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterVideoInfo"/>.</returns>
         public static TwitterVideoInfo Parse(JObject obj) {
             return obj == null ? null : new TwitterVideoInfo(obj);
         }

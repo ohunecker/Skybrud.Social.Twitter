@@ -3,69 +3,104 @@ using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Models.Media;
 
 namespace Skybrud.Social.Twitter.Entities {
-
+    
+    /// <summary>
+    /// Class representing an entity reference to an image or video.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/entities-object#media</cref>
+    /// </see>
     public class TwitterMediaEntity : TwitterBaseEntity {
 
         #region Properties
 
-        public long Id { get; private set; }
-        
-        public string IdStr { get; private set; }
-        
-        public string MediaUrl { get; private set; }
-        
-        public string MediaUrlHttps { get; private set; }
-        
-        public string Url { get; private set; }
-        
-        public string DisplayUrl { get; private set; }
+        /// <summary>
+        /// Gets the Twitter ID of the media.
+        /// </summary>
+        public long Id { get; }
 
-        public string ExpandedUrl { get; private set; }
+        /// <summary>
+        /// Gets the Twitter ID (as a string) of the media.
+        /// </summary>
+        public string IdStr { get; }
+        
+        /// <summary>
+        /// Gets the HTTP URL of the media. 
+        /// </summary>
+        public string MediaUrl { get; }
 
-        public string Type { get; private set; }
+        /// <summary>
+        /// Gets the HTTPS URL of the media. 
+        /// </summary>
+        public string MediaUrlHttps { get; }
+        
+        /// <summary>
+        /// Gets the shortened URL of the media.
+        /// </summary>
+        public string Url { get; }
+
+        /// <summary>
+        /// Gets the display URL of the reference. Notice that longer URLs may be truncated.
+        /// </summary>
+        public string DisplayUrl { get; }
+
+        /// <summary>
+        /// Gets the expanded (full) URL behind the reference.
+        /// </summary>
+        public string ExpandedUrl { get; }
+
+        /// <summary>
+        /// Gets the type of the media.
+        /// </summary>
+        public string Type { get; }
 
         /// <summary>
         /// Gets an object with references to the resized formats of the media.
         /// </summary>
-        public TwitterMediaFormats Sizes { get; private set; }
+        public TwitterMediaFormats Sizes { get; }
 
         /// <summary>
-        /// Gets an object with video information if the media is a video, otherwise <code>null</code>.
+        /// Gets an object with video information if the media is a video, otherwise <c>null</c>.
         /// </summary>
-        public TwitterVideoInfo VideoInfo { get; private set; }
+        public TwitterVideoInfo VideoInfo { get; }
 
         /// <summary>
         /// Gets whether the media entity has any video information.
         /// </summary>
-        public bool HasVideoInfo {
-            get { return VideoInfo != null; }
-        }
+        public bool HasVideoInfo => VideoInfo != null;
 
         #endregion
 
         #region Constructors
 
-        private TwitterMediaEntity() { }
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterMediaEntity"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterMediaEntity(JObject obj) : base(obj) {
+            Id = obj.GetInt64("id");
+            IdStr = obj.GetString("id_str");
+            MediaUrl = obj.GetString("media_url");
+            MediaUrlHttps = obj.GetString("media_url_https");
+            Url = obj.GetString("url");
+            DisplayUrl = obj.GetString("display_url");
+            ExpandedUrl = obj.GetString("expanded_url");
+            Type = obj.GetString("type");
+            Sizes = obj.GetObject("sizes", TwitterMediaFormats.Parse);
+            VideoInfo = obj.GetObject("video_info", TwitterVideoInfo.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
-        public static TwitterMediaEntity Parse(JObject entity) {
-            return new TwitterMediaEntity {
-                Id = entity.GetInt64("id"),
-                IdStr = entity.GetString("id_str"),
-                StartIndex = entity.GetArray("indices").GetInt32(0),
-                EndIndex = entity.GetArray("indices").GetInt32(1),
-                MediaUrl = entity.GetString("media_url"),
-                MediaUrlHttps = entity.GetString("media_url_https"),
-                Url = entity.GetString("url"),
-                DisplayUrl = entity.GetString("display_url"),
-                ExpandedUrl = entity.GetString("expanded_url"),
-                Type = entity.GetString("type"),
-                Sizes = entity.GetObject("sizes", TwitterMediaFormats.Parse),
-                VideoInfo = entity.GetObject("video_info", TwitterVideoInfo.Parse)
-            };
+        /// <summary>
+        /// Gets an instance of <see cref="TwitterMediaEntity"/> from the specified <see cref="JObject"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterMediaEntity"/>.</returns>
+        public static TwitterMediaEntity Parse(JObject obj) {
+            return obj == null ? null : new TwitterMediaEntity(obj);
         }
 
         #endregion

@@ -2,26 +2,55 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Social.Twitter.Models;
 
 namespace Skybrud.Social.Twitter.Entities {
 
-    public class TwitterStatusMessageEntities : ITwitterEntities {
+    /// <summary>
+    /// Class representing the entities of a Twitter status message.
+    /// </summary>
+    public class TwitterStatusMessageEntities : TwitterObject, ITwitterEntities {
 
         #region Properties
 
-        public TwitterHashTagEntity[] HashTags { get; private set; }
-        
-        public TwitterUrlEntity[] Urls { get; private set; }
-        
-        public TwitterMentionEntity[] Mentions { get; private set; }
-        
-        public TwitterMediaEntity[] Media { get; private set; }
+        /// <summary>
+        /// Gets an array of all <see cref="TwitterHashTagEntity"/> in the status message.
+        /// </summary>
+        public TwitterHashTagEntity[] HashTags { get; }
+
+        /// <summary>
+        /// Gets an array of all <see cref="TwitterUrlEntity"/> in the status message.
+        /// </summary>
+        public TwitterUrlEntity[] Urls { get; }
+
+        /// <summary>
+        /// Gets an array of all <see cref="TwitterMentionEntity"/> in the status message.
+        /// </summary>
+        public TwitterMentionEntity[] Mentions { get; }
+
+        /// <summary>
+        /// Gets an array of all <see cref="TwitterMediaEntity"/> in the status message.
+        /// </summary>
+        public TwitterMediaEntity[] Media { get; }
+
+        // Add support for the "symbols" property
+
+        // Add support for the "polls" property
 
         #endregion
 
         #region Constructors
 
-        private TwitterStatusMessageEntities() { }
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterStatusMessageEntities"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterStatusMessageEntities(JObject obj) : base(obj) {
+            HashTags = obj.GetArrayItems("hashtags", TwitterHashTagEntity.Parse);
+            Urls = obj.GetArrayItems("urls", TwitterUrlEntity.Parse);
+            Mentions = obj.GetArrayItems("user_mentions", TwitterMentionEntity.Parse);
+            Media = obj.GetArrayItems("media", TwitterMediaEntity.Parse);
+        }
 
         #endregion
 
@@ -55,14 +84,13 @@ namespace Skybrud.Social.Twitter.Entities {
 
         #region Static methods
 
-        public static TwitterStatusMessageEntities Parse(JObject entities) {
-            if (entities == null) return null;
-            return new TwitterStatusMessageEntities {
-                HashTags = entities.GetArray("hashtags", TwitterHashTagEntity.Parse),
-                Urls = entities.GetArray("urls", TwitterUrlEntity.Parse),
-                Mentions = entities.GetArray("user_mentions", TwitterMentionEntity.Parse),
-                Media = entities.GetArray("media", TwitterMediaEntity.Parse) ?? new TwitterMediaEntity[0]
-            };
+        /// <summary>
+        /// Gets an instance of <see cref="TwitterStatusMessageEntities"/> from the specified <see cref="JObject"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterStatusMessageEntities"/>.</returns>
+        public static TwitterStatusMessageEntities Parse(JObject obj) {
+            return obj == null ? null : new TwitterStatusMessageEntities(obj);
         }
 
         #endregion
