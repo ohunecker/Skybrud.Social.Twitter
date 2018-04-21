@@ -10,6 +10,9 @@ using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter {
     
+    /// <summary>
+    /// Various utility methods for working with Twitter and the Twitter API.
+    /// </summary>
     public class TwitterUtils {
 
         #region Version
@@ -41,7 +44,7 @@ namespace Skybrud.Social.Twitter {
             return FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
         }
         
-#endif
+        #endif
 
         #endregion
 
