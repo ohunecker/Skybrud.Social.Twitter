@@ -42,7 +42,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <summary>
         /// Gets a represenation of the authenticated user (requires an access token).
         /// </summary>
-        /// <returns>Returns an instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/account/verify_credentials</cref>
         /// </see>
@@ -54,7 +54,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// Gets a represenation of the authenticated user (requires an access token).
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/account/verify_credentials</cref>
         /// </see>

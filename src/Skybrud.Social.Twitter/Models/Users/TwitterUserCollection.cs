@@ -29,6 +29,10 @@ namespace Skybrud.Social.Twitter.Models.Users {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterUserCollection"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
         private TwitterUserCollection(JObject obj) : base(obj) {
             Users = obj.GetArray("users", TwitterUser.Parse);
             NextCursor = obj.GetInt64("next_cursor");

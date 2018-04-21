@@ -6,7 +6,7 @@ using Skybrud.Social.Twitter.Options.Geocode;
 namespace Skybrud.Social.Twitter.Endpoints.Raw {
 
     /// <summary>
-    /// Class representing the raw implementation of the <strong>Geocde</strong> endpoint.
+    /// Class representing the raw implementation of the <strong>Geocode</strong> endpoint.
     /// </summary>
     public class TwitterGeocodeRawEndpoint {
 
@@ -44,7 +44,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
 
         /// <summary>
         /// Given a <paramref name="latitude"/> and a <paramref name="longitude"/>, searches for up to 20 places that
-        /// can be used as a <code>place_id</code> when updating a status. This request is an informative call
+        /// can be used as a <c>place_id</c> when updating a status. This request is an informative call
         /// and will deliver generalized results about geography.
         /// </summary>
         /// <param name="latitude">The latitude to search around. This parameter will be ignored
@@ -52,22 +52,19 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// also be ignored if there isn't a corresponding <paramref name="longitude"/> parameter.</param>
         /// <param name="longitude">The longitude to search around. The valid ranges for longitude
         /// is -180.0 to +180.0 (East is positive) inclusive. This parameter will be ignored if
-        /// outside that range, if it is not a number, if <code>geo_enabled</code> is disabled, or
+        /// outside that range, if it is not a number, if <c>geo_enabled</c> is disabled, or
         /// if there not a corresponding <paramref name="latitude"/> parameter.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/geo/places-near-location/api-reference/get-geo-reverse_geocode</cref>
         /// </see>
         public SocialHttpResponse ReverseGeocode(double latitude, double longitude) {
-            return ReverseGeocode(new TwitterReverseGeocodeOptions {
-                Latitude = latitude,
-                Longitude = longitude
-            });
+            return ReverseGeocode(new TwitterReverseGeocodeOptions(latitude, longitude));
         }
 
         /// <summary>
         /// Given a latitude and a longitude, searches for up to 20 places that can be used as
-        /// a <code>place_id</code> when updating a status. This request is an informative call
+        /// a <c>place_id</c> when updating a status. This request is an informative call
         /// and will deliver generalized results about geography.
         /// </summary>
         /// <param name="options">The options used when making the call to the API.</param>

@@ -1,4 +1,4 @@
-namespace Skybrud.Social.Twitter.Entities {
+namespace Skybrud.Social.Twitter.Models.Entities {
     
     /// <summary>
     /// Class representing a collection of Twitter entities.

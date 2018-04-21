@@ -5,7 +5,7 @@ using Skybrud.Social.Twitter.Options.Account;
 namespace Skybrud.Social.Twitter.Endpoints.Raw {
     
     /// <summary>
-    /// Class representing the raw implementation of the account endpoint.
+    /// Class representing the raw implementation of the <strong>Account</strong> endpoint.
     /// </summary>
     public class TwitterAccountRawEndpoint {
 

@@ -4,6 +4,9 @@ using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter.Responses.Geocode {
 
+    /// <summary>
+    /// Class representing the response of a request to the Twitter API for getting information about a Twitter place.
+    /// </summary>
     public class TwitterGetPlaceResponse : TwitterResponse<TwitterPlace> {
 
         #region Constructors

@@ -3,12 +3,12 @@ using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Lists {
-    
+
     /// <summary>
-    /// Options for a call to the Twitter API for getting the lists a given user is the member of.
+    /// Class with options for a request to the Twitter API for getting the lists a given user is the member of.
     /// </summary>
     /// <see>
-    ///     <cref>https://dev.twitter.com/rest/reference/get/lists/memberships</cref>
+    ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/get-lists-memberships</cref>
     /// </see>
     public class TwitterGetMembershipsOptions : IHttpGetOptions {
 
@@ -35,15 +35,44 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         public long Cursor { get; set; }
 
         /// <summary>
-        /// When set to <code>true</code>, will return just lists the authenticating user owns, and the user
-        /// represented by user_id or screen_name is a member of.
+        /// When set to <c>true</c>, will return just lists the authenticating user owns, and the user
+        /// represented by <see cref="UserId"/> or <see cref="ScreenName"/> is a member of.
         /// </summary>
         public bool FilterToOwnedLists { get; set; }
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public TwitterGetMembershipsOptions() { }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        public TwitterGetMembershipsOptions(long userId) {
+            UserId = userId;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        public TwitterGetMembershipsOptions(string screenName) {
+            ScreenName = screenName;
+        }
+
+        #endregion
+
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);

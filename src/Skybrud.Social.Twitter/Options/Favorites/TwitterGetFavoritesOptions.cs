@@ -5,7 +5,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Twitter.Options.Favorites {
     
     /// <summary>
-    /// Options for a call to the Twitter API for getting a list of favorites.
+    /// Class with options for a request to the Twitter API for getting a list of favorites.
     /// </summary>
     public class TwitterGetFavoritesOptions : IHttpGetOptions {
 
@@ -22,7 +22,7 @@ namespace Skybrud.Social.Twitter.Options.Favorites {
         public string ScreenName { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of records to retrieve. Must be less than or equal to <code>200</code>; defaults to
+        /// Gets or sets the number of records to retrieve. Must be less than or equal to <c>200</c>; defaults to
         /// <code>20</code>. The value of count is best thought of as a limit to the number of tweets to return because
         /// suspended or deleted content is removed after the count has been applied.
         /// </summary>
@@ -31,7 +31,7 @@ namespace Skybrud.Social.Twitter.Options.Favorites {
         /// <summary>
         /// Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to
         /// the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the
-        /// <code>since_id</code>, the <code>since_id</code> will be forced to the oldest ID available.
+        /// <c>since_id</c>, the <c>since_id</c> will be forced to the oldest ID available.
         /// </summary>
         public long SinceId { get; set; }
 
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Twitter.Options.Favorites {
         public long MaxId { get; set; }
 
         /// <summary>
-        /// The <code>entities</code> node will be omitted when set to <code>false</code>.
+        /// The <c>entities</c> node will be omitted when set to <c>false</c>.
         /// </summary>
         public bool IncludeEntities { get; set; }
 
@@ -50,9 +50,27 @@ namespace Skybrud.Social.Twitter.Options.Favorites {
         #region Constructors
 
         /// <summary>
-        /// Default constructor.
+        /// Initializes a new instance with default options.
         /// </summary>
         public TwitterGetFavoritesOptions() {
+            IncludeEntities = true;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The screen name of the user owning the list.</param>
+        public TwitterGetFavoritesOptions(long userId) {
+            UserId = userId;
+            IncludeEntities = true;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user owning the list.</param>
+        public TwitterGetFavoritesOptions(string screenName) {
+            ScreenName = screenName;
             IncludeEntities = true;
         }
 
@@ -60,6 +78,10 @@ namespace Skybrud.Social.Twitter.Options.Favorites {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);

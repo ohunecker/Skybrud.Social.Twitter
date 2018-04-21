@@ -1,4 +1,5 @@
 using System;
+using Skybrud.Essentials.Common;
 using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.Models.Statuses;
 using Skybrud.Social.Twitter.OAuth;
@@ -33,7 +34,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region GetStatusMessage(...)
 
         /// <summary>
-        /// Gets information about the status message (tweet) with the <paramref name="statusId"/>.
+        /// Gets information about the status message (tweet) with the specified <paramref name="statusId"/>.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -45,7 +46,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets the raw API response for a status message (tweet) matching the specified <paramref name="options"/>.
+        /// Gets information about the status message (tweet) matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options used when making the call to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -62,7 +63,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region PostStatusMessage(...)
 
         /// <summary>
-        /// Posts the specified status message.
+        /// Posts the specified status message (tweet).
         /// </summary>
         /// <param name="status">The status message to send.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -70,11 +71,12 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
         /// </see>
         public SocialHttpResponse PostStatusMessage(string status) {
+            if (String.IsNullOrWhiteSpace(status)) throw new ArgumentNullException(nameof(status));
             return PostStatusMessage(new TwitterPostStatusMessageOptions { Status = status });
         }
 
         /// <summary>
-        /// Posts the specified status message.
+        /// Posts the specified status message (tweet).
         /// </summary>
         /// <param name="status">The status message to send.</param>
         /// <param name="replyTo">The ID of the status message to reply to.</param>
@@ -82,20 +84,22 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
         /// </see>
-        public SocialHttpResponse PostStatusMessage(string status, long? replyTo) {
+        public SocialHttpResponse PostStatusMessage(string status, long replyTo) {
+            if (String.IsNullOrWhiteSpace(status)) throw new ArgumentNullException(nameof(status));
             return PostStatusMessage(new TwitterPostStatusMessageOptions { Status = status, ReplyTo = replyTo });
         }
 
         /// <summary>
         /// Posts a new status message (tweet) with the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call to the API.</param>
+        /// <param name="options">The options for the request to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
         /// </see>
         public SocialHttpResponse PostStatusMessage(TwitterPostStatusMessageOptions options) {
             if (options == null) throw new ArgumentNullException(nameof(options));
+            if (!String.IsNullOrWhiteSpace(options.Status)) throw new PropertyNotSetException(nameof(options.Status));
             return Client.DoHttpPostRequest("https://api.twitter.com/1.1/statuses/update.json", options);
         }
 
@@ -104,7 +108,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region GetUserTimeline(...)
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -116,7 +120,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -129,7 +133,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -144,7 +148,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -156,7 +160,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -169,7 +173,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -184,9 +188,9 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user matching the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options used when making the call to the API.</param>
+        /// <param name="options">The options used when making the request to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
@@ -201,8 +205,8 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region GetHomeTimeline(...)
 
         /// <summary>
-        /// Gets a collection of the most recent tweets and retweets posted by the authenticating
-        /// user and the users they follow.
+        /// Gets a collection of the most recent tweets and retweets posted by the authenticating user and the users
+        /// they follow.
         /// </summary>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
@@ -213,8 +217,8 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a collection of the most recent tweets and retweets posted by the authenticating
-        /// user and the users they follow.
+        /// Gets a collection of the most recent tweets and retweets posted by the authenticating user and the users
+        /// they follow.
         /// </summary>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -226,8 +230,8 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a collection of the most recent tweets and retweets posted by the authenticating
-        /// user and the users they follow. 
+        /// Gets a collection of the most recent tweets and retweets posted by the authenticating user and the users
+        /// they follow. 
         /// </summary>
         /// <param name="options">The options for the call.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -244,7 +248,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region GetMentionsTimeline(...)
 
         /// <summary>
-        /// Gets the most recent mentions (tweets containing the users's @screen_name) for the authenticating user.
+        /// Gets the most recent mentions (tweets containing the users's @screen_name) for the authenticated user.
         /// </summary>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
@@ -255,7 +259,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets the most recent mentions (tweets containing the users's @screen_name) for the authenticating user.
+        /// Gets the most recent mentions (tweets containing the users's @screen_name) for the authenticated user.
         /// </summary>
         /// <param name="count">The maximum amount of tweets to return.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -267,7 +271,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets the most recent mentions (tweets containing the users's @screen_name) for the authenticating user.
+        /// Gets the most recent mentions (tweets containing the users's @screen_name) for the authenticated user.
         /// </summary>
         /// <param name="options">The options for the call.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -395,7 +399,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// the author of the specified status message. Returns the destroyed status message if successful.
         /// </summary>
         /// <param name="statusId">The ID of the status message to be destroyed.</param>
-        /// <param name="trimUser">When set to <code>true</code>, each tweet returned in a timeline will include a user
+        /// <param name="trimUser">When set to <c>true</c>, each tweet returned in a timeline will include a user
         /// object including only the status authors numerical ID. Omit this parameter to receive the complete user
         /// object.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -422,7 +426,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         /// specified status message. Returns the destroyed status message if successful.
         /// </summary>
         /// <param name="statusMessage">The status meessage to be destroyed.</param>
-        /// <param name="trimUser">When set to <code>true</code>, each tweet returned in a timeline will include a user
+        /// <param name="trimUser">When set to <c>true</c>, each tweet returned in a timeline will include a user
         /// object including only the status authors numerical ID. Omit this parameter to receive the complete user
         /// object.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>

@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
 using Skybrud.Social.Interfaces;
-using Skybrud.Social.Twitter.Entities;
+using Skybrud.Social.Twitter.Models.Entities;
 using Skybrud.Social.Twitter.Models.Geocode;
 using Skybrud.Social.Twitter.Models.Users;
 

@@ -3,6 +3,12 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Users {
 
+    /// <summary>
+    /// Class with options for searching through Twitter users.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-search</cref>
+    /// </see>
     public class TwitterSearchUsersOptions : IHttpGetOptions {
 
         #region Properties
@@ -23,7 +29,7 @@ namespace Skybrud.Social.Twitter.Options.Users {
         public int Count { get; set; }
 
         /// <summary>
-        /// The entities node will be disincluded from embedded tweet objects when set to <code>false</code>.
+        /// The entities node will be disincluded from embedded tweet objects when set to <c>false</c>.
         /// </summary>
         public bool IncludeEntities { get; set; }
 
@@ -31,6 +37,9 @@ namespace Skybrud.Social.Twitter.Options.Users {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public TwitterSearchUsersOptions() {
             Page = 1;
             Count = 20;
@@ -42,7 +51,7 @@ namespace Skybrud.Social.Twitter.Options.Users {
         #region Member methods
 
         /// <summary>
-        /// Return a new instance of <see cref="IHttpQueryString"/> representing the specified options.
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {

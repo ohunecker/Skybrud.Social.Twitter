@@ -40,7 +40,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a list of favorites of the user with the specified <code>userId</code>.
+        /// Gets a list of favorites of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -48,13 +48,11 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
         /// </see>
         public SocialHttpResponse GetFavorites(long userId) {
-            return GetFavorites(new TwitterGetFavoritesOptions {
-                UserId = userId
-            });
+            return GetFavorites(new TwitterGetFavoritesOptions(userId));
         }
 
         /// <summary>
-        /// Gets a list of favorites of the user with the specified <code>screenName</code>.
+        /// Gets a list of favorites of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -62,15 +60,13 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
         /// </see>
         public SocialHttpResponse GetFavorites(string screenName) {
-            return GetFavorites(new TwitterGetFavoritesOptions {
-                ScreenName = screenName
-            });
+            return GetFavorites(new TwitterGetFavoritesOptions(screenName));
         }
 
         /// <summary>
-        /// Gets a list of favorites based on the specified <code>options</code>.
+        /// Gets a list of favorites based on the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call to the API.</param>
+        /// <param name="options">The options for the request to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/favorites/list</cref>
@@ -80,7 +76,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Favorites the status message with the specified <code>statusId</code> as the authenticating user.
+        /// Favorites the status message with the specified <paramref name="statusId"/> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -91,7 +87,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
 
             // Declare the query string
             SocialHttpQueryString query = new SocialHttpQueryString();
-            query.Add("id", statusId);
+            query.Set("id", statusId);
 
             // Make the call to the API
             return Client.DoHttpGetRequest("https://api.twitter.com/1.1/favorites/create.json", query);
@@ -99,7 +95,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Un-favorites the status message with the specified <code>statusId</code> as the authenticating user.
+        /// Un-favorites the status message with the specified <paramref name="statusId"/> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -110,7 +106,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
 
             // Declare the query string
             SocialHttpQueryString query = new SocialHttpQueryString();
-            query.Add("id", statusId);
+            query.Set("id", statusId);
 
             // Make the call to the API
             return Client.DoHttpGetRequest("https://api.twitter.com/1.1/favorites/destroy.json", query);

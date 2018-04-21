@@ -1,5 +1,8 @@
-﻿namespace Skybrud.Social.Twitter.Enums {
+﻿namespace Skybrud.Social.Twitter.Options.Search {
 
+    /// <summary>
+    /// Enum class indicating the type of tweets thats should be returned when performing a search.
+    /// </summary>
     public enum TwitterSearchTweetResultType {
 
         /// <summary>

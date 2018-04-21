@@ -5,7 +5,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Twitter.Options.Lists {
 
     /// <summary>
-    /// Options for a call to the Twitter API for getting a information about a list.
+    /// Options for a request to the Twitter API for getting a information about a Twitter list.
     /// </summary>
     public class TwitterGetListOptions : IHttpGetOptions {
 
@@ -33,8 +33,49 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public TwitterGetListOptions() { }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="listId"/>.
+        /// </summary>
+        /// <param name="listId">The ID of the list.</param>
+        public TwitterGetListOptions(long listId) : this() {
+            Id = listId;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/> and <paramref name="slug"/>.
+        /// </summary>
+        /// <param name="userId">The screen name of the user owning the list.</param>
+        /// <param name="slug">The slug of the list.</param>
+        public TwitterGetListOptions(long userId, string slug) : this() {
+            UserId = userId;
+            Slug = slug;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/> and <paramref name="slug"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user owning the list.</param>
+        /// <param name="slug">The slug of the list.</param>
+        public TwitterGetListOptions(string screenName, string slug) : this() {
+            ScreenName = screenName;
+            Slug = slug;
+        }
+
+        #endregion
+
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Id > 0) qs.Set("list_id", UserId);

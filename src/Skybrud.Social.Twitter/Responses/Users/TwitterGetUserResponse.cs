@@ -5,7 +5,7 @@ using Skybrud.Social.Twitter.Models.Users;
 namespace Skybrud.Social.Twitter.Responses.Users {
 
     /// <summary>
-    /// Class representing the response of a call to get information about a single Twitter user.
+    /// Class representing the response of a request to the Twitter API for getting information about a Twitter user.
     /// </summary>
     public class TwitterGetUserResponse : TwitterResponse<TwitterUser> {
 

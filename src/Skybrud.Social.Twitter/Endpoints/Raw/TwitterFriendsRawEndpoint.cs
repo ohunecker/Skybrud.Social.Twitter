@@ -5,7 +5,7 @@ using Skybrud.Social.Twitter.Options;
 namespace Skybrud.Social.Twitter.Endpoints.Raw {
 
     /// <summary>
-    /// Class representing the raw implementation of the friends endpoint.
+    /// Class representing the raw implementation of the <strong>Friends</strong> endpoint.
     /// </summary>
     public class TwitterFriendsRawEndpoint {
 
@@ -29,7 +29,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region Methods
 
         /// <summary>
-        /// Gets a list of IDs representing the friends of a given user.
+        /// Gets a list of IDs representing the friends of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -37,13 +37,11 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/ids</cref>
         /// </see>
         public SocialHttpResponse GetIds(long userId) {
-            return GetIds(new TwitterFriendsIdsOptions {
-                UserId = userId
-            });
+            return GetIds(new TwitterFriendsIdsOptions(userId));
         }
 
         /// <summary>
-        /// Gets a list of IDs representing the friends of a given user.
+        /// Gets a list of IDs representing the friends of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -51,15 +49,13 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/ids</cref>
         /// </see>
         public SocialHttpResponse GetIds(string screenName) {
-            return GetIds(new TwitterFriendsIdsOptions {
-                ScreenName = screenName
-            });
+            return GetIds(new TwitterFriendsIdsOptions(screenName));
         }
 
         /// <summary>
-        /// Gets a list of IDs representing the friends of a given user.
+        /// Gets a list of IDs representing the friends of the user matching the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call.</param>
+        /// <param name="options">The options for the request to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/ids</cref>
@@ -77,9 +73,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/list</cref>
         /// </see>
         public SocialHttpResponse GetList(long userId) {
-            return GetList(new TwitterFriendsListOptions {
-                UserId = userId
-            });
+            return GetList(new TwitterFriendsListOptions(userId));
         }
 
         /// <summary>
@@ -91,9 +85,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/friends/list</cref>
         /// </see>
         public SocialHttpResponse GetList(string screenName) {
-            return GetList(new TwitterFriendsListOptions {
-                ScreenName = screenName
-            });
+            return GetList(new TwitterFriendsListOptions(screenName));
         }
 
         /// <summary>

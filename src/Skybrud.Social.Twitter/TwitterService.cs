@@ -19,47 +19,47 @@ namespace Skybrud.Social.Twitter {
         /// <summary>
         /// Gets a reference to the Account endpoint.
         /// </summary>
-        public TwitterAccountEndpoint Account { get; private set; }
+        public TwitterAccountEndpoint Account { get; }
 
         /// <summary>
         /// Gets a reference to the Favorites endpoint.
         /// </summary>
-        public TwitterFavoritesEndpoint Favorites { get; private set; }
+        public TwitterFavoritesEndpoint Favorites { get; }
 
         /// <summary>
         /// Gets a reference to the Followers endpoint.
         /// </summary>
-        public TwitterFollowersEndpoint Followers { get; private set; }
+        public TwitterFollowersEndpoint Followers { get; }
 
         /// <summary>
         /// Gets a reference to the Friends endpoint.
         /// </summary>
-        public TwitterFriendsEndpoint Friends { get; private set; }
+        public TwitterFriendsEndpoint Friends { get; }
 
         /// <summary>
         /// Gets a reference to the Geo endpoint.
         /// </summary>
-        public TwitterGeocodeEndpoint Geocode { get; private set; }
+        public TwitterGeocodeEndpoint Geocode { get; }
 
         /// <summary>
         /// Gets a reference to the Lists endpoint.
         /// </summary>
-        public TwitterListsEndpoint Lists { get; private set; }
+        public TwitterListsEndpoint Lists { get; }
 
         /// <summary>
         /// Gets a reference to the Search endpoint.
         /// </summary>
-        public TwitterSearchEndpoint Search { get; private set; }
+        public TwitterSearchEndpoint Search { get; }
 
         /// <summary>
         /// Gets a reference to the Statuses endpoint.
         /// </summary>
-        public TwitterStatusesEndpoint Statuses { get; private set; }
+        public TwitterStatusesEndpoint Statuses { get; }
 
         /// <summary>
         /// Gets a reference to the Users endpoint.
         /// </summary>
-        public TwitterUsersEndpoint Users { get; private set; }
+        public TwitterUsersEndpoint Users { get; }
 
         #endregion
 

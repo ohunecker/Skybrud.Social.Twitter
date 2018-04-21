@@ -18,7 +18,7 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         /// <summary>
         /// Gets or sets the name for the list. A list’s name must start with a letter and can consist only of 25 or
-        /// fewer letters, numbers, <code>-</code>, or <code>_</code> characters.
+        /// fewer letters, numbers, <c>-</c>, or <c>_</c> characters.
         /// </summary>
         public string Name { get; set; }
 
@@ -47,7 +47,7 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         /// Initializes a new instance with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name for the list. A list’s name must start with a letter and can consist only of 25
-        /// or fewer letters, numbers, <code>-</code>, or <code>_</code> characters.</param>
+        /// or fewer letters, numbers, <c>-</c>, or <c>_</c> characters.</param>
         public TwitterCreateListOptions(string name) {
             Name = name;
         }
@@ -56,7 +56,7 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         /// Initializes a new instance with the specified <paramref name="name"/> and <paramref name="mode"/>.
         /// </summary>
         /// <param name="name">The name for the list. A list’s name must start with a letter and can consist only of 25
-        /// or fewer letters, numbers, <code>-</code>, or <code>_</code> characters.</param>
+        /// or fewer letters, numbers, <c>-</c>, or <c>_</c> characters.</param>
         /// <param name="mode">Whether the list will be public or private. Values can be
         /// <see cref="TwitterListMode.Public"/> or <see cref="TwitterListMode.Private"/>.</param>
         public TwitterCreateListOptions(string name, TwitterListMode mode) {
@@ -68,7 +68,7 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         /// Initializes a new instance with the specified <paramref name="name"/>, <paramref name="mode"/> and <paramref name="description"/>.
         /// </summary>
         /// <param name="name">The name for the list. A list’s name must start with a letter and can consist only of 25
-        /// or fewer letters, numbers, <code>-</code>, or <code>_</code> characters.</param>
+        /// or fewer letters, numbers, <c>-</c>, or <c>_</c> characters.</param>
         /// <param name="mode">Whether the list will be public or private. Values can be
         /// <see cref="TwitterListMode.Public"/> or <see cref="TwitterListMode.Private"/>.</param>
         /// <param name="description">The description to give the list.</param>
@@ -82,18 +82,25 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             return new SocialHttpQueryString();
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpPostData"/> representing the POST parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpPostData"/>.</returns>
         public IHttpPostData GetPostData() {
 
             if (String.IsNullOrWhiteSpace(Name)) throw new ArgumentNullException(nameof(Name));
 
             SocialHttpPostData data = new SocialHttpPostData();
-
-            data.Add("name", Name);
-            data.Add("mode", StringUtils.ToCamelCase(Mode));
+            data.Set("name", Name);
+            data.Set("mode", StringUtils.ToCamelCase(Mode));
             if (!String.IsNullOrWhiteSpace(Description)) data.Add("description", Description);
 
             return data;

@@ -11,7 +11,7 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
         /// <summary>
         /// Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to
         /// the number of tweets which can be accessed through the API. If the limit of tweets has occured since the
-        /// <code>since_id</code>, the <code>since_id</code> will be forced to the oldest ID available.
+        /// <c>since_id</c>, the <c>since_id</c> will be forced to the oldest ID available.
         /// </summary>
         public long SinceId { get; set; }
 
@@ -35,24 +35,24 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         /// <summary>
         /// This parameter will prevent replies from appearing in the returned timeline. Using
-        /// <code>exclude_replies</code> with the <code>count</code> parameter will mean you will receive up-to count
-        /// tweets — this is because the <code>count</code> parameter retrieves that many tweets before filtering out
+        /// <c>exclude_replies</c> with the <c>count</c> parameter will mean you will receive up-to count
+        /// tweets — this is because the <c>count</c> parameter retrieves that many tweets before filtering out
         /// retweets and replies.
         /// </summary>
         public bool ExcludeReplies { get; set; }
 
         /// <summary>
         /// This parameter enhances the contributors element of the status response to include the
-        /// <code>screen_name</code> of the contributor. By default only the <code>user_id</code> of the contributor is
+        /// <c>screen_name</c> of the contributor. By default only the <c>user_id</c> of the contributor is
         /// included.
         /// </summary>
         public bool ContributorDetails { get; set; }
 
         /// <summary>
-        /// When set to <code>false</code>, the timeline will strip any native retweets (though they will still count
+        /// When set to <c>false</c>, the timeline will strip any native retweets (though they will still count
         /// toward both the maximal length of the timeline and the slice selected by the count parameter).
         /// 
-        /// Note: If you're using the <code>trim_user</code> parameter in conjunction with <code>include_rts</code>,
+        /// Note: If you're using the <c>trim_user</c> parameter in conjunction with <c>include_rts</c>,
         /// the retweets will still contain a full user object.
         /// </summary>
         public bool IncludeRetweets { get; set; }
@@ -69,10 +69,17 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         protected TwitterTimelineOptions() {
             IncludeRetweets = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="count"/>.
+        /// </summary>
+        /// <param name="count">The maximum amount of tweets to be returned by the API.</param>
         protected TwitterTimelineOptions(int count) {
             Count = count;
             IncludeRetweets = true;
@@ -82,6 +89,10 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
 
             // Define the query string

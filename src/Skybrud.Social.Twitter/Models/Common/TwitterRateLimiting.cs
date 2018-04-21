@@ -14,17 +14,17 @@ namespace Skybrud.Social.Twitter.Models.Common {
         /// <summary>
         /// Gets the total number of calls allowed within the current window.
         /// </summary>
-        public int Limit { get; private set; }
+        public int Limit { get; }
 
         /// <summary>
         /// Gets the remaining number of calls available to your app within the current window.
         /// </summary>
-        public int Remaining { get; private set; }
+        public int Remaining { get; }
 
         /// <summary>
         /// Gets the timestamp for when the current window will be reset.
         /// </summary>
-        public EssentialsDateTime Reset { get; private set; }
+        public EssentialsDateTime Reset { get; }
 
         #endregion
 

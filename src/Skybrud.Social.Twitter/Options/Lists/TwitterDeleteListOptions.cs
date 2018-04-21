@@ -34,25 +34,31 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         public TwitterDeleteListOptions() { }
 
         /// <summary>
-        /// Initializes a new instance with the specified <paramref name="listId"/>.
+        /// Initializes a new instance based on the specified <paramref name="listId"/>.
         /// </summary>
         /// <param name="listId">The numerical ID of the list.</param>
         public TwitterDeleteListOptions(long listId) {
             ListId = listId;
         }
-        
+
         #endregion
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             return new SocialHttpQueryString();
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpPostData"/> representing the POST parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpPostData"/>.</returns>
         public IHttpPostData GetPostData() {
-            SocialHttpPostData data = new SocialHttpPostData();
-            data.Add("list_id", ListId);
-            return data;
+            return new SocialHttpPostData {{"list_id", ListId}};
         }
 
         #endregion

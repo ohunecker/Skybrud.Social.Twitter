@@ -5,6 +5,9 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Statuses {
     
+    /// <summary>
+    /// Class with options for getting the timeline of a Twitter user.
+    /// </summary>
     /// <see>
     ///     <cref>https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline</cref>
     /// </see>
@@ -82,39 +85,74 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public TwitterGetUserTimelineOptions() {
             IncludeRetweets = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId"></param>
         public TwitterGetUserTimelineOptions(long userId) {
             UserId = userId;
             IncludeRetweets = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="count">The maximum amount of tweets to return.</param>
         public TwitterGetUserTimelineOptions(long userId, int count) {
             UserId = userId;
             Count = count;
             IncludeRetweets = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="count">The maximum amount of tweets to return.</param>
+        /// <param name="maxId">The maximum status message ID. Only status message with an ID less then (that is, older
+        /// than) this ID will be returned.</param>
         public TwitterGetUserTimelineOptions(long userId, int count, long maxId) {
             UserId = userId;
             Count = count;
             MaxId = maxId;
             IncludeRetweets = true;
         }
-
+        
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
         public TwitterGetUserTimelineOptions(string screenName) {
             ScreenName = screenName;
             IncludeRetweets = true;
         }
-
+        
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        /// <param name="count">The maximum amount of tweets to return.</param>
         public TwitterGetUserTimelineOptions(string screenName, int count) {
             ScreenName = screenName;
             Count = count;
             IncludeRetweets = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        /// <param name="count">The maximum amount of tweets to return.</param>
+        /// <param name="maxId">The maximum status message ID. Only status message with an ID less then (that is, older
+        /// than) this ID will be returned.</param>
         public TwitterGetUserTimelineOptions(string screenName, int count, long maxId) {
             ScreenName = screenName;
             Count = count;
@@ -126,6 +164,10 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
 
             // Define the query string

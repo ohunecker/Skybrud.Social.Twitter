@@ -5,7 +5,7 @@ using Skybrud.Social.Twitter.Responses.Geocode;
 namespace Skybrud.Social.Twitter.Endpoints {
 
     /// <summary>
-    /// Class representing the implementation of the <strong>Geocde</strong> endpoint.
+    /// Class representing the implementation of the <strong>Geocode</strong> endpoint.
     /// </summary>
     public class TwitterGeocodeEndpoint {
 
@@ -47,7 +47,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
 
         /// <summary>
         /// Given a <paramref name="latitude"/> and a <paramref name="longitude"/>, searches for up to 20 places that
-        /// can be used as a <code>place_id</code> when updating a status. This request is an informative call
+        /// can be used as a <c>place_id</c> when updating a status. This request is an informative call
         /// and will deliver generalized results about geography.
         /// </summary>
         /// <param name="latitude">The latitude to search around. This parameter will be ignored
@@ -67,7 +67,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
 
         /// <summary>
         /// Given a latitude and a longitude, searches for up to 20 places that can be used as
-        /// a <code>place_id</code> when updating a status. This request is an informative call
+        /// a <c>place_id</c> when updating a status. This request is an informative call
         /// and will deliver generalized results about geography.
         /// </summary>
         /// <param name="options">The options used when making the call to the API.</param>

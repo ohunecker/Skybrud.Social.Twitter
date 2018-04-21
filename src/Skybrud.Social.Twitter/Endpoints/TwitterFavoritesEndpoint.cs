@@ -4,9 +4,9 @@ using Skybrud.Social.Twitter.Responses;
 using Skybrud.Social.Twitter.Responses.Statuses;
 
 namespace Skybrud.Social.Twitter.Endpoints {
-    
+
     /// <summary>
-    /// Implementation of the favorites endpoint.
+    /// Class representing the implementation of the Implementation of the <strong>Favorites</strong> endpoint.
     /// </summary>
     public class TwitterFavoritesEndpoint {
 
@@ -42,7 +42,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Gets a list of favorites of the user with the specified <code>userId</code>.
+        /// Gets a list of favorites of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         public TwitterTimelineResponse GetFavorites(long userId) {
@@ -50,7 +50,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Gets a list of favorites of the user with the specified <code>screenName</code>.
+        /// Gets a list of favorites of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         public TwitterTimelineResponse GetFavorites(string screenName) {
@@ -58,7 +58,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Gets a list of favorites based on the specified <code>options</code>.
+        /// Gets a list of favorites based on the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
         public TwitterTimelineResponse GetFavorites(TwitterGetFavoritesOptions options) {
@@ -66,7 +66,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Favorites the status message with the specified <code>statusId</code> as the authenticating user.
+        /// Favorites the status message with the specified <paramref name="statusId"/> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
         public TwitterGetStatusMessageResponse Create(long statusId) {
@@ -74,7 +74,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Un-favorites the status message with the specified <code>statusId</code> as the authenticating user.
+        /// Un-favorites the status message with the specified <paramref name="statusId"/> as the authenticating user.
         /// </summary>
         /// <param name="statusId">The ID of the status message.</param>
         public TwitterGetStatusMessageResponse Destroy(long statusId) {

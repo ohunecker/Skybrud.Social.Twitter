@@ -3,12 +3,12 @@ using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Lists {
-    
+
     /// <summary>
-    /// Options for a call to the Twitter API for getting the members of a given list.
+    /// Class with Options for a request to the Twitter API for getting the members of a given list.
     /// </summary>
     /// <see>
-    ///     <cref>https://dev.twitter.com/rest/reference/get/lists/members</cref>
+    ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/get-lists-members</cref>
     /// </see>
     public class TwitterGetMembersOptions : IHttpGetOptions {
 
@@ -45,19 +45,60 @@ namespace Skybrud.Social.Twitter.Options.Lists {
         public long Cursor { get; set; }
 
         /// <summary>
-        /// The <code>entities</code> node will be disincluded when set to <code>false</code>.
+        /// The <c>entities</c> node will be disincluded when set to <c>false</c>.
         /// </summary>
         public bool IncludeEntities { get; set; }
 
         /// <summary>
-        /// When set to <code>true</code> statuses will not be included in the returned user objects.
+        /// When set to <c>true</c> statuses will not be included in the returned user objects.
         /// </summary>
         public bool SkipStatus { get; set; }
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public TwitterGetMembersOptions() { }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="listId"/>.
+        /// </summary>
+        /// <param name="listId">The ID of the list.</param>
+        public TwitterGetMembersOptions(long listId) : this() {
+            Id = listId;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/> and <paramref name="slug"/>.
+        /// </summary>
+        /// <param name="userId">The screen name of the user owning the list.</param>
+        /// <param name="slug">The slug of the list.</param>
+        public TwitterGetMembersOptions(long userId, string slug) : this() {
+            UserId = userId;
+            Slug = slug;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/> and <paramref name="slug"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user owning the list.</param>
+        /// <param name="slug">The slug of the list.</param>
+        public TwitterGetMembersOptions(string screenName, string slug) : this() {
+            ScreenName = screenName;
+            Slug = slug;
+        }
+
+        #endregion
+
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Id > 0) qs.Set("list_id", UserId);

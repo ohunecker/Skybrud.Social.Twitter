@@ -15,17 +15,17 @@ namespace Skybrud.Social.Twitter.Models.Geocode {
 
         #region Constructors
 
-        private TwitterReverseGeocodeResult(JObject obj) : base(obj) { }
+        private TwitterReverseGeocodeResult(TwitterReverseGeocodeResults results, JObject obj) : base(obj) {
+            Results = results;
+            Places = obj.GetArray("places", TwitterPlace.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         public static TwitterReverseGeocodeResult Parse(TwitterReverseGeocodeResults results, JObject obj) {
-            return new TwitterReverseGeocodeResult(obj) {
-                Results = results,
-                Places = obj.GetArray("places", TwitterPlace.Parse)
-            };
+            return new TwitterReverseGeocodeResult(results, obj);
         }
 
         #endregion

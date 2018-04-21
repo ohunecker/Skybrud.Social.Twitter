@@ -5,7 +5,7 @@ using Skybrud.Social.Twitter.Options;
 namespace Skybrud.Social.Twitter.Endpoints.Raw {
 
     /// <summary>
-    /// Class representing the raw implementation of the followers endpoint.
+    /// Class representing the raw implementation of the <strong>Followers</strong> endpoint.
     /// </summary>
     public class TwitterFollowersRawEndpoint {
 
@@ -29,7 +29,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         #region Membmer methods
 
         /// <summary>
-        /// Gets a list of IDs representing the followers of a given user.
+        /// Gets a list of IDs representing the followers of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -37,13 +37,11 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/followers/ids</cref>
         /// </see>
         public SocialHttpResponse GetIds(long userId) {
-            return GetIds(new TwitterFollowersIdsOptions {
-                UserId = userId
-            });
+            return GetIds(new TwitterFollowersIdsOptions(userId));
         }
 
         /// <summary>
-        /// Gets a list of IDs representing the followers of a given user.
+        /// Gets a list of IDs representing the followers of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -51,15 +49,13 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/followers/ids</cref>
         /// </see>
         public SocialHttpResponse GetIds(string screenName) {
-            return GetIds(new TwitterFollowersIdsOptions {
-                ScreenName = screenName
-            });
+            return GetIds(new TwitterFollowersIdsOptions(screenName));
         }
 
         /// <summary>
-        /// Gets a list of IDs representing the followers of a given user.
+        /// Gets a list of IDs representing the followers of the user matching the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call.</param>
+        /// <param name="options">The options for the request to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/followers/ids</cref>
@@ -69,7 +65,7 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a list of followers for a given user using the default options.
+        /// Gets a list of followers of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -77,13 +73,11 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/followers/list</cref>
         /// </see>
         public SocialHttpResponse GetList(long userId) {
-            return GetList(new TwitterFollowersListOptions {
-                UserId = userId
-            });
+            return GetList(new TwitterFollowersListOptions(userId));
         }
 
         /// <summary>
-        /// Gets a list of followers for a given user using the default options.
+        /// Gets a list of followers of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
@@ -91,15 +85,13 @@ namespace Skybrud.Social.Twitter.Endpoints.Raw {
         ///     <cref>https://dev.twitter.com/rest/reference/get/followers/list</cref>
         /// </see>
         public SocialHttpResponse GetList(string screenName) {
-            return GetList(new TwitterFollowersListOptions {
-                ScreenName = screenName
-            });
+            return GetList(new TwitterFollowersListOptions(screenName));
         }
 
         /// <summary>
-        /// Gets a list of followers for a given user using the specified options.
+        /// Gets a list of followers of the user matching the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call.</param>
+        /// <param name="options">The options for the request to the API.</param>
         /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://dev.twitter.com/rest/reference/get/followers/list</cref>

@@ -6,7 +6,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Twitter.Options.Lists {
     
     /// <summary>
-    /// Options for a request to the Twitter API for adding a member to a list.
+    /// Class with options for a request to the Twitter API for adding a member to a list.
     /// </summary>
     /// <see>
     ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/create-manage-lists/api-reference/post-lists-members-create</cref>
@@ -69,18 +69,26 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             return new SocialHttpQueryString();
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpPostData"/> representing the POST parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpPostData"/>.</returns>
         public IHttpPostData GetPostData() {
 
             if (ListId == 0) throw new PropertyNotSetException(nameof(ListId));
             if (UserId == 0 && String.IsNullOrWhiteSpace(ScreenName)) throw new PropertyNotSetException(nameof(UserId));
 
-            SocialHttpPostData data = new SocialHttpPostData();
-
-            data.Add("list_id", ListId);
+            SocialHttpPostData data = new SocialHttpPostData {
+                {"list_id", ListId}
+            };
 
             if (UserId > 0) data.Add("user_id", UserId);
             if (!String.IsNullOrWhiteSpace(ScreenName)) data.Add("screen_name", ScreenName);

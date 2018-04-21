@@ -5,7 +5,7 @@ using Skybrud.Social.Interfaces.Http;
 namespace Skybrud.Social.Twitter.Options.Lists {
 
     /// <summary>
-    /// Options for a call to the Twitter API for getting a list of lists.
+    /// Options for a request to the Twitter API for getting a list of Twitter lists.
     /// </summary>
     public class TwitterGetListsOptions : IHttpGetOptions {
 
@@ -28,8 +28,37 @@ namespace Skybrud.Social.Twitter.Options.Lists {
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public TwitterGetListsOptions() { }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        public TwitterGetListsOptions(long userId) : this() {
+            UserId = userId;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        public TwitterGetListsOptions(string screenName) : this() {
+            ScreenName = screenName;
+        }
+
+        #endregion
+
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);

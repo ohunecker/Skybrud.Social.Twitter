@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
-using Skybrud.Social.Twitter.Entities;
+using Skybrud.Social.Twitter.Models.Entities;
 using Skybrud.Social.Twitter.Models.Statuses;
 
 namespace Skybrud.Social.Twitter.Models.Users {

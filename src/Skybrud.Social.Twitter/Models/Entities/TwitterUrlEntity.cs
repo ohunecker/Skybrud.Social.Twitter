@@ -1,7 +1,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Twitter.Entities {
+namespace Skybrud.Social.Twitter.Models.Entities {
     
     /// <summary>
     /// Class representing an entity reference to an external URL.

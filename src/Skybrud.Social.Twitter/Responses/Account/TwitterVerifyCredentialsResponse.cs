@@ -31,13 +31,8 @@ namespace Skybrud.Social.Twitter.Responses.Account {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="TwitterVerifyCredentialsResponse"/> representing the response.</returns>
         public static TwitterVerifyCredentialsResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
             if (response == null) throw new ArgumentNullException(nameof(response));
-
-            // Initialize the response object
             return new TwitterVerifyCredentialsResponse(response);
-
         }
 
         #endregion

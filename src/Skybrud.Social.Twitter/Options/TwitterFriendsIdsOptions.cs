@@ -4,6 +4,9 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
+    /// <summary>
+    /// Class with options for getting a list of friend IDs.
+    /// </summary>
     public class TwitterFriendsIdsOptions : IHttpGetOptions {
 
         #region Constants
@@ -29,11 +32,11 @@ namespace Skybrud.Social.Twitter.Options {
 
         /// <summary>
         /// Causes the results to be broken into pages. If no cursor is
-        /// provided, a value of <code>-1</code> will be assumed, which is the
+        /// provided, a value of <c>-1</c> will be assumed, which is the
         /// first "page".
         /// 
-        /// The response from the API will include a <code>previous_cursor</code>
-        /// and <code>next_cursor</code> to allow paging back and forth.
+        /// The response from the API will include a <c>previous_cursor</c>
+        /// and <c>next_cursor</c> to allow paging back and forth.
         /// </summary>
         public long Cursor { get; set; }
 
@@ -42,20 +45,43 @@ namespace Skybrud.Social.Twitter.Options {
         /// Defaults to 20.
         /// </summary>
         public int Count { get; set; }
-        
+
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public TwitterFriendsIdsOptions() {
             Cursor = DefaultCursor;
             Count = DefaultCount;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        public TwitterFriendsIdsOptions(long userId) : this() {
+            UserId = userId;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        public TwitterFriendsIdsOptions(string screenName) : this() {
+            ScreenName = screenName;
         }
 
         #endregion
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);

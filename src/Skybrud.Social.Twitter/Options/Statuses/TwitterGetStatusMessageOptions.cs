@@ -1,9 +1,13 @@
+using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Strings;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Statuses {
 
+    /// <summary>
+    /// Class with options for getting information about a single status message (tweet).
+    /// </summary>
     public class TwitterGetStatusMessageOptions : IHttpGetOptions {
 
         #region Properties
@@ -14,21 +18,21 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
         public long Id { get; set; }
 
         /// <summary>
-        /// When set to <code>true</code>, each tweet returned in a timeline will include a user object
+        /// When set to <c>true</c>, each tweet returned in a timeline will include a user object
         /// including only the status authors numerical ID. Omit this parameter to receive
         /// the complete user object.
         /// </summary>
         public bool TrimUser { get; set; }
 
         /// <summary>
-        /// When set to <code>true</code>, any Tweets returned that have been retweeted by the
-        /// authenticating user will include an additional <code>current_user_retweet</code>
+        /// When set to <c>true</c>, any Tweets returned that have been retweeted by the
+        /// authenticating user will include an additional <c>current_user_retweet</c>
         /// node, containing the ID of the source status for the retweet.
         /// </summary>
         public bool IncludeMyRetweet { get; set; }
 
         /// <summary>
-        /// The entities node will be disincluded when set to <code>false</code>.
+        /// The entities node will be disincluded when set to <c>false</c>.
         /// </summary>
         public bool IncludeEntities { get; set; }
 
@@ -44,8 +48,15 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public TwitterGetStatusMessageOptions() { }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="statusId"/>.
+        /// </summary>
+        /// <param name="statusId">The ID of the status message (tweet).</param>
         public TwitterGetStatusMessageOptions(long statusId) {
             Id = statusId;
         }
@@ -54,7 +65,14 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
+
+            if (Id == 0) throw new PropertyNotSetException(nameof(Id));
+
             SocialHttpQueryString query = new SocialHttpQueryString();
             query.Set("id", Id);
             if (TrimUser) query.Add("trim_user", "true");
@@ -62,6 +80,7 @@ namespace Skybrud.Social.Twitter.Options.Statuses {
             if (IncludeEntities) query.Add("include_entities", "true");
             if (TweetMode != TwitterTweetMode.Compatibility) query.Add("tweet_mode", StringUtils.ToCamelCase(TweetMode));
             return query;
+
         }
 
         #endregion

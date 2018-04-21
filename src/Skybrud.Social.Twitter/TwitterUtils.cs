@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Skybrud.Social.Twitter.Entities;
 using Skybrud.Social.Twitter.Entities.Formatting;
+using Skybrud.Social.Twitter.Models.Entities;
 using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter {

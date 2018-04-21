@@ -2,7 +2,13 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Twitter.Models.Geocode {
-
+    
+    /// <summary>
+    /// Class with information about a Twitter place.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/geo-objects#place</cref>
+    /// </see>
     public class TwitterPlace : TwitterObject {
 
         #region Properties
@@ -10,48 +16,52 @@ namespace Skybrud.Social.Twitter.Models.Geocode {
         /// <summary>
         /// Gets the ID of the place.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets the URL for the place in the Twitter API.
         /// </summary>
-        public string Url { get; private set; }
+        public string Url { get; }
 
         /// <summary>
         /// Gets the type of the place.
         /// </summary>
-        public string Type { get; private set; }
+        public string Type { get; }
 
         /// <summary>
         /// Gets the name of the place.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the full name of the place.
         /// </summary>
-        public string FullName { get; private set; }
+        public string FullName { get; }
 
         /// <summary>
         /// Gets the country code of the place.
         /// </summary>
-        public string CountryCode { get; private set; }
+        public string CountryCode { get; }
 
         /// <summary>
         /// Gets the country name of the place.
         /// </summary>
-        public string Country { get; private set; }
+        public string Country { get; }
 
         /// <summary>
         /// Gets the bounding box describing the place.
         /// </summary>
-        public TwitterBoundingBox BoundingBox { get; private set; }
+        public TwitterBoundingBox BoundingBox { get; }
 
         #endregion
 
         #region Constructors
 
-        private TwitterPlace(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterPlace"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterPlace(JObject obj) : base(obj) {
             Id = obj.GetString("id");
             Url = obj.GetString("url");
             Type = obj.GetString("place_type");
@@ -67,9 +77,10 @@ namespace Skybrud.Social.Twitter.Models.Geocode {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterPlace</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterPlace"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterPlace"/>.</returns>
         public static TwitterPlace Parse(JObject obj) {
             return obj == null ? null : new TwitterPlace(obj);
         }

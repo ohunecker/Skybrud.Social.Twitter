@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Twitter.Models.Media;
 
-namespace Skybrud.Social.Twitter.Entities {
+namespace Skybrud.Social.Twitter.Models.Entities {
     
     /// <summary>
     /// Class representing an entity reference to an image or video.

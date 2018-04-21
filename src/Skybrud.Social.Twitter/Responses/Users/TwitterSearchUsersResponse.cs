@@ -2,8 +2,11 @@ using System;
 using Skybrud.Social.Http;
 using Skybrud.Social.Twitter.Models.Users;
 
-namespace Skybrud.Social.Twitter.Responses {
+namespace Skybrud.Social.Twitter.Responses.Users {
 
+    /// <summary>
+    /// Class representing the response of a request to the Twitter API for searching through Twitters users.
+    /// </summary>
     public class TwitterSearchUsersResponse : TwitterResponse<TwitterUser[]> {
 
         #region Constructors
@@ -22,6 +25,11 @@ namespace Skybrud.Social.Twitter.Responses {
 
         #region Static methods
 
+        /// <summary>
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="TwitterSearchUsersResponse"/>.
+        /// </summary>
+        /// <param name="response">The response to be parsed.</param>
+        /// <returns>An instance of <see cref="TwitterSearchUsersResponse"/> representing the response.</returns>
         public static TwitterSearchUsersResponse ParseResponse(SocialHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
             return new TwitterSearchUsersResponse(response);

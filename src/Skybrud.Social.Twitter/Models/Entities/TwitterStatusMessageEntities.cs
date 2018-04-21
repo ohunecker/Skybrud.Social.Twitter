@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Twitter.Models;
 
-namespace Skybrud.Social.Twitter.Entities {
+namespace Skybrud.Social.Twitter.Models.Entities {
 
     /// <summary>
     /// Class representing the entities of a Twitter status message.

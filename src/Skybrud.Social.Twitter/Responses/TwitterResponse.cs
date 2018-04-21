@@ -17,12 +17,16 @@ namespace Skybrud.Social.Twitter.Responses {
         /// <summary>
         /// Gets information about rate limiting.
         /// </summary>
-        public TwitterRateLimiting RateLimiting { get; private set; }
+        public TwitterRateLimiting RateLimiting { get; }
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="response"/>.
+        /// </summary>
+        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> representing the raw response.</param>
         protected TwitterResponse(SocialHttpResponse response) : base(response) {
             RateLimiting = TwitterRateLimiting.GetFromResponse(response);
         }
@@ -32,7 +36,7 @@ namespace Skybrud.Social.Twitter.Responses {
         #region Static methods
 
         /// <summary>
-        /// Validates the specified <code>response</code>.
+        /// Validates the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
         public static void ValidateResponse(SocialHttpResponse response) {
@@ -43,9 +47,7 @@ namespace Skybrud.Social.Twitter.Responses {
             JObject obj = ParseJsonObject(response.Body);
 
             // For some types of errors, Twitter will only respond with an error message
-            if (obj.HasValue("error")) {
-                throw new TwitterHttpException(response, obj.GetString("error"), 0);
-            }
+            if (obj.HasValue("error")) throw new TwitterHttpException(response, obj.GetString("error"), 0);
 
             // However in most cases, Twitter responds with an array of errors
             JArray errors = obj.GetArray("errors");
@@ -78,6 +80,10 @@ namespace Skybrud.Social.Twitter.Responses {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="response"/>.
+        /// </summary>
+        /// <param name="response">The instance of <see cref="SocialHttpResponse"/> representing the raw response.</param>
         protected TwitterResponse(SocialHttpResponse response) : base(response) { }
 
         #endregion

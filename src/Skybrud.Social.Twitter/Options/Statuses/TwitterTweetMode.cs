@@ -1,5 +1,4 @@
-﻿using Skybrud.Social.Twitter.Models;
-using Skybrud.Social.Twitter.Models.Statuses;
+﻿using Skybrud.Social.Twitter.Models.Statuses;
 
 namespace Skybrud.Social.Twitter.Options.Statuses {
     

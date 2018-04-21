@@ -85,7 +85,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// <see>
         ///     <cref>https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update</cref>
         /// </see>
-        public TwitterPostStatusMessageResponse PostStatusMessage(string status, long? replyTo) {
+        public TwitterPostStatusMessageResponse PostStatusMessage(string status, long replyTo) {
             return TwitterPostStatusMessageResponse.ParseResponse(Raw.PostStatusMessage(status, replyTo));
         }
 
@@ -106,7 +106,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         #region GetUserTimeline(...)
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <returns>An instance of <see cref="TwitterGetUserTimelineResponse"/> representing the response.</returns>
@@ -118,7 +118,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -131,7 +131,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -146,7 +146,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <returns>An instance of <see cref="TwitterGetUserTimelineResponse"/> representing the response.</returns>
@@ -158,7 +158,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -171,7 +171,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Get the raw API response for a user's timeline.
+        /// Gets the timeline of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
         /// <param name="count">The maximum amount of tweets to return.</param>
@@ -337,7 +337,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// Retweets the status message with the specified <paramref name="statusId"/>.
         /// </summary>
         /// <param name="statusId">The ID of the status message to be retweeted.</param>
-        /// <param name="trimUser">When set to <code>true</code>, each tweet returned in a timeline will include a user
+        /// <param name="trimUser">When set to <c>true</c>, each tweet returned in a timeline will include a user
         /// object including only the status authors numerical ID. Omit this parameter to receive the complete user
         /// object.</param>
         /// <returns>An instance of <see cref="TwitterRetweetStatusMessageResponse"/> representing the response.</returns>
@@ -361,7 +361,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// Retweets the specified <paramref name="statusMessage"/>.
         /// </summary>
         /// <param name="statusMessage">The status message to be retweeted.</param>
-        /// <param name="trimUser">When set to <code>true</code>, each tweet returned in a timeline will include a user
+        /// <param name="trimUser">When set to <c>true</c>, each tweet returned in a timeline will include a user
         /// object including only the status authors numerical ID. Omit this parameter to receive the complete user
         /// object.</param>
         /// <returns>An instance of <see cref="TwitterRetweetStatusMessageResponse"/> representing the response.</returns>
@@ -391,7 +391,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         /// the author of the specified status message. Returns the destroyed status message if successful.
         /// </summary>
         /// <param name="statusId">The ID of the status message to be destroyed.</param>
-        /// <param name="trimUser">When set to <code>true</code>, each tweet returned in a timeline will include a user
+        /// <param name="trimUser">When set to <c>true</c>, each tweet returned in a timeline will include a user
         /// object including only the status authors numerical ID. Omit this parameter to receive the complete user
         /// object.</param>
         /// <returns>An instance of <see cref="TwitterDestroyStatusMessageResponse"/> representing the response.</returns>

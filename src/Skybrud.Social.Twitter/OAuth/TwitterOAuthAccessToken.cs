@@ -10,8 +10,14 @@ namespace Skybrud.Social.Twitter.OAuth {
 
         #region Properties
 
+        /// <summary>
+        /// Gets the ID of the authenticating user.
+        /// </summary>
         public long UserId { get; }
 
+        /// <summary>
+        /// Gets the screen name of the authenticating user.
+        /// </summary>
         public string ScreenName { get; }
 
         #endregion

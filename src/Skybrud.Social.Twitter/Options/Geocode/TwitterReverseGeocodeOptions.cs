@@ -1,41 +1,50 @@
+using Skybrud.Essentials.Strings.Extensions;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter.Options.Geocode {
-
+    
+    /// <summary>
+    /// Class with options for performing a reverse geocode lookup for places in the Twitter API.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://developer.twitter.com/en/docs/geo/places-near-location/api-reference/get-geo-reverse_geocode</cref>
+    /// </see>
     public class TwitterReverseGeocodeOptions : IHttpGetOptions {
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets the latitude to search around. This parameter will be ignored unless it is inside the range
-        /// -90.0 to +90.0 (North is positive) inclusive. It will  also be ignored if there isn't a corresponding
-        /// <code>long</code> parameter.
+        /// Gets or sets the latitude to search around. The valid ranges for latitude are <c>-90.0</c> to <c>+90.0</c>
+        /// (North is positive) inclusive.
         /// </summary>
         public double Latitude { get; set; }
 
         /// <summary>
-        /// Gets or sets the longitude to search around. The valid ranges for longitude is -180.0 to +180.0 (East is
-        /// positive) inclusive. This parameter will be ignored if outside that range, if it is not a number, if
-        /// <code>geo_enabled</code> is disabled, or if there not a corresponding <code>lat</code> parameter.
+        /// Gets or sets the longitude to search around. The valid ranges for longitude are <c>-180.0</c> to
+        /// <c>+180.0</c> (East is positive) inclusive.
         /// </summary>
         public double Longitude { get; set; }
 
         /// <summary>
         /// A hint on the "region" in which to search. If a number, then this is a radius in meters, but it can also
         /// take a string that is suffixed with ft to specify feet. If this is not passed in, then it is assumed to be
-        /// <code>0m</code>. If coming from a device, in practice, this value is whatever accuracy the device has
+        /// <c>0m</c>. If coming from a device, in practice, this value is whatever accuracy the device has
         /// measuring its location (whether it be coming from a GPS, WiFi triangulation, etc.).
         /// </summary>
         public string Accurary { get; set; }
 
         /// <summary>
-        /// This is the minimal granularity of place types to return and must be one of: <code>poi</code>,
-        /// <code>neighborhood</code>, <code>city</code>, <code>admin</code> or <code>country</code>. If no granularity
-        /// is provided for the request <code>neighborhood</code> is assumed. Setting this to <code>city</code>, for
-        /// example, will find places which have a type of <code>city</code>, <code>admin</code> or
-        /// <code>country</code>.
+        /// This is the minimal granularity of place types to return and must be one of:
+        /// <see cref="TwitterGranularity.Poi"/>, <see cref="TwitterGranularity.Neighborhood"/>,
+        /// <see cref="TwitterGranularity.City"/>, <see cref="TwitterGranularity.Admin"/> or
+        /// <see cref="TwitterGranularity.Country"/>. If no granularity is provided for the request,
+        /// <see cref="TwitterGranularity.Neighborhood"/> is assumed.
+        /// 
+        /// Setting this to <see cref="TwitterGranularity.City"/>, for example, will find places which have a type of
+        /// <see cref="TwitterGranularity.City"/>, <see cref="TwitterGranularity.Admin"/> or
+        /// <see cref="TwitterGranularity.Country"/>.
         /// </summary>
         public TwitterGranularity Granularity { get; set; }
 
@@ -50,9 +59,51 @@ namespace Skybrud.Social.Twitter.Options.Geocode {
 
         #region Constructors
 
-        public TwitterReverseGeocodeOptions() { }
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public TwitterReverseGeocodeOptions() {
+            Granularity = TwitterGranularity.Neighborhood;
+        }
 
-        public TwitterReverseGeocodeOptions(string accurary = "0m", TwitterGranularity granularity = TwitterGranularity.Neighborhood, int maxResults = 0) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="latitude"/> and <paramref name="longitude"/>.
+        /// </summary>
+        /// <param name="latitude">The latitude.</param>
+        /// <param name="longitude">The longitude.</param>
+        public TwitterReverseGeocodeOptions(double latitude, double longitude) {
+            Latitude = latitude;
+            Longitude = longitude;
+            Granularity = TwitterGranularity.Neighborhood;
+        }
+
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="latitude"/>, <paramref name="longitude"/> and
+        /// <paramref name="accurary"/>.
+        /// </summary>
+        /// <param name="latitude">The latitude.</param>
+        /// <param name="longitude">The longitude.</param>
+        /// <param name="accurary">The accuracy.</param>
+        public TwitterReverseGeocodeOptions(double latitude, double longitude, string accurary) {
+            Latitude = latitude;
+            Longitude = longitude;
+            Accurary = accurary;
+            Granularity = TwitterGranularity.Neighborhood;
+        }
+
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="latitude"/>,
+        /// <paramref name="longitude"/>, <paramref name="accurary"/>, <paramref name="granularity"/> and
+        /// <paramref name="maxResults"/>
+        /// </summary>
+        /// <param name="latitude">The latitude.</param>
+        /// <param name="longitude">The longitude.</param>
+        /// <param name="accurary">The accuracy.</param>
+        /// <param name="granularity">The granularity.</param>
+        /// <param name="maxResults">The maximum amout of places to be returned.</param>
+        public TwitterReverseGeocodeOptions(double latitude, double longitude, string accurary, TwitterGranularity granularity, int maxResults) {
+            Latitude = latitude;
+            Longitude = longitude;
             Accurary = accurary;
             Granularity = granularity;
             MaxResults = maxResults;
@@ -62,16 +113,30 @@ namespace Skybrud.Social.Twitter.Options.Geocode {
 
         #region Member methods
 
+        /// <summary>
+        /// Sets the accuracy to the specified <paramref name="meters"/>.
+        /// </summary>
+        /// <param name="meters">The accuracy in meters.</param>
+        /// <returns>The original <see cref="TwitterReverseGeocodeOptions"/>.</returns>
         public TwitterReverseGeocodeOptions SetAccuraryInMeters(int meters) {
             Accurary = meters + "m";
             return this;
         }
 
+        /// <summary>
+        /// Sets the accuracy to the specified <paramref name="feet"/>.
+        /// </summary>
+        /// <param name="feet">The accuracy in feet.</param>
+        /// <returns>The original <see cref="TwitterReverseGeocodeOptions"/>.</returns>
         public TwitterReverseGeocodeOptions SetAccuraryInFeet(int feet) {
             Accurary = feet + "ft";
             return this;
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
 
             // Initialize the query string
@@ -83,7 +148,7 @@ namespace Skybrud.Social.Twitter.Options.Geocode {
 
             // Set optional parameters
             if (Accurary != null && Accurary != "0m") query.Set("accuracy", Accurary);
-            if (Granularity != default(TwitterGranularity)) query.Set("granularity", Granularity.ToString().ToLower());
+            if (Granularity != default(TwitterGranularity)) query.Set("granularity", Granularity.ToLower());
             if (MaxResults > 0) query.Set("max_results", MaxResults);
 
             return query;

@@ -3,9 +3,9 @@ using Skybrud.Social.Twitter.Options.Lists;
 using Skybrud.Social.Twitter.Responses.Lists;
 
 namespace Skybrud.Social.Twitter.Endpoints {
-    
+
     /// <summary>
-    /// Implementation of the lists endpoint.
+    /// Class representing the implementation of the <strong>Lists</strong> endpoint.
     /// </summary>
     public class TwitterListsEndpoint {
 
@@ -34,59 +34,65 @@ namespace Skybrud.Social.Twitter.Endpoints {
         #region Member methods
 
         /// <summary>
-        /// Gets information about the list with the specified <code>listId</code>.
+        /// Gets information about the list with the specified <paramref name="listId"/>.
         /// </summary>
         /// <param name="listId">The ID of the list.</param>
+        /// <returns>An instance of <see cref="TwitterListResponse"/> representing the response.</returns>
         public TwitterListResponse GetList(long listId) {
             return TwitterListResponse.ParseResponse(Raw.GetList(listId));
         }
 
         /// <summary>
-        /// Gets information about the list with the specified <code>listId</code>.
+        /// Gets information about the list with the specified <paramref name="userId"/> and <paramref name="slug"/>.
         /// </summary>
         /// <param name="userId">The ID of the user owning the list.</param>
         /// <param name="slug">The slug of the list.</param>
+        /// <returns>An instance of <see cref="TwitterListResponse"/> representing the response.</returns>
         public TwitterListResponse GetList(long userId, string slug) {
             return TwitterListResponse.ParseResponse(Raw.GetList(userId, slug));
         }
 
         /// <summary>
-        /// Gets information about the list with the specified <code>listId</code>.
+        /// Gets information about the list with the specified <paramref name="screenName"/> and <paramref name="slug"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user owning the list.</param>
         /// <param name="slug">The slug of the list.</param>
+        /// <returns>An instance of <see cref="TwitterListResponse"/> representing the response.</returns>
         public TwitterListResponse GetList(string screenName, string slug) {
             return TwitterListResponse.ParseResponse(Raw.GetList(screenName, slug));
         }
 
         /// <summary>
-        /// Gets information about the list matching the specified <code>options</code>.
+        /// Gets information about the list matching the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call to the API.</param>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="TwitterListResponse"/> representing the response.</returns>
         public TwitterListResponse GetList(TwitterGetListOptions options) {
             return TwitterListResponse.ParseResponse(Raw.GetList(options));
         }
 
         /// <summary>
-        /// Gets a list of list of the authenticated user.
+        /// Gets a list of lists of the authenticated user.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An instance of <see cref="TwitterListsResponse"/> representing the response.</returns>
         public TwitterListsResponse GetLists() {
             return TwitterListsResponse.ParseResponse(Raw.GetLists());
         }
 
         /// <summary>
-        /// Gets a list of lists of the user with the specified <code>userId</code>.
+        /// Gets a list of lists of the user with the specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
+        /// <returns>An instance of <see cref="TwitterListsResponse"/> representing the response.</returns>
         public TwitterListsResponse GetLists(long userId) {
             return TwitterListsResponse.ParseResponse(Raw.GetLists(userId));
         }
 
         /// <summary>
-        /// Gets a list of lists of the user with the specified <code>screenName</code>.
+        /// Gets a list of lists of the user with the specified <paramref name="screenName"/>.
         /// </summary>
         /// <param name="screenName">The screen name of the user.</param>
+        /// <returns>An instance of <see cref="TwitterListsResponse"/> representing the response.</returns>
         public TwitterListsResponse GetLists(string screenName) {
             return TwitterListsResponse.ParseResponse(Raw.GetLists(screenName));
         }
@@ -117,7 +123,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Deletes the specified list. The authenticated user must own the list to be able to destroy it.
+        /// Deletes the list with the specified <paramref name="listId"/>. The authenticated user must own the list to be able to destroy it.
         /// </summary>
         /// <param name="listId"></param>
         /// <returns>An instance of <see cref="TwitterDeleteListResponse"/> representing the response.</returns>
@@ -129,7 +135,7 @@ namespace Skybrud.Social.Twitter.Endpoints {
         }
 
         /// <summary>
-        /// Deletes the specified list. The authenticated user must own the list to be able to destroy it.
+        /// Deletes the matching the specified <paramref name="options"/>. The authenticated user must own the list to be able to destroy it.
         /// </summary>
         /// <param name="options">The options for the request to the API.</param>
         /// <returns>An instance of <see cref="TwitterDeleteListResponse"/> representing the response.</returns>

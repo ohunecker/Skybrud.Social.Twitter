@@ -4,6 +4,9 @@ using Skybrud.Social.Twitter.Models.Geocode;
 
 namespace Skybrud.Social.Twitter.Responses.Geocode {
 
+    /// <summary>
+    /// Class representing the response of a request to the Twitter API for doing a reverse geocode search.
+    /// </summary>
     public class TwitterReverseGeocodeResponse : TwitterResponse<TwitterReverseGeocodeResults> {
 
         #region Constructors

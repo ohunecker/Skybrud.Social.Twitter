@@ -5,6 +5,12 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options.Users {
 
+    /// <summary>
+    /// Class with options for getting information about a Twitter user.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show</cref>
+    /// </see>
     public class TwitterGetUserOptions : IHttpGetOptions {
 
         #region Properties

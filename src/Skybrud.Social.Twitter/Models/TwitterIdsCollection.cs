@@ -10,23 +10,27 @@ namespace Skybrud.Social.Twitter.Models {
         /// <summary>
         /// Gets the array with the IDs returned in the response.
         /// </summary>
-        public long[] Ids { get; private set; }
+        public long[] Ids { get; }
 
         /// <summary>
         /// Gets the cursor pointing to the next page in the result set.
         /// </summary>
-        public long NextCursor { get; private set; }
+        public long NextCursor { get; }
 
         /// <summary>
         /// Gets the cursor pointing to the previous page in the result set.
         /// </summary>
-        public long PreviousCursor { get; private set; }
+        public long PreviousCursor { get; }
 
         #endregion
 
         #region Constructors
 
-        private TwitterIdsCollection(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterIdsCollection"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterIdsCollection(JObject obj) : base(obj) {
             Ids = obj.GetInt64Array("ids");
             NextCursor = obj.GetInt64("next_cursor");
             PreviousCursor = obj.GetInt64("previous_cursor");
@@ -37,9 +41,10 @@ namespace Skybrud.Social.Twitter.Models {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>TwitterIdsCollection</code> from the specified <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterIdsCollection"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterIdsCollection"/>.</returns>
         public static TwitterIdsCollection Parse(JObject obj) {
             return obj == null ? null : new TwitterIdsCollection(obj);
         }

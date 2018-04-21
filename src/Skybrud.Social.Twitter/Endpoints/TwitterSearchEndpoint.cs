@@ -1,9 +1,14 @@
 using Skybrud.Social.Twitter.Endpoints.Raw;
 using Skybrud.Social.Twitter.Options;
+using Skybrud.Social.Twitter.Options.Search;
 using Skybrud.Social.Twitter.Responses;
+using Skybrud.Social.Twitter.Responses.Search;
 
 namespace Skybrud.Social.Twitter.Endpoints {
 
+    /// <summary>
+    /// Class representing the implementation of the <strong>Lists</strong> endpoint.
+    /// </summary>
     public class TwitterSearchEndpoint {
 
         #region Properties
@@ -31,28 +36,31 @@ namespace Skybrud.Social.Twitter.Endpoints {
         #region Member methods
 
         /// <summary>
-        /// Gets tweets matching the specified <code>query</code>.
+        /// Gets tweets matching the specified <paramref name="query"/>.
         /// </summary>
         /// <param name="query">The search query.</param>
-        public TwitterSearchTweetsResponse GetTweets(string query) {
-            return TwitterSearchTweetsResponse.ParseResponse(Raw.GetTweets(query)); 
+        /// <returns>An instance of <see cref="TwitterSearchTweetsResponse"/> representing the response.</returns>
+        public TwitterSearchTweetsResponse SearchTweets(string query) {
+            return TwitterSearchTweetsResponse.ParseResponse(Raw.SearchTweets(query)); 
         }
 
         /// <summary>
-        /// Gets tweets matching the specified <code>query</code>.
+        /// Gets tweets matching the specified <paramref name="query"/>.
         /// </summary>
         /// <param name="query">The search query.</param>
         /// <param name="count">The maximum amount of tweets to return (default: 15, max: 100).</param>
-        public TwitterSearchTweetsResponse GetTweets(string query, int count) {
-            return TwitterSearchTweetsResponse.ParseResponse(Raw.GetTweets(query, count)); 
+        /// <returns>An instance of <see cref="TwitterSearchTweetsResponse"/> representing the response.</returns>
+        public TwitterSearchTweetsResponse SearchTweets(string query, int count) {
+            return TwitterSearchTweetsResponse.ParseResponse(Raw.SearchTweets(query, count)); 
         }
 
         /// <summary>
-        /// Gets tweets matching the specified <code>options</code>.
+        /// Gets tweets matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The search options.</param>
-        public TwitterSearchTweetsResponse GetTweets(TwitterSearchTweetOptions options) {
-            return TwitterSearchTweetsResponse.ParseResponse(Raw.GetTweets(options)); 
+        /// <returns>An instance of <see cref="TwitterSearchTweetsResponse"/> representing the response.</returns>
+        public TwitterSearchTweetsResponse SearchTweets(TwitterSearchTweetOptions options) {
+            return TwitterSearchTweetsResponse.ParseResponse(Raw.SearchTweets(options)); 
         }
 
         #endregion

@@ -8,15 +8,19 @@ namespace Skybrud.Social.Twitter.Models.Search {
 
         #region Properties
 
-        public TwitterStatusMessage[] Statuses { get; private set; }
+        public TwitterStatusMessage[] Statuses { get; }
         
-        public TwitterSearchTweetsMetaData MetaData { get; private set; }
+        public TwitterSearchTweetsMetaData MetaData { get; }
 
         #endregion
 
         #region Constructors
 
-        public TwitterSearchTweetsResults(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterSearchTweetsResults"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterSearchTweetsResults(JObject obj) : base(obj) {
             Statuses = obj.GetArray("statuses", TwitterStatusMessage.Parse);
             MetaData = obj.GetObject("search_metadata", TwitterSearchTweetsMetaData.Parse);
         }
@@ -25,6 +29,11 @@ namespace Skybrud.Social.Twitter.Models.Search {
 
         #region Static methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="TwitterSearchTweetsResults"/> from the specified <see cref="JObject"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterSearchTweetsResults"/>.</returns>
         public static TwitterSearchTweetsResults Parse(JObject obj) {
             return obj == null ? null : new TwitterSearchTweetsResults(obj);
         }

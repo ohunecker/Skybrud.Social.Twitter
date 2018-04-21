@@ -1,25 +1,44 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Twitter.Enums;
 
 namespace Skybrud.Social.Twitter.Models.Geocode {
     
+    /// <summary>
+    /// Class with the reverse geocode parameters sent to the Twitter API.
+    /// </summary>
     public class TwitterReverseGeocodeParameters : TwitterObject {
 
         #region Properties
 
-        public TwitterReverseGeocodeQuery Query { get; private set; }
+        /// <summary>
+        /// The original query sent to the Twitter API.
+        /// </summary>
+        public TwitterReverseGeocodeQuery Query { get; }
 
-        public int Accuracy { get; private set; }
+        /// <summary>
+        /// The accuracy.
+        /// </summary>
+        public int Accuracy { get; }
 
-        public TwitterGranularity Granularity { get; private set; }
+        /// <summary>
+        /// The granularity.
+        /// </summary>
+        public TwitterGranularity Granularity { get; }
 
-        public TwitterCoordinates Coordinates { get; private set; }
+        /// <summary>
+        /// The coordinnates.
+        /// </summary>
+        public TwitterCoordinates Coordinates { get; }
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterReverseGeocodeParameters"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
         private TwitterReverseGeocodeParameters(TwitterReverseGeocodeQuery query, JObject obj) : base(obj) {
             Query = query;
             Accuracy = obj.GetInt32("accuracy");
@@ -31,6 +50,12 @@ namespace Skybrud.Social.Twitter.Models.Geocode {
 
         #region Static methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="TwitterReverseGeocodeParameters"/> from the specified <see cref="JObject"/>.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterReverseGeocodeParameters"/>.</returns>
         public static TwitterReverseGeocodeParameters Parse(TwitterReverseGeocodeQuery query, JObject obj) {
             return obj == null ? null : new TwitterReverseGeocodeParameters(query, obj);
         }

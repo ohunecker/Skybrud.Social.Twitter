@@ -4,6 +4,9 @@ using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Twitter.Options {
 
+    /// <summary>
+    /// Class with options for getting a list of friends.
+    /// </summary>
     public class TwitterFriendsListOptions : IHttpGetOptions {
 
         #region Constants
@@ -28,10 +31,10 @@ namespace Skybrud.Social.Twitter.Options {
         public string ScreenName { get; set; }
 
         /// <summary>
-        /// Causes the results to be broken into pages. If no cursor is provided, a value of <code>-1</code> will be
+        /// Causes the results to be broken into pages. If no cursor is provided, a value of <c>-1</c> will be
         /// assumed, which is the first "page".
         /// 
-        /// The response from the API will include a <code>previous_cursor</code> and <code>next_cursor</code> to allow
+        /// The response from the API will include a <c>previous_cursor</c> and <c>next_cursor</c> to allow
         /// paging back and forth.
         /// </summary>
         public long Cursor { get; set; }
@@ -42,19 +45,22 @@ namespace Skybrud.Social.Twitter.Options {
         public int Count { get; set; }
 
         /// <summary>
-        /// When set to <code>true</code> statuses will not be included in the returned user objects.
+        /// When set to <c>true</c> statuses will not be included in the returned user objects.
         /// </summary>
         public bool SkipStatus { get; set; }
 
         /// <summary>
-        /// The user object entities node will be disincluded when set to <code>false</code>.
+        /// The user object entities node will be disincluded when set to <c>false</c>.
         /// </summary>
         public bool IncludeUserEntities { get; set; }
-        
+
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public TwitterFriendsListOptions() {
             Cursor = DefaultCursor;
             Count = DefaultCount;
@@ -62,10 +68,30 @@ namespace Skybrud.Social.Twitter.Options {
             IncludeUserEntities = DefaultIncludeUserEntities;
         }
 
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        public TwitterFriendsListOptions(long userId) : this() {
+            UserId = userId;
+        }
+
+        /// <summary>
+        /// Intializes a new instance based on the specified <paramref name="screenName"/>.
+        /// </summary>
+        /// <param name="screenName">The screen name of the user.</param>
+        public TwitterFriendsListOptions(string screenName) : this() {
+            ScreenName = screenName;
+        }
+
         #endregion
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             SocialHttpQueryString qs = new SocialHttpQueryString();
             if (UserId > 0) qs.Set("user_id", UserId);

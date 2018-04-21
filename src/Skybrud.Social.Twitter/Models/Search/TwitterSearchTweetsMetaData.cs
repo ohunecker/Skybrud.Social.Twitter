@@ -7,23 +7,27 @@ namespace Skybrud.Social.Twitter.Models.Search {
 
         #region Properties
 
-        public float CompletedIn { get; private set; }
+        public float CompletedIn { get; }
         
-        public long MaxId { get; private set; }
+        public long MaxId { get; }
         
-        public string Query { get; private set; }
+        public string Query { get; }
         
-        public string RefreshUrl { get; private set; }
+        public string RefreshUrl { get; }
         
-        public int Count { get; private set; }
+        public int Count { get; }
         
-        public long SinceId { get; private set; }
+        public long SinceId { get; }
 
         #endregion
 
         #region Constructors
 
-        public TwitterSearchTweetsMetaData(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterSearchTweetsMetaData"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterSearchTweetsMetaData(JObject obj) : base(obj) {
             CompletedIn = obj.GetFloat("completed_in");
             MaxId = obj.GetInt64("max_id");
             Query = obj.GetString("query");
@@ -36,6 +40,11 @@ namespace Skybrud.Social.Twitter.Models.Search {
 
         #region Static methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="TwitterSearchTweetsMetaData"/> from the specified <see cref="JObject"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="TwitterSearchTweetsMetaData"/>.</returns>
         public static TwitterSearchTweetsMetaData Parse(JObject obj) {
             return obj == null ? null : new TwitterSearchTweetsMetaData(obj);
         }

@@ -1,3 +1,5 @@
+using Skybrud.Social.Twitter.Models.Entities;
+
 namespace Skybrud.Social.Twitter.Entities.Formatting {
 
     public interface ITwitterEntityFormatter {

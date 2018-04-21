@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Twitter.Entities;
 
-namespace Skybrud.Social.Twitter.Models.Statuses {
+namespace Skybrud.Social.Twitter.Models.Entities {
     
     /// <summary>
     /// Class representing the extended entities property of a status message.
@@ -25,7 +24,7 @@ namespace Skybrud.Social.Twitter.Models.Statuses {
         /// </summary>
         /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
         protected TwitterExtendedEntities(JObject obj) : base(obj) {
-            Media = obj.GetArray("media", TwitterMediaEntity.Parse);
+            Media = obj.GetArrayItems("media", TwitterMediaEntity.Parse);
         }
 
         #endregion
