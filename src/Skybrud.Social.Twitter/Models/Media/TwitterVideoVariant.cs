@@ -6,7 +6,7 @@ namespace Skybrud.Social.Twitter.Models.Media {
     /// <summary>
     /// Class representing a format of a Twitter video.
     /// </summary>
-    public class TwitterVideoFormat : TwitterObject {
+    public class TwitterVideoVariant : TwitterObject {
 
         #region Properties
 
@@ -35,10 +35,10 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of <see cref="TwitterVideoFormat"/> parsed from the specified <paramref name="obj"/>.
+        /// Initializes a new instance of <see cref="TwitterVideoVariant"/> parsed from the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
-        protected TwitterVideoFormat(JObject obj) : base(obj) {
+        protected TwitterVideoVariant(JObject obj) : base(obj) {
             Bitrate = obj.GetInt32("bitrate");
             ContentType = obj.GetString("content_type");
             Url = obj.GetString("url");
@@ -49,12 +49,12 @@ namespace Skybrud.Social.Twitter.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="TwitterVideoFormat"/> from the specified <see cref="JObject"/>.
+        /// Gets an instance of <see cref="TwitterVideoVariant"/> from the specified <see cref="JObject"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="TwitterVideoFormat"/>.</returns>
-        public static TwitterVideoFormat Parse(JObject obj) {
-            return obj == null ? null : new TwitterVideoFormat(obj);
+        /// <returns>An instance of <see cref="TwitterVideoVariant"/>.</returns>
+        public static TwitterVideoVariant Parse(JObject obj) {
+            return obj == null ? null : new TwitterVideoVariant(obj);
         }
 
         #endregion

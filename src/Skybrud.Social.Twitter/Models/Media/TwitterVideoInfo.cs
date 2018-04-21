@@ -29,7 +29,7 @@ namespace Skybrud.Social.Twitter.Models.Media {
         /// <summary>
         /// Gets an array of all variants/formats of the video.
         /// </summary>
-        public TwitterVideoFormat[] Variants { get; }
+        public TwitterVideoVariant[] Variants { get; }
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace Skybrud.Social.Twitter.Models.Media {
         private TwitterVideoInfo(JObject obj) : base(obj) {
             AspectRatio = obj.GetInt32Array("aspect_ratio");
             Duration = obj.GetDouble("duration_millis", TimeSpan.FromMilliseconds);
-            Variants = obj.GetArray("variants", TwitterVideoFormat.Parse);
+            Variants = obj.GetArray("variants", TwitterVideoVariant.Parse);
         }
 
         #endregion
