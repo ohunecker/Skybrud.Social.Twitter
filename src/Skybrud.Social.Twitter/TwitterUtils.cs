@@ -45,10 +45,20 @@ namespace Skybrud.Social.Twitter {
 
         #endregion
 
+        /// <summary>
+        /// Parses the specified Twitter <paramref name="date"/> into an instance of <see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="date">The string with the Twitter date.</param>
+        /// <returns>An instance of <see cref="DateTime"/>.</returns>
         public static DateTime ParseDateTime(string date) {
             return DateTime.ParseExact(date, "ddd MMM dd HH:mm:ss K yyyy", new CultureInfo("en-US"));
         }
 
+        /// <summary>
+        /// Parses the specified Twitter <paramref name="date"/> into an instance of <see cref="DateTime"/> adjusted to <strong>UTC</strong>.
+        /// </summary>
+        /// <param name="date">The string with the Twitter date.</param>
+        /// <returns>An instance of <see cref="DateTime"/>.</returns>
         public static DateTime ParseDateTimeUtc(string date) {
             return DateTime.ParseExact(date, "ddd MMM dd HH:mm:ss K yyyy", new CultureInfo("en-US"), DateTimeStyles.AdjustToUniversal);
         }
