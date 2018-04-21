@@ -33,10 +33,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Endpoints\TwitterStatusesEndpoint - Copy.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Skybrud.Social.Core" Version="1.0.5" />
   </ItemGroup>
 
