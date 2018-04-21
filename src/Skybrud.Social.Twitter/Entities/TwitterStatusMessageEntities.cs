@@ -30,25 +30,25 @@ namespace Skybrud.Social.Twitter.Entities {
         /// <summary>
         /// Gets a collection of all entities in an ascending order.
         /// </summary>
-        public IEnumerable<TwitterBaseEntity> GetAll() {
+        public TwitterBaseEntity[] GetAll() {
             List<TwitterBaseEntity> temp = new List<TwitterBaseEntity>();
             temp.AddRange(HashTags);
             temp.AddRange(Urls);
             temp.AddRange(Mentions);
             temp.AddRange(Media);
-            return temp.OrderBy(x => x.StartIndex);
+            return temp.OrderBy(x => x.StartIndex).ToArray();
         }
 
         /// <summary>
         /// Gets a collection of all entities in an descending order.
         /// </summary>
-        public IEnumerable<TwitterBaseEntity> GetAllReversed() {
+        public TwitterBaseEntity[] GetAllReversed() {
             List<TwitterBaseEntity> temp = new List<TwitterBaseEntity>();
             temp.AddRange(HashTags);
             temp.AddRange(Urls);
             temp.AddRange(Mentions);
             temp.AddRange(Media);
-            return temp.OrderByDescending(x => x.StartIndex);
+            return temp.OrderByDescending(x => x.StartIndex).ToArray();
         }
 
         #endregion
