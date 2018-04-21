@@ -5,6 +5,9 @@ using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Twitter.Entities {
 
+    /// <summary>
+    /// Class representing a collection of URL entities of a Twitter user.
+    /// </summary>
     public class TwitterUserUrlEntities : ITwitterEntities {
 
         #region Properties
@@ -14,13 +17,19 @@ namespace Skybrud.Social.Twitter.Entities {
         /// specify a single URL in their profiles, but an array is still returned by the Twitter
         /// API.
         /// </summary>
-        public TwitterUrlEntity[] Urls { get; private set; }
+        public TwitterUrlEntity[] Urls { get; }
 
         #endregion
 
         #region Constructors
 
-        private TwitterUserUrlEntities() { }
+        /// <summary>
+        /// Initializes a new instance of <see cref="TwitterUserUrlEntities"/> parsed from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="JObject"/> to be parsed.</param>
+        protected TwitterUserUrlEntities(JObject obj) {
+            Urls = obj.GetArray("urls", TwitterUrlEntity.Parse);
+        }
 
         #endregion
 
@@ -49,14 +58,11 @@ namespace Skybrud.Social.Twitter.Entities {
         #region Static methods
 
         /// <summary>
-        /// Parses a given instance of <code>JObject</code>.
+        /// Gets an instance of <see cref="TwitterUserUrlEntities"/> from the specified <see cref="JObject"/>.
         /// </summary>
-        /// <param name="entities">The <code>JObject</code> to be parsed.</param>
-        public static TwitterUserUrlEntities Parse(JObject entities) {
-            if (entities == null) return null;
-            return new TwitterUserUrlEntities {
-                Urls = entities.GetArray("urls", TwitterUrlEntity.Parse)
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        public static TwitterUserUrlEntities Parse(JObject obj) {
+            return obj == null ? null : new TwitterUserUrlEntities(obj);
         }
 
         #endregion
