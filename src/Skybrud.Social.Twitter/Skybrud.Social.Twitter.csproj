@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Twitter</RootNamespace>
-    <Version>1.0.0-beta005</Version>
+    <Version>1.0.0-beta006</Version>
     <Company>Skybrud.dk a/s</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
